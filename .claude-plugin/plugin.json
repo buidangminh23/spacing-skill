@@ -1,0 +1,22 @@
+{
+  "name": "spacing-skill",
+  "description": "Anti-cramped spacing skill for AI-generated UI — one spacing scale, vertical rhythm, optical alignment, and density discipline",
+  "version": "1.0.0",
+  "author": {
+    "name": "buidangminh23",
+    "email": ""
+  },
+  "homepage": "https://github.com/buidangminh23/spacing-skill",
+  "repository": "https://github.com/buidangminh23/spacing-skill",
+  "license": "MIT",
+  "keywords": [
+    "skills",
+    "spacing",
+    "rhythm",
+    "alignment",
+    "frontend",
+    "design",
+    "whitespace",
+    "ui"
+  ]
+}
