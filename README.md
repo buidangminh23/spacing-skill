@@ -32,79 +32,67 @@ Inspired by the format of [`leonxlnx/taste-skill`](https://github.com/leonxlnx/t
 
 ## Install
 
-> **▶ [Live install page →](https://buidangminh23.github.io/spacing-skill/)** — copy-paste cards for every tool.
+> **▶ [Live install page →](https://buidangminh23.github.io/spacing-skill/)** — the same cards, one-click copy.
 
-Two installer families: the **universal CLIs** (`skills` / `add-skill`, work with
-every agent) and **native plugins** for Claude Code, Codex, and Gemini CLI. Pick
-your tool below.
+Pick your tool. Every block below has a **copy button** (hover its top-right corner).
 
-### ⚡ Universal — works with any agent (recommended)
-
-The `skills` CLI drops `SKILL.md` into the correct folder for whichever agent you target.
+#### `npx` · skills
 
 ```bash
 npx skills add buidangminh23/spacing-skill
 ```
 
-Target one or more tools with `-a`, install to the user directory with `-g`:
+#### `npx` · add-skill
 
-| Tool | Command |
-|---|---|
-| **Claude Code** | `npx skills add buidangminh23/spacing-skill -a claude-code -g` |
-| **Codex CLI** | `npx skills add buidangminh23/spacing-skill -a codex -g` |
-| **Cursor** | `npx skills add buidangminh23/spacing-skill -a cursor -g` |
-| **Cline** | `npx skills add buidangminh23/spacing-skill -a cline -g` |
-| **opencode** | `npx skills add buidangminh23/spacing-skill -a opencode -g` |
-| **Multiple at once** | `npx skills add buidangminh23/spacing-skill -a claude-code -a cursor -a codex` |
+```bash
+npx add-skill buidangminh23/spacing-skill
+```
 
-Drop `-g` for a project-local install (`./<agent>/skills/`). Manage anytime with
-`npx skills list`, `npx skills update`, and `npx skills remove`.
-
-### 🟠 Claude Code — native plugin
-
-The repo is also a Claude Code marketplace, so you can install it as a first-class
-plugin and manage it from `/plugin`. Run these **inside Claude Code**:
+#### Claude Code &nbsp;·&nbsp; native plugin (run inside Claude Code)
 
 ```text
 /plugin marketplace add buidangminh23/spacing-skill
 /plugin install spacing-skill@spacing-skill
 ```
 
-Restart the session, then prompt *"Use the spacing-rhythm skill."*
+#### Cursor
 
-### 🔷 Codex CLI
+```bash
+npx skills add buidangminh23/spacing-skill -a cursor
+```
 
-The repo ships a Codex plugin marketplace (`.codex-plugin/` + `.agents/plugins/marketplace.json`):
+#### Codex &nbsp;·&nbsp; native marketplace
 
 ```text
 codex plugin marketplace add buidangminh23/spacing-skill
 ```
 
-Universal alternative: `npx add-skill buidangminh23/spacing-skill` or `npx skills add buidangminh23/spacing-skill -a codex -g`.
-
-### 🟦 Cursor
+#### Gemini CLI &nbsp;·&nbsp; native extension
 
 ```bash
-npx skills add buidangminh23/spacing-skill -a cursor -g
-```
-
-Manual alternative — drop it in as a project rule:
-
-```bash
-(mkdir -p .cursor/rules && curl -fsSL https://raw.githubusercontent.com/buidangminh23/spacing-skill/main/skills/spacing-skill/SKILL.md -o .cursor/rules/spacing-skill.mdc)
-```
-
-### 🔶 Gemini CLI
-
-The repo ships a `gemini-extension.json`, so it installs as a native extension:
-
-```text
 gemini extensions install https://github.com/buidangminh23/spacing-skill
 ```
 
-### 📦 Manual — portable fallback (any other agent)
+**Works with:** Claude Code · Cursor · Codex · Gemini CLI.
+Skill name once loaded: **`design-spacing-rhythm`** → then prompt *"Use the spacing-rhythm skill."*
 
-Fetch the instruction file once, then place it where your agent looks:
+<details>
+<summary><b>More options</b> — global flags, other agents (Cline, opencode…), manual install</summary>
+
+The `skills` CLI targets any agent with `-a` and installs to the user directory with `-g`:
+
+| Tool | Command |
+|---|---|
+| Claude Code | `npx skills add buidangminh23/spacing-skill -a claude-code -g` |
+| Codex | `npx skills add buidangminh23/spacing-skill -a codex -g` |
+| Cursor | `npx skills add buidangminh23/spacing-skill -a cursor -g` |
+| Cline | `npx skills add buidangminh23/spacing-skill -a cline -g` |
+| opencode | `npx skills add buidangminh23/spacing-skill -a opencode -g` |
+| Several at once | `npx skills add buidangminh23/spacing-skill -a claude-code -a cursor -a codex` |
+
+Drop `-g` for a project-local install. Manage with `npx skills list`, `npx skills update`, `npx skills remove`.
+
+**Manual (portable)** — fetch the file once, then place it where your agent looks:
 
 ```bash
 curl -fsSL https://raw.githubusercontent.com/buidangminh23/spacing-skill/main/skills/spacing-skill/SKILL.md -o SKILL.md
@@ -112,14 +100,14 @@ curl -fsSL https://raw.githubusercontent.com/buidangminh23/spacing-skill/main/sk
 
 | Tool | Where it goes |
 |---|---|
-| **Claude Code** | `~/.claude/skills/design-spacing-rhythm/SKILL.md` (global) or `.claude/skills/…` (project) |
-| **Codex** | save in repo, then reference from `AGENTS.md` (or paste into `~/.codex/AGENTS.md`) |
-| **Cursor** | rename to `.cursor/rules/spacing-skill.mdc` |
-| **Cline / opencode / others** | drop into the agent's skills/rules folder, or paste `SKILL.md` as context |
+| Claude Code | `~/.claude/skills/design-spacing-rhythm/SKILL.md` (global) or `.claude/skills/…` (project) |
+| Codex | save in repo, then reference from `AGENTS.md` |
+| Cursor | rename to `.cursor/rules/spacing-skill.mdc` |
+| Cline / opencode / others | drop into the agent's skills/rules folder, or paste `SKILL.md` as context |
 
-Skill name once loaded: **`design-spacing-rhythm`**. Pairs cleanly with
-[`taste-skill`](https://github.com/Leonxlnx/taste-skill) — taste for the aesthetic,
-spacing-skill for the measure.
+</details>
+
+Pairs cleanly with [`taste-skill`](https://github.com/Leonxlnx/taste-skill) — taste for the aesthetic, spacing-skill for the measure.
 
 ---
 
