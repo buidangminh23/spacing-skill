@@ -4,6 +4,16 @@ All notable changes to this project are documented here. The format is based on
 [Keep a Changelog](https://keepachangelog.com/en/1.1.0/), and this project
 adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0.html).
 
+## [2.1.0] - 2026-06-21
+
+### Added
+- **§14 Document & Long-Form (Word / Google Docs / PDF / Markdown)** — page margins
+  (academic / business / bound), measure in documents, line-spacing presets, the
+  indent-vs-space single-separator rule, heading styles with asymmetric spacing,
+  lists/quotes/tables in prose, print pagination (widow/orphan, keep-with-next),
+  a concept→tool mapping table (CSS / Word / Docs / Markdown), and a document
+  pre-flight checklist. Scope and description broadened to cover written documents.
+
 ## [2.0.1] - 2026-06-21
 
 ### Removed

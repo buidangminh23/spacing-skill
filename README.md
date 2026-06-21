@@ -109,7 +109,7 @@ curl -fsSL https://raw.githubusercontent.com/buidangminh23/spacing-skill/main/sk
 
 | Folder | Install name | What it does |
 |---|---|---|
-| `skills/spacing-skill` | `design-spacing-rhythm` | Anti-cramped spacing: one scale, vertical rhythm, whitespace hierarchy, optical alignment, responsive density, and a pre-flight checklist. |
+| `skills/spacing-skill` | `design-spacing-rhythm` | Anti-cramped spacing: one scale, vertical rhythm, whitespace hierarchy, optical alignment, responsive density, accessibility floors, document & long-form (Word/Docs/PDF) spacing, and a pre-flight checklist. |
 
 ---
 
@@ -132,7 +132,7 @@ generous section rhythm."*
 
 ## What's inside the skill
 
-14 sections, all dial-driven and contextual:
+15 sections, all dial-driven and contextual:
 
 - **§0 Space Inference** — read signals, emit a one-line "Space Read", anti-default discipline.
 - **§1 The three dials** — inference tables mapping the situation to dial values.
@@ -148,6 +148,7 @@ generous section rhythm."*
 - **§11 Anti-pattern catalog** — 14 AI spacing tells, each with the fix.
 - **§12 Implementation per stack** — Tailwind, plain CSS, MUI/Chakra/Radix/shadcn, design tokens, debugging.
 - **§13 Operating procedure** — 8-step pipeline, conversational override protocol, full pre-flight checklist.
+- **§14 Document & long-form** — Word / Google Docs / PDF / Markdown: page margins, line spacing, the indent-vs-space rule, heading styles, print pagination, and a concept→tool mapping.
 
 ---
 
