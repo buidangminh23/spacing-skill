@@ -32,28 +32,25 @@ Inspired by the format of [`leonxlnx/taste-skill`](https://github.com/leonxlnx/t
 
 ## Installing
 
-### Claude Code (plugin)
+The [`npx skills add`](https://github.com/vercel-labs/agent-skills) CLI scans the
+`skills/` folder, so the skill installs like any agent skill:
 
 ```bash
-# Add this repo as a plugin marketplace, then install
-/plugin marketplace add buidangminh23/spacing-skill
-/plugin install spacing-skill@spacing-skill
+npx skills add https://github.com/buidangminh23/spacing-skill
 ```
 
-### Any agent (manual)
-
-Copy the skill file into your skills directory:
+Install just this skill by its **install name** (the `name:` field in the SKILL
+frontmatter, not the folder name):
 
 ```bash
-# Project-level
-mkdir -p .claude/skills/spacing-skill
-curl -fsSL https://raw.githubusercontent.com/buidangminh23/spacing-skill/main/skills/spacing-skill/SKILL.md \
-  -o .claude/skills/spacing-skill/SKILL.md
+npx skills add https://github.com/buidangminh23/spacing-skill --skill "design-spacing-rhythm"
 ```
 
-Then reference it in your prompt: *"Use the spacing-rhythm skill."* It also pairs
-cleanly with `taste-skill` — run taste for the aesthetic, spacing-skill for the
-measure.
+You can also copy `skills/spacing-skill/SKILL.md` into your agent's skills folder
+(e.g. `.claude/skills/`), or paste it straight into a Claude / Codex / Cursor
+conversation. Then reference it in your prompt: *"Use the spacing-rhythm skill."*
+It pairs cleanly with `taste-skill` — taste for the aesthetic, spacing-skill for
+the measure.
 
 ---
 
