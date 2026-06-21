@@ -32,8 +32,6 @@ Inspired by the format of [`leonxlnx/taste-skill`](https://github.com/leonxlnx/t
 
 ## Install
 
-> **▶ [Live install page →](https://buidangminh23.github.io/spacing-skill/)** — the same cards, one-click copy.
-
 Pick your tool. Every block below has a **copy button** (hover its top-right corner).
 
 #### `npx` · skills
