@@ -166,8 +166,9 @@ Yes. `SKILL.md` is a portable instruction file. Drop it into Codex, Cursor, or
 any agent that can load skill/instruction files, or paste it as context.
 
 **Tailwind only?**
-No. The default scale matches Tailwind so it drops in cleanly, but Section 11
-covers plain CSS variables, component libraries, and design tokens.
+No. The default scale matches Tailwind so it drops in cleanly, but §12
+(Implementation per stack) covers plain CSS variables, component libraries, and
+design tokens.
 
 ---
 
