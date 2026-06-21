@@ -9,7 +9,7 @@
 [![License: MIT](https://img.shields.io/badge/License-MIT-0078D4?style=for-the-badge)](LICENSE)
 [![Agent Skills](https://img.shields.io/badge/Agent-Skills-E53935?style=for-the-badge)](https://github.com/buidangminh23/spacing-skill)
 [![Claude Code](https://img.shields.io/badge/Claude_Code-Plugin-FFB300?style=for-the-badge)](https://github.com/buidangminh23/spacing-skill)
-[![Tools](https://img.shields.io/badge/Works_with-Claude_·_Codex_·_Cursor-43A047?style=for-the-badge)](https://github.com/buidangminh23/spacing-skill)
+[![Tools](https://img.shields.io/badge/Works_with-Claude_·_Cursor_·_Codex_·_Gemini-43A047?style=for-the-badge)](https://github.com/buidangminh23/spacing-skill)
 
 </div>
 
@@ -32,9 +32,11 @@ Inspired by the format of [`leonxlnx/taste-skill`](https://github.com/leonxlnx/t
 
 ## Install
 
-Two paths: a **universal one-liner** that works with every agent (via the
-[`skills`](https://github.com/vercel-labs/skills) CLI), and a **native Claude Code
-plugin**. Pick your tool below.
+> **▶ [Live install page →](https://buidangminh23.github.io/spacing-skill/)** — copy-paste cards for every tool.
+
+Two installer families: the **universal CLIs** (`skills` / `add-skill`, work with
+every agent) and **native plugins** for Claude Code, Codex, and Gemini CLI. Pick
+your tool below.
 
 ### ⚡ Universal — works with any agent (recommended)
 
@@ -72,15 +74,13 @@ Restart the session, then prompt *"Use the spacing-rhythm skill."*
 
 ### 🔷 Codex CLI
 
-```bash
-npx skills add buidangminh23/spacing-skill -a codex -g
+The repo ships a Codex plugin marketplace (`.codex-plugin/` + `.agents/plugins/marketplace.json`):
+
+```text
+codex plugin marketplace add buidangminh23/spacing-skill
 ```
 
-Manual alternative — fetch the file and reference it from `AGENTS.md`:
-
-```bash
-(curl -fsSL https://raw.githubusercontent.com/buidangminh23/spacing-skill/main/skills/spacing-skill/SKILL.md -o ./SKILL.md && echo "Loaded spacing-skill — see ./SKILL.md")
-```
+Universal alternative: `npx add-skill buidangminh23/spacing-skill` or `npx skills add buidangminh23/spacing-skill -a codex -g`.
 
 ### 🟦 Cursor
 
@@ -92,6 +92,14 @@ Manual alternative — drop it in as a project rule:
 
 ```bash
 (mkdir -p .cursor/rules && curl -fsSL https://raw.githubusercontent.com/buidangminh23/spacing-skill/main/skills/spacing-skill/SKILL.md -o .cursor/rules/spacing-skill.mdc)
+```
+
+### 🔶 Gemini CLI
+
+The repo ships a `gemini-extension.json`, so it installs as a native extension:
+
+```text
+gemini extensions install https://github.com/buidangminh23/spacing-skill
 ```
 
 ### 📦 Manual — portable fallback (any other agent)

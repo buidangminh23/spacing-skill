@@ -1,0 +1,158 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+<title>spacing-skill — install</title>
+<meta name="description" content="The Anti-Cramped Spacing Skill for AI Agents. Install for Claude Code, Cursor, Codex, and Gemini CLI." />
+<style>
+  :root{
+    --bg:#0a0a0b;--panel:#101012;--panel-2:#0d0d0f;--line:rgba(255,255,255,.08);
+    --line-strong:rgba(255,255,255,.14);--txt:#e9e9ec;--muted:#8b8b93;--faint:#5d5d65;
+    --amber:#f5b13d;--orange:#ff7a4d;--cyan:#54d2e3;--purple:#c98bff;--green:#5bd07e;--blue:#5b9dff;--red:#e5484d;
+    --mono:ui-monospace,SFMono-Regular,"SF Mono",Menlo,Consolas,"Liberation Mono",monospace;
+    --sans:-apple-system,BlinkMacSystemFont,"Segoe UI",Roboto,Helvetica,Arial,sans-serif;
+  }
+  *{box-sizing:border-box}
+  html,body{margin:0;background:var(--bg);color:var(--txt);font-family:var(--sans);-webkit-font-smoothing:antialiased}
+  body{padding:48px 20px 64px;line-height:1.6}
+  .wrap{max-width:720px;margin:0 auto}
+  .hero{text-align:center;margin-bottom:40px}
+  .logo{font-size:30px;font-weight:600;letter-spacing:-.02em;margin:0}
+  .logo .mark{color:var(--red)}
+  .tag{color:var(--muted);font-size:15px;margin:10px 0 0}
+  .sub{color:var(--faint);font-size:13px;margin:4px 0 0;font-style:italic}
+  .badges{display:flex;gap:8px;justify-content:center;flex-wrap:wrap;margin-top:18px}
+  .badge{font-size:11px;letter-spacing:.04em;text-transform:uppercase;color:var(--muted);
+    border:1px solid var(--line);border-radius:999px;padding:5px 12px}
+  .sec-head{display:flex;align-items:center;gap:10px;color:var(--muted);font-size:13px;
+    letter-spacing:.18em;text-transform:uppercase;margin:0 0 16px;font-family:var(--mono)}
+  .sec-head .caret{color:var(--green)}
+  .card{border:1px solid var(--line);border-radius:12px;background:var(--panel);
+    overflow:hidden;margin-bottom:14px}
+  .card-label{font-size:11px;font-weight:600;letter-spacing:.13em;text-transform:uppercase;
+    padding:13px 18px;border-bottom:1px solid var(--line);background:var(--panel-2)}
+  .l-amber{color:var(--amber)}.l-orange{color:var(--orange)}.l-cyan{color:var(--cyan)}
+  .l-purple{color:var(--purple)}.l-green{color:var(--green)}.l-blue{color:var(--blue)}
+  .cmd-row{display:flex;align-items:stretch;gap:12px;padding:6px 6px 6px 18px}
+  .cmd{flex:1;min-width:0;font-family:var(--mono);font-size:13.5px;color:var(--txt);
+    white-space:nowrap;overflow-x:auto;padding:12px 4px 12px 0;scrollbar-width:thin;
+    scrollbar-color:var(--line-strong) transparent}
+  .cmd::-webkit-scrollbar{height:7px}
+  .cmd::-webkit-scrollbar-thumb{background:var(--line-strong);border-radius:99px}
+  .cmd::-webkit-scrollbar-track{background:transparent}
+  .copy{flex:none;align-self:center;display:inline-flex;align-items:center;gap:7px;
+    font-family:var(--sans);font-size:12px;font-weight:500;color:var(--muted);cursor:pointer;
+    background:#161618;border:1px solid var(--line);border-radius:8px;padding:8px 13px;
+    transition:all .14s ease;white-space:nowrap}
+  .copy:hover{color:var(--txt);border-color:var(--line-strong);background:#1c1c1f}
+  .copy.done{color:var(--green);border-color:var(--green)}
+  .copy svg{width:14px;height:14px;flex:none}
+  .footer{margin-top:34px;text-align:center}
+  .works{font-family:var(--mono);font-size:12px;letter-spacing:.1em;text-transform:uppercase;color:var(--faint)}
+  .works b{color:var(--muted);font-weight:500}
+  .meta{margin-top:24px;color:var(--faint);font-size:13px}
+  .meta a{color:var(--muted);text-decoration:none;border-bottom:1px solid var(--line)}
+  .meta a:hover{color:var(--txt)}
+  .note{margin-top:18px;font-size:12px;color:var(--faint);text-align:center;line-height:1.7}
+  .note code{font-family:var(--mono);color:var(--muted)}
+</style>
+</head>
+<body>
+<div class="wrap">
+
+  <header class="hero">
+    <h1 class="logo"><span class="mark">&#9707;</span> spacing-skill</h1>
+    <p class="tag">The Anti-Cramped Spacing Skill for AI Agents</p>
+    <p class="sub">One scale. Real rhythm. Optical alignment. UI that breathes.</p>
+    <div class="badges">
+      <span class="badge">MIT</span>
+      <span class="badge">Agent Skill</span>
+      <span class="badge">Claude Code Plugin</span>
+    </div>
+  </header>
+
+  <p class="sec-head"><span class="caret">&gt;_</span> Install</p>
+
+  <div class="card">
+    <div class="card-label l-amber">npx &middot; skills</div>
+    <div class="cmd-row">
+      <code class="cmd">npx skills add buidangminh23/spacing-skill</code>
+      <button class="copy" type="button" aria-label="Copy command"></button>
+    </div>
+  </div>
+
+  <div class="card">
+    <div class="card-label l-orange">npx &middot; add-skill</div>
+    <div class="cmd-row">
+      <code class="cmd">npx add-skill buidangminh23/spacing-skill</code>
+      <button class="copy" type="button" aria-label="Copy command"></button>
+    </div>
+  </div>
+
+  <div class="card">
+    <div class="card-label l-cyan">Claude Code</div>
+    <div class="cmd-row">
+      <code class="cmd">/plugin marketplace add buidangminh23/spacing-skill</code>
+      <button class="copy" type="button" aria-label="Copy command"></button>
+    </div>
+  </div>
+
+  <div class="card">
+    <div class="card-label l-purple">Plugin install</div>
+    <div class="cmd-row">
+      <code class="cmd">/plugin install spacing-skill@spacing-skill</code>
+      <button class="copy" type="button" aria-label="Copy command"></button>
+    </div>
+  </div>
+
+  <div class="card">
+    <div class="card-label l-blue">Cursor</div>
+    <div class="cmd-row">
+      <code class="cmd">npx skills add buidangminh23/spacing-skill -a cursor</code>
+      <button class="copy" type="button" aria-label="Copy command"></button>
+    </div>
+  </div>
+
+  <div class="card">
+    <div class="card-label l-green">Codex</div>
+    <div class="cmd-row">
+      <code class="cmd">codex plugin marketplace add buidangminh23/spacing-skill</code>
+      <button class="copy" type="button" aria-label="Copy command"></button>
+    </div>
+  </div>
+
+  <div class="card">
+    <div class="card-label l-blue">Gemini CLI</div>
+    <div class="cmd-row">
+      <code class="cmd">gemini extensions install https://github.com/buidangminh23/spacing-skill</code>
+      <button class="copy" type="button" aria-label="Copy command"></button>
+    </div>
+  </div>
+
+  <div class="footer">
+    <p class="works"><b>Works with:</b> Claude Code &middot; Cursor &middot; Codex &middot; Gemini CLI</p>
+    <p class="note">Skill name once loaded: <code>design-spacing-rhythm</code>. Then prompt &ldquo;Use the spacing-rhythm skill.&rdquo;</p>
+    <p class="meta"><a href="https://github.com/buidangminh23/spacing-skill">github.com/buidangminh23/spacing-skill</a> &middot; MIT &middot; built by buidangminh23</p>
+  </div>
+
+</div>
+
+<script>
+(function(){
+  var COPY='<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="9" y="9" width="11" height="11" rx="2"/><path d="M5 15V5a2 2 0 0 1 2-2h10"/></svg>',
+      OK='<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="M20 6 9 17l-5-5"/></svg>';
+  document.querySelectorAll('.copy').forEach(function(btn){
+    var cmd=btn.parentElement.querySelector('.cmd').textContent.trim();
+    btn.innerHTML=COPY+'<span>Copy</span>';
+    btn.addEventListener('click',function(){
+      navigator.clipboard.writeText(cmd).then(function(){
+        btn.classList.add('done');btn.innerHTML=OK+'<span>Copied</span>';
+        setTimeout(function(){btn.classList.remove('done');btn.innerHTML=COPY+'<span>Copy</span>';},1600);
+      });
+    });
+  });
+})();
+</script>
+</body>
+</html>
