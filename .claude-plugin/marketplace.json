@@ -9,7 +9,7 @@
     {
       "name": "spacing-skill",
       "description": "Anti-cramped spacing skill for AI-generated UI — three dials, one spacing scale, vertical rhythm, optical alignment, accessibility floors, and density discipline",
-      "version": "2.0.0",
+      "version": "2.0.1",
       "source": "./",
       "author": {
         "name": "buidangminh23",

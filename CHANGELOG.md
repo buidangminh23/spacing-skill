@@ -4,6 +4,21 @@ All notable changes to this project are documented here. The format is based on
 [Keep a Changelog](https://keepachangelog.com/en/1.1.0/), and this project
 adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0.html).
 
+## [2.0.1] - 2026-06-21
+
+### Removed
+- All references to other skills from the README and SKILL.md.
+
+### Fixed
+- Applied a 4-lens adversarial review (accuracy / coherence / intelligence / completeness).
+  - Snapped off-scale recipe values to the scale (inline inset `28→24`; landing `clamp()` MAX `200/80 → 160/64`, now with the required `rem` term).
+  - Reconciled the optical-nudge ceiling to a single value (≤4px) across §2.D / §7 / §11.
+  - Added the DENSITY computation rule (start at range midpoint → sum §1.B deltas → clamp `[1,10]`; content shifts override the surface band) and override-clamp semantics.
+  - Mapped the modular-scale ratio to DENSITY; clarified derived control insets, baseline-RIGOR precedence, and the Material line-box note.
+
+### Added
+- New coverage: chart/data-viz spacing, scroll-padding/scroll-margin under sticky headers, forced-colors/dark-mode, motion, print/email, intrinsic sizing, multi-line wrap gaps, and intentional truncation.
+
 ## [2.0.0] - 2026-06-21
 
 ### Changed

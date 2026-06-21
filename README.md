@@ -26,8 +26,6 @@ dials, pull every value from one scale, encode relationships with proximity, and
 let type drive vertical rhythm. It's contextual: nothing fires automatically, so
 a dashboard doesn't get marketing-hero air and a hero doesn't get table density.
 
-Inspired by the format of [`leonxlnx/taste-skill`](https://github.com/leonxlnx/taste-skill) — taste handles the look, **spacing-skill handles the space**.
-
 ---
 
 ## Install
@@ -105,8 +103,6 @@ curl -fsSL https://raw.githubusercontent.com/buidangminh23/spacing-skill/main/sk
 
 </details>
 
-Pairs cleanly with [`taste-skill`](https://github.com/Leonxlnx/taste-skill) — taste for the aesthetic, spacing-skill for the measure.
-
 ---
 
 ## Skills
@@ -156,10 +152,6 @@ generous section rhythm."*
 ---
 
 ## Common Questions
-
-**Does this replace `taste-skill`?**
-No — they're complementary. Taste decides the design language; spacing-skill
-decides the measure within it.
 
 **Does it work outside Claude Code?**
 Yes. `SKILL.md` is a portable instruction file. Drop it into Codex, Cursor, or
