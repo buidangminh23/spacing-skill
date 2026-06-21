@@ -136,14 +136,22 @@ generous section rhythm."*
 
 ## What's inside the skill
 
-- **One spacing scale** (Tailwind-compatible) — no magic numbers, ever.
-- **Spacing primitives** — stack / inline / inset / gap, and which to use when.
-- **Vertical rhythm** — type drives spacing; asymmetric heading margins.
-- **Whitespace hierarchy** — proximity = relationship (the proximity ladder).
-- **Optical alignment** — centered glyphs, hanging punctuation, icon baselines.
-- **Responsive spacing** — `clamp()` fluid space, mobile density step-down, touch-target floors.
-- **Component recipes** — buttons, forms, cards, nav, modals, tables.
-- **Anti-pattern catalog + pre-flight checklist** — the AI spacing tells, and how to catch them.
+14 sections, all dial-driven and contextual:
+
+- **§0 Space Inference** — read signals, emit a one-line "Space Read", anti-default discipline.
+- **§1 The three dials** — inference tables mapping the situation to dial values.
+- **§2 One spacing scale** — px-keyed, Tailwind-aligned; primitive vs semantic tokens; modular macro tier. No magic numbers, ever.
+- **§3 Primitives & gap ownership** — stack / inline / inset / grid-gap, and the single-owner law.
+- **§4 Layout grid & alignment** — 12-col grid, measure (45–75ch), flex/grid alignment toolkit, subgrid for aligned card internals.
+- **§5 Vertical rhythm** — type drives spacing; asymmetric heading margins; control heights from line-height + inset.
+- **§6 Whitespace hierarchy** — the proximity ladder (intra < inter-item < inter-group, ≥1.5×).
+- **§7 Optical alignment** — asymmetric glyph nudges, icon↔text cap-band, hanging punctuation, overshoot.
+- **§8 Responsive & fluid spacing** — `clamp()`, mobile density step-down, container queries, logical properties, safe-area insets.
+- **§9 Accessibility floors** — verified WCAG numbers (2.5.8 / 2.5.5 / 1.4.12 / 1.4.10), Apple 44pt / Material 48dp.
+- **§10 Component recipes** — buttons, inputs, forms, cards, nav, modals, tables, chips, menus, sections, media.
+- **§11 Anti-pattern catalog** — 14 AI spacing tells, each with the fix.
+- **§12 Implementation per stack** — Tailwind, plain CSS, MUI/Chakra/Radix/shadcn, design tokens, debugging.
+- **§13 Operating procedure** — 8-step pipeline, conversational override protocol, full pre-flight checklist.
 
 ---
 
