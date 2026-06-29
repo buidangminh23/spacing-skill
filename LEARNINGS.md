@@ -31,6 +31,13 @@ one dated entry; lessons that generalize are distilled into the skill (with a
 
 <!-- newest first -->
 
+### 2026-06-29 — Personal-Web / stat-card grid — `whitespace-nowrap` values overflow narrow columns → folded into §9.D
+- Space Read: stat-card grid · packed · STEP 4 · DENSITY 6 · RIGOR 8 · value must fit its column at the *narrowest* breakpoint
+- Did: capped value font `md:text-3xl`(30) → `sm:text-2xl`(24); stat grid `sm:grid-cols-3` → `+ lg:grid-cols-2` (both `MY_CREATED_SKILLS` & `shownAiSkills` blocks sit in `lg:grid-cols-2` cards). Measured 8 values overflowing a 102px column at 1024px (Telegraphic +63, AI→Human +53, SKILL.md +32, Universal +30, …); after fix 0/52 overflow at 375/900/1024/1280.
+- Taught: `whitespace-nowrap` + a multi-col stat grid inside a half-width (2-col) card = guaranteed edge overflow at desktop. It hides at wide viewports (columns wide) and bites at the `lg` breakpoint where cards halve but font/columns don't. Always verify at the narrowest column, not the widest.
+- Verdict: gap(§9.D)
+- Action: folded into §9.D @ v2.2.1 — a clear, visible bug → hardened on first occurrence; it's a failure-mode warning, not a baseline-default change, so §15.D's "wait for a repeat" doesn't gate it.
+
 ### 2026-06-29 — Personal-Web / project stat-card grid — bottom-align captions with `flex-1` value, not bare `mt-auto`
 - Space Read: stat-card grid · balanced · STEP 4 · DENSITY 6 · RIGOR 8 · captions must baseline-align across the row; tile inset on-scale & uncramped
 - Did: per-card `px-2 py-3` → `p-3` (kept `sm:p-4`); added `flex flex-col` to the card and `flex-1` to the value block; value↔label `mt-1` → `mt-2` (4 → 8px). Applied to both stat-grid blocks in `src/App.tsx`.

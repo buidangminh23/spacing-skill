@@ -4,6 +4,15 @@ All notable changes to this project are documented here. The format is based on
 [Keep a Changelog](https://keepachangelog.com/en/1.1.0/), and this project
 adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0.html).
 
+## [2.2.1] - 2026-06-29
+
+### Added
+- **§9.D — no-wrap overflow guidance** (from a real field bug): `white-space:nowrap`
+  stat/KPI values overflow the card when a multi-column metric grid sits inside a
+  narrow (`lg:grid-cols-2`) card. Fix: size the value to fit (font cap / fluid
+  `clamp()` / container-query) **and** drop columns when the container is narrow;
+  verify at the narrowest column, not the widest.
+
 ## [2.2.0] - 2026-06-29
 
 ### Added
