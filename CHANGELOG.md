@@ -4,6 +4,17 @@ All notable changes to this project are documented here. The format is based on
 [Keep a Changelog](https://keepachangelog.com/en/1.1.0/), and this project
 adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0.html).
 
+## [2.2.0] - 2026-06-29
+
+### Added
+- **§15 Continuous Improvement — the field-learnings loop.** The skill now
+  improves from use: every real spacing/alignment edit is captured in
+  `LEARNINGS.md` (Space Read + real numbers + a `covered` / `gap` / `refinement`
+  verdict), and lessons that generalize are distilled back into §0–§14 with a
+  version bump. README section count 15 → 16.
+- **`LEARNINGS.md`** — append-only field journal that seeds the loop, kept out of
+  the context-loaded `SKILL.md` so it can grow without bloating the skill.
+
 ## [2.1.0] - 2026-06-21
 
 ### Added
