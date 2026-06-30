@@ -31,6 +31,13 @@ one dated entry; lessons that generalize are distilled into the skill (with a
 
 <!-- newest first -->
 
+### 2026-06-30 — Personal-Web / shared footer + policy page — §6 ladder + §10 footer recipe + §4 measure (covered)
+- Space Read: site footer (utility) · balanced · STEP 8 · DENSITY 4 · RIGOR 7 · group↔group 40px > intra 8–12px; policy = long-form, measure ~70ch
+- Did: shared Footer (brand / 3 policy links / 6 payment logos / copyright) with proximity ladder — link list `gap-2.5` (10) < column groups `gap-10` (40) < copyright divider `pt-6` (24) after `border-t`; `py-12` footer band (lighter than the `py-24` CTA above it). Policy page `max-w-3xl` (~70ch), section `gap-14`, bullet list `gap-3.5`, heading↔items `mt-5`, `scroll-mt-28` for anchored links.
+- Taught: nothing new — textbook §6 proximity ladder, §10 footer/section recipe, §4 measure for the long-form policy. No skill gap.
+- Verdict: covered
+- Action: none
+
 ### 2026-06-30 — Personal-Web / footer CTA heading — tight display leading collides Vietnamese diacritics → folded into §5.A
 - Space Read: marketing closing-CTA · airy · STEP 8 · DENSITY 2 · RIGOR 4 · two-line VN display heading must clear stacked tone marks
 - Did: heading `leading-[0.95]` → `leading-[1.1]` across the footer CTA + 4 section headings (footer later nudged to `1.2`); the dot-below on line 1 (`TẠO`/`TUYỆT`) was touching the circumflex/breve on line 2 (`ĐIỀU`/`Ờ`/`Ệ`).
