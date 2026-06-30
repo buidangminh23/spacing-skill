@@ -31,6 +31,13 @@ one dated entry; lessons that generalize are distilled into the skill (with a
 
 <!-- newest first -->
 
+### 2026-06-30 — Personal-Web / policy page → sidebar policy hub — §4 grid + sticky sidebar + tab nav (covered)
+- Space Read: docs/policy hub · balanced · STEP 8 · DENSITY 4 · RIGOR 7 · two-col `[280px_1fr]`, sticky menu (top-24), one section shown at a time
+- Did: redesigned `/chinh-sach` to breadcrumb + title, `lg:grid-cols-[280px_1fr]` gap-12, sticky left menu (`lg:sticky lg:top-24 lg:self-start`) with numbered active-highlight items, content card `p-10`. Menu collapses to horizontal pill tabs on mobile (`flex overflow-x-auto` → `lg:flex-col`). Active section tied to URL hash so footer `#hoan-tien` opens the right tab.
+- Taught: nothing new — §4 layout grid + sticky-aside pattern + §10 nav/section recipe applied to a CellphoneS-style policy hub. Mobile menu = compressible layout region (§8.B) so it drops to a scroll-row.
+- Verdict: covered
+- Action: none
+
 ### 2026-06-30 — Personal-Web / shared footer + policy page — §6 ladder + §10 footer recipe + §4 measure (covered)
 - Space Read: site footer (utility) · balanced · STEP 8 · DENSITY 4 · RIGOR 7 · group↔group 40px > intra 8–12px; policy = long-form, measure ~70ch
 - Did: shared Footer (brand / 3 policy links / 6 payment logos / copyright) with proximity ladder — link list `gap-2.5` (10) < column groups `gap-10` (40) < copyright divider `pt-6` (24) after `border-t`; `py-12` footer band (lighter than the `py-24` CTA above it). Policy page `max-w-3xl` (~70ch), section `gap-14`, bullet list `gap-3.5`, heading↔items `mt-5`, `scroll-mt-28` for anchored links.
