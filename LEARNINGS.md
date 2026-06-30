@@ -31,6 +31,13 @@ one dated entry; lessons that generalize are distilled into the skill (with a
 
 <!-- newest first -->
 
+### 2026-06-30 — Personal-Web / policy hub → scroll-spy (all sections, one scroll) — §8 scroll-margin under sticky aside (covered)
+- Space Read: docs/policy hub · balanced · STEP 8 · DENSITY 4 · RIGOR 7 · sticky aside + sections stacked `gap-8`, active follows scroll
+- Did: switched from tab (1 section) to all sections stacked; IntersectionObserver `rootMargin: "-25% 0px -60% 0px"` picks the topmost in-view section to highlight the sticky menu; nav anchors smooth-scroll with `scroll-mt-24` so the target clears the top edge; footer `#hash` still lands correctly.
+- Taught: nothing new — §8 scroll-margin/scroll-padding under a sticky element + §4 sticky-aside. The rootMargin band (top ~25–40%) is the standard scroll-spy trigger zone; keep `scroll-mt` ≥ the visual top offset so anchored sections aren't clipped.
+- Verdict: covered
+- Action: none
+
 ### 2026-06-30 — Personal-Web / policy page → sidebar policy hub — §4 grid + sticky sidebar + tab nav (covered)
 - Space Read: docs/policy hub · balanced · STEP 8 · DENSITY 4 · RIGOR 7 · two-col `[280px_1fr]`, sticky menu (top-24), one section shown at a time
 - Did: redesigned `/chinh-sach` to breadcrumb + title, `lg:grid-cols-[280px_1fr]` gap-12, sticky left menu (`lg:sticky lg:top-24 lg:self-start`) with numbered active-highlight items, content card `p-10`. Menu collapses to horizontal pill tabs on mobile (`flex overflow-x-auto` → `lg:flex-col`). Active section tied to URL hash so footer `#hoan-tien` opens the right tab.
