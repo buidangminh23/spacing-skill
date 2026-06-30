@@ -4,6 +4,15 @@ All notable changes to this project are documented here. The format is based on
 [Keep a Changelog](https://keepachangelog.com/en/1.1.0/), and this project
 adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0.html).
 
+## [2.3.0] - 2026-06-30
+
+### Added
+- **§5.A — stacked-diacritic heading floor.** Multi-line headings in scripts whose
+  marks stack both above *and* below a letter (Vietnamese, Thai, Arabic, Devanagari)
+  must hold line-height ≥ 1.1; display leading under ~1.05 collides an under-dot on
+  one line with a circumflex/breve on the next. Gated by content language, not taste.
+- **§11 anti-pattern #15** — tight display leading colliding stacked diacritics, with the fix.
+
 ## [2.2.1] - 2026-06-29
 
 ### Added

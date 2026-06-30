@@ -31,6 +31,13 @@ one dated entry; lessons that generalize are distilled into the skill (with a
 
 <!-- newest first -->
 
+### 2026-06-30 — Personal-Web / footer CTA heading — tight display leading collides Vietnamese diacritics → folded into §5.A
+- Space Read: marketing closing-CTA · airy · STEP 8 · DENSITY 2 · RIGOR 4 · two-line VN display heading must clear stacked tone marks
+- Did: heading `leading-[0.95]` → `leading-[1.1]` across the footer CTA + 4 section headings (footer later nudged to `1.2`); the dot-below on line 1 (`TẠO`/`TUYỆT`) was touching the circumflex/breve on line 2 (`ĐIỀU`/`Ờ`/`Ệ`).
+- Taught: Vietnamese (and Thai / Arabic / Devanagari) caps stack marks both above AND below; sub-1.05 display leading that is fine for Latin all-caps collides marks between wrapped lines. The floor is set by content language, not aesthetics, and stays latent until the heading wraps to two lines.
+- Verdict: gap(§5.A)
+- Action: folded into §5.A @ v2.3.0 — also added anti-pattern #15.
+
 ### 2026-06-29 — Personal-Web / stat-card grid — `whitespace-nowrap` values overflow narrow columns → folded into §9.D
 - Space Read: stat-card grid · packed · STEP 4 · DENSITY 6 · RIGOR 8 · value must fit its column at the *narrowest* breakpoint
 - Did: capped value font `md:text-3xl`(30) → `sm:text-2xl`(24); stat grid `sm:grid-cols-3` → `+ lg:grid-cols-2` (both `MY_CREATED_SKILLS` & `shownAiSkills` blocks sit in `lg:grid-cols-2` cards). Measured 8 values overflowing a 102px column at 1024px (Telegraphic +63, AI→Human +53, SKILL.md +32, Universal +30, …); after fix 0/52 overflow at 375/900/1024/1280.

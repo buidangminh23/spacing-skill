@@ -309,6 +309,8 @@ The **line box** (computed line-height), not the font size, is what stacks: 16px
 
 Leading shrinks as size grows. DENSITY trims leading before gaps (≥7 → 1.4; ≤3 → 1.6+), but **never below 1.4 on wrapping text** regardless of DENSITY.
 
+**Stacked-diacritic scripts raise the heading floor.** Scripts whose marks stack *both above and below* a letter — Vietnamese (`Ệ Ợ Ằ Ầ`), and similarly Thai / Arabic / Devanagari — need multi-line headings held at **line-height ≥ 1.1**: below ~1.05 an under-dot on one line collides with a circumflex/breve on the next. Latin all-caps tolerates 0.95; the same heading set in Vietnamese does not. This is gated by the *content language*, not by taste — a `leading-[0.95]` display heading is a latent collision the instant it wraps to two lines of marked caps, so set the floor whenever the text can be localized into a mark-stacking script.
+
 ### 5.B Baseline grid — pragmatic, not dogmatic
 
 Round the computed line-height to a multiple of SPACING_STEP so every line lands on the grid (16px body → **24px** line box on an 8-grid). Align line *boxes* to the grid; don't chase per-font baselines. `ALIGNMENT_RIGOR`: ≤3 loose multipliers, no snapping; 4–7 snap line-heights and block gaps (headings may break locally); ≥8 snap everything and insert a corrective spacer to re-sync after off-grid media (images, embeds).
@@ -600,6 +602,7 @@ Spottable in a screenshot or diff in under three seconds. The meta-rule: **spaci
 | 12 | **Optical blindness** (metric-centered glyphs, flush quotes) | looks off-center | §7 |
 | 13 | **Inset ignores surface size** (24px on a chip and a panel) | should scale with surface | map inset to surface tier (chip 4–8 → page 32–64) |
 | 14 | **No vertical rhythm** (random prose gaps) | off the baseline cadence | gaps = step multiples (§5) |
+| 15 | **Tight display leading on stacked-diacritic text** (`leading-[0.95]` on Vietnamese caps) | tone marks collide between wrapped lines | floor multi-line headings at ≥1.1 for VN / Thai / Arabic / Devanagari (§5.A) |
 
 **Magic-number triage:** snap `5/6/7→8`, `10–15→8/12/16`, `17–22→16`, `23–26→24`. The only sanctioned non-multiples are hairline borders (1px), 0.5px retina rules, and optical nudges ≤4px (typically 1–2px; up to 4px only for large display glyphs). Font-driven values (line-height, cap offsets, derived control insets) are computed, not magic — exempt.
 
