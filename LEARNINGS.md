@@ -31,6 +31,13 @@ one dated entry; lessons that generalize are distilled into the skill (with a
 
 <!-- newest first -->
 
+### 2026-07-04 — Personal-Web / policy hub — mobile pill-nav blew out the whole page → folded into §9.D
+- Space Read: docs/policy hub · balanced · STEP 8 · DENSITY 4 · RIGOR 7 · aside pill-nav must scroll-x inside its box, page contained at 320
+- Did: policy grid `grid gap-8 lg:grid-cols-[240px_1fr_280px]` → added base `grid-cols-1` + `min-w-0` on the nav `<aside>`. The mobile pill-nav (10 `shrink-0` items in an `overflow-x-auto` row) had inflated the implicit `auto` grid column to ~2390px → page h-scroll at EVERY width <1024px (both VI & EN). After: 0 overflow at 320–1280 both langs; the nav scrolls internally.
+- Taught: an `overflow-x-auto` scroller does NOT contain itself when its wrapper sits in an `auto`-sized grid/flex track — the track grows to the scroller's max-content and the page overflows. A grid defined with only `lg:grid-cols-[…]` falls back to an implicit `auto` column on mobile. Cap the track (`grid-cols-1` = `minmax(0,1fr)`) + `min-w-0` on the item so the scroll engages. Extends §9.D from nowrap-text to scroll-regions.
+- Verdict: gap(§9.D)
+- Action: folded into §9.D @ v2.4.1
+
 ### 2026-07-04 — Personal-Web / mobile header — enlarge tap targets without moving the row → folded into §9.A
 - Space Read: mobile app-bar (nav utility) · balanced · STEP 8 · DENSITY 4 · RIGOR 7 · header controls on a fixed `gap-4`; targets must reach 44 without shifting the row
 - Did: cart icon-button 20×20 → 40×40, hamburger 24×18 → 44×38, VN/EN toggle 16 → 36, close-× 28 → 48 — all via net-zero `-m-2.5 p-2.5` (`-my-2.5 py-2.5` on the inline VN/EN); wrapped the cart icon+badge in an inner `relative` span so the count badge stayed on the glyph, not the padded corner. Verified 0 layout shift (before/after screenshots identical) and no 320–390px overflow.

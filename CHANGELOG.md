@@ -4,6 +4,17 @@ All notable changes to this project are documented here. The format is based on
 [Keep a Changelog](https://keepachangelog.com/en/1.1.0/), and this project
 adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0.html).
 
+## [2.4.1] - 2026-07-04
+
+### Added
+- **§9.D — scroll-region overflow** (from a real field bug): an intentional
+  `overflow-x-auto` scroller (pill nav, toolbar, chip row) still blows the page out
+  when its wrapper sits in an `auto`-sized grid/flex track — the track grows to the
+  scroller's max-content and the scroll never engages. A grid defined with only a
+  desktop `lg:grid-cols-[…]` template falls back to an implicit `auto` column on
+  mobile. Fix: cap the track with an explicit `grid-cols-1` (`minmax(0, 1fr)`) plus
+  `min-w-0` on the item; verify `scrollWidth` at the narrowest width.
+
 ## [2.4.0] - 2026-07-04
 
 ### Added
