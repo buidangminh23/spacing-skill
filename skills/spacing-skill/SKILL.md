@@ -510,6 +510,8 @@ These are floors verified against the spec, not preferences. When a dial collide
 
 **Separate hit area from visual size** — a 16px icon + padding reaches the target: +4px → 24px (AA), +14px → 44px (AAA). DENSITY picks which floor (1–3 → 44; 4–7 → 24 AA, 44 on primary CTAs; 8–10 → 24 AA + the spacing exception) but **never** pushes a hit area below 24px.
 
+**Grow the hit box at zero layout cost — padding + negative margin.** In a tight cluster on a fixed `gap` (header icon buttons, a VN/EN toggle, a toolbar), padding *alone* to reach the floor spreads the row and breaks its rhythm. Pair the padding with an **equal negative margin**: the padding enlarges the hit box, the negative margin restores the margin-box, so every sibling gap and edge holds. `-m-2.5 p-2.5` makes a 20px icon a 40px target with the layout unmoved (`-my-*`/`py-*` for a vertical-only grow on an inline text toggle) — the actionable form of §5.E's *pad the hit area, never shrink the target* when the surrounding spacing is load-bearing. **Re-anchor overlays to the glyph:** a badge/dot set `absolute` on the button jumps to the *padded* corner once you inset it — wrap the icon (+ overlay) in an inner `relative` span so it stays pinned to the icon, not the hit area.
+
 ### 9.B The 2.5.8 spacing exception — how dense UIs stay legal
 
 A target smaller than 24×24 passes AA **if** a 24px-diameter circle centered on it does not intersect another target's circle — i.e. centers ≥24px apart, so **min edge-gap = `24 − targetSize`**.

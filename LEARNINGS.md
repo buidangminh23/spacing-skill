@@ -31,6 +31,13 @@ one dated entry; lessons that generalize are distilled into the skill (with a
 
 <!-- newest first -->
 
+### 2026-07-04 — Personal-Web / mobile header — enlarge tap targets without moving the row → folded into §9.A
+- Space Read: mobile app-bar (nav utility) · balanced · STEP 8 · DENSITY 4 · RIGOR 7 · header controls on a fixed `gap-4`; targets must reach 44 without shifting the row
+- Did: cart icon-button 20×20 → 40×40, hamburger 24×18 → 44×38, VN/EN toggle 16 → 36, close-× 28 → 48 — all via net-zero `-m-2.5 p-2.5` (`-my-2.5 py-2.5` on the inline VN/EN); wrapped the cart icon+badge in an inner `relative` span so the count badge stayed on the glyph, not the padded corner. Verified 0 layout shift (before/after screenshots identical) and no 320–390px overflow.
+- Taught: §9.A said "pad the hit area" but was silent on the tight-cluster case where padding visibly spreads a fixed-`gap` row. An equal negative margin cancels the padding's margin-box, so the target grows at zero layout cost; and an `absolute` overlay must be re-anchored to an inner icon wrapper or it drifts to the enlarged box's corner.
+- Verdict: refinement(§9.A)
+- Action: folded into §9.A @ v2.4.0
+
 ### 2026-06-30 — Personal-Web / policy hub → scroll-spy (all sections, one scroll) — §8 scroll-margin under sticky aside (covered)
 - Space Read: docs/policy hub · balanced · STEP 8 · DENSITY 4 · RIGOR 7 · sticky aside + sections stacked `gap-8`, active follows scroll
 - Did: switched from tab (1 section) to all sections stacked; IntersectionObserver `rootMargin: "-25% 0px -60% 0px"` picks the topmost in-view section to highlight the sticky menu; nav anchors smooth-scroll with `scroll-mt-24` so the target clears the top edge; footer `#hash` still lands correctly.
