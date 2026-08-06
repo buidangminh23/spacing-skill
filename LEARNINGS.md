@@ -31,6 +31,13 @@ one dated entry; lessons that generalize are distilled into the skill (with a
 
 <!-- newest first -->
 
+### 2026-08-06 — EduPortal / admin + teacher dashboards on a phone — an inline style outranks every media query → folded into §12
+- Space Read: `dashboard mobile · balanced · STEP 8 · DENSITY 6 · RIGOR 7 · content column and side column must stack; every control clears 44px`
+- Did: the main split of four dashboards was `style={{ gridTemplateColumns: '1.5fr 1fr' }}` inline, so `@media (max-width: 760px)` never reached it — admin, teacher, parent and pupil all stayed two-column on a phone, the narrow side measuring **107px** on the teacher screen. Nine call sites in all. Replaced with a `.ds-split` class whose ratio comes from `var(--split-main, 1.5fr)`, so a screen sets a **variable** and CSS keeps the **property**. Measured the targets at the same time: **eleven** controls at 33px tall on the admin screen (the tab row), 42px buttons and fixed 40×40 icon buttons on the teacher screen. `.btn`, `.icon-btn`, `.tab-btn` floored at 44 on the phone breakpoint. After: admin 0 controls under 44, no grid still split.
+- Taught: the responsive section of this skill assumes the breakpoint can reach the value. In a JSX codebase it frequently cannot, and the failure is **silent in both directions** — the rule is written and correct, the breakpoint fires, the layout does not move, and nothing in devtools flags it as a conflict because there is no conflict: inline simply wins. `!important` "fixes" it and is the wrong tool, since it then wins at every width rather than the one you meant. The custom-property indirection is the fix that keeps both: inline expresses intent, CSS keeps authority.
+- Verdict: gap(§12)
+- Action: folded into §12 @ v2.6.0 — also added anti-pattern #17. Per §15.D this is a failure-mode warning with a measured before and after, not a baseline-dial change, so the wait-for-a-repeat guardrail does not gate it.
+
 ### 2026-08-06 — EduPortal / mobile command dock — size the children, don't pick a `justify-content` (covered; §4.C refinement pending)
 - Space Read: `command-dock mobile · balanced · STEP 8 · DENSITY 6 · RIGOR 7 · six icon targets share the bar width, 44px touch floor does not yield`
 - Did: a full-width bar of six icon buttons sat `justify-content: flex-start` with fixed-width children — ink ended at 315px of a 512px bar, **187px empty**. Measured the buttons at the same time: **44×38**, so width cleared the touch floor and height did not. Put `flex: 1 1 0; min-width: 44px; min-height: 44px` on the actions: 75×44 each, gap 8, dead space 187 → **1px**, floor met on all six.

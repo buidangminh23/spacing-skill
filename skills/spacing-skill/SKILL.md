@@ -610,6 +610,7 @@ Spottable in a screenshot or diff in under three seconds. The meta-rule: **spaci
 | 14 | **No vertical rhythm** (random prose gaps) | off the baseline cadence | gaps = step multiples (§5) |
 | 15 | **Tight display leading on stacked-diacritic text** (`leading-[0.95]` on Vietnamese caps) | tone marks collide between wrapped lines | floor multi-line headings at ≥1.1 for VN / Thai / Arabic / Devanagari (§5.A) |
 | 16 | **Blanket one-column collapse on mobile** (`.cols-2,.cols-3,.cols-4 { 1fr }`) | a card holding one number does not need a phone's width; four of them eat a screen before any content | set columns from the narrowest cell's content demand — stat rows two-up, tables/prose full width (§8.B) |
+| 17 | **Layout property written inline** (`style={{ gridTemplateColumns: … }}`) | outranks every media query, so the responsive rule exists and never fires — silently | inline sets a custom property, CSS keeps the property (§12) |
 
 **Magic-number triage:** snap `5/6/7→8`, `10–15→8/12/16`, `17–22→16`, `23–26→24`. The only sanctioned non-multiples are hairline borders (1px), 0.5px retina rules, and optical nudges ≤4px (typically 1–2px; up to 4px only for large display glyphs). Font-driven values (line-height, cap offsets, derived control insets) are computed, not magic — exempt.
 
@@ -631,6 +632,15 @@ The system is stack-agnostic; the expression is not. **One source of truth for s
 
 - **Tailwind:** the default scale *is* the grid (`--spacing` = 4px). At `SPACING_STEP 8`, prefer even steps (`2,4,6,8,12`). Extend `theme.spacing` only for **named semantic tokens** (`--spacing-section`), never one-off pixels. Own spacing from the parent (`gap` / `space-y-*`), not `mt-*` on every child.
 - **Plain CSS:** declare the ramp once at `:root`; use logical properties; prefer `gap` over margins.
+- **Inline styles outrank every media query — so a layout property written inline has no responsive behaviour at all.** A JSX `style={{ gridTemplateColumns: '1.5fr 1fr' }}` cannot be collapsed by `@media (max-width: …)`, and nothing warns you: the rule is written, the breakpoint fires, the layout does not move. Measured on one app, four dashboards stayed two-column on a phone with the narrow side at 107px, and the collapse rule had been sitting in the stylesheet the whole time. **Let the inline set a custom property and keep the property itself in CSS** — a variable does not outrank a media query, so the breakpoint stays reachable while a screen can still ask for its own proportions.
+  ```css
+  .split { display: grid; grid-template-columns: var(--split-main, 1.5fr) 1fr; }
+  @media (max-width: 760px) { .split { grid-template-columns: 1fr; } }
+  ```
+  ```jsx
+  <div className="split" style={{ '--split-main': '1.2fr' }}>   {/* not gridTemplateColumns */}
+  ```
+  The same trap covers any inline `width`, `padding`, `flex-direction` or `gap`. Grep for the property name in markup before trusting a breakpoint: `!important` "fixes" it and is the wrong tool, because it wins everywhere rather than at the breakpoint you meant.
 - **Component libs:** use the theme transform (`theme.spacing(2)`, `gap={4}`, Radix `scaling`), never raw px. shadcn = Tailwind rules.
 - **Design tokens as SSOT:** if `tokens.json` / Style Dictionary / Figma variables exist, import and reference — if a value isn't in the set, *add a named token*, don't inline a number. Tokens flow one direction: Figma → Style Dictionary → CSS vars / Tailwind theme → components.
 

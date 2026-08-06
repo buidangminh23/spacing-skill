@@ -4,6 +4,20 @@ All notable changes to this project are documented here. The format is based on
 [Keep a Changelog](https://keepachangelog.com/en/1.1.0/), and this project
 adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0.html).
 
+## [2.6.0] - 2026-08-06
+
+### Added
+- **§12 — an inline style outranks every media query** (from a real field bug):
+  a layout property written inline (`style={{ gridTemplateColumns: … }}`) has no
+  responsive behaviour at all, and the failure is silent — the breakpoint rule
+  is written and correct, it fires, and the layout does not move. Measured on
+  one app: four dashboards stayed two-column on a phone with the narrow side at
+  107px while the collapse rule sat in the stylesheet. The fix is to let the
+  inline set a **custom property** and keep the property itself in CSS, since a
+  variable does not outrank a media query; `!important` wins at every width
+  rather than the one you meant.
+- **Anti-pattern #17** — layout property written inline.
+
 ## [2.5.0] - 2026-08-06
 
 ### Added
