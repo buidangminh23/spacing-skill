@@ -31,6 +31,20 @@ one dated entry; lessons that generalize are distilled into the skill (with a
 
 <!-- newest first -->
 
+### 2026-08-06 — EduPortal / student + admin dashboards on a phone — a blanket one-column collapse spends the screen → folded into §8.B
+- Space Read: `dashboard mobile · balanced · STEP 8 · DENSITY 6 · RIGOR 7 · four one-number stat cards must not each take a phone's width; ladder 8→16→24`
+- Did: the only phone breakpoint was `@media (max-width:760px) { .cols-2,.cols-3,.cols-4 { 1fr } }`, so a four-up stat row became four full-width blocks — measured **822px** of stat cards (4 × 189 + gaps) before the first real content on a 375px screen. Added `.ds-grid:has(> .card.stat) { repeat(2,1fr) }` in its own rule so a browser without `:has()` falls back to the old one-column behaviour rather than a broken one: **371px** after. Also `.card` 22→16 padding, `.stat .stat-val` 2.1rem→1.55rem, `.page-title` 2rem→1.5rem (32px of Fredoka took two lines for a greeting and pushed the page's own action below the fold), `.page-head` wrap→`flex-direction:column` (`align-items:flex-end` only reads as alignment while the row fits), and `.sidebar` `100vh`→`100dvh`.
+- Taught: **reflow is "no horizontal scroll", not "one column"** — §9.D's collapse language invites a blanket single-column mobile rule, and §8.B's compressible-vs-not test was written only about *gaps*. The same test governs column count, and the deciding fact is what the narrowest **cell** holds, not what the grid is: one number + label wants half a phone's width, a table or prose wants all of it. There is no repo-wide scale here (values ran 7/12/13/14/16/20/22/52), so §0.A signal 1 gave nothing to conform to — which is exactly when the magic numbers creep in.
+- Verdict: gap(§8.B)
+- Action: folded into §8.B @ v2.5.0 — also added anti-pattern #16. Per §15.D this is a failure-mode warning with a measured before/after, not a baseline-dial change, so the wait-for-a-repeat guardrail does not gate it.
+
+### 2026-08-06 — EduPortal / same edit, self-audit — I shipped three magic numbers into the fix (covered, no skill gap)
+- Space Read: as above
+- Did: the first pass of that same breakpoint wrote `.ds-grid{gap:14px}`, `.stat{gap:10px}`, `.page-head{margin-bottom:18px}`. All three are off-scale. Snapped per §11 triage (`10–15→8/12/16`, `17–22→16`) to `16 / 8 / 24`, which also restores a clean ladder: intra-card **8** → grid gutter **16** → head↔content **24** (2×, then 1.5× — §6.B's floor, not its target).
+- Taught: nothing the skill does not already say — §2 and §11 cover this exactly. Worth logging as evidence rather than as a lesson: the numbers appeared because I set them to "feel tighter on a phone" *before* deriving the ramp, i.e. I skipped §13.A step 3. The failure mode is reaching for a value while thinking about the viewport instead of about the tier.
+- Verdict: covered
+- Action: none. Logged because §15 asks for evidence, and a violation of a rule that exists is evidence about the operator, not about the skill.
+
 ### 2026-07-04 — Personal-Web / policy hub — mobile pill-nav blew out the whole page → folded into §9.D
 - Space Read: docs/policy hub · balanced · STEP 8 · DENSITY 4 · RIGOR 7 · aside pill-nav must scroll-x inside its box, page contained at 320
 - Did: policy grid `grid gap-8 lg:grid-cols-[240px_1fr_280px]` → added base `grid-cols-1` + `min-w-0` on the nav `<aside>`. The mobile pill-nav (10 `shrink-0` items in an `overflow-x-auto` row) had inflated the implicit `auto` grid column to ~2390px → page h-scroll at EVERY width <1024px (both VI & EN). After: 0 overflow at 320–1280 both langs; the nav scrolls internally.

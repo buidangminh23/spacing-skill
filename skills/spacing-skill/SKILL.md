@@ -459,6 +459,8 @@ Keep the fluid band wide for large spaces, narrow for small ones — a 4px→40p
 
 On narrow viewports, compress *layout* gaps (section/margin/gutter drop 1–2 steps) but **hold intra-item gaps and touch targets**. If a gap separates layout regions, it is compressible; if it separates parts of one comprehensible unit, it is not.
 
+**The same test governs COLUMN COUNT — and a blanket "collapse everything to one column" is where a phone screen gets spent.** Reflow (§9.D) requires no *horizontal scroll*; it does not require a single column. Set the mobile column count from the **narrowest cell's content demand**, not from the grid it happens to live in: a cell holding one number and its label wants about half a phone's width, while a cell holding a table, a chart or prose wants all of it. A four-up stat row therefore belongs **two-up** at 375px — collapsing it costs roughly a screen of scroll per four cells (measured on one dashboard: 822px of stat cards before the first real content, 371px after the same four went two-up). Target the row that holds the small cells (`:has(> .stat)`, or a modifier class where `:has()` is not available) rather than the breakpoint as a whole, so cells that genuinely need the width still get it.
+
 ### 8.C Container queries vs viewport
 
 A component should respond to its **container**, not the window — a card in a 320px sidebar and a 900px column differ at one viewport width. Page chrome → `@media`; everything reusable inside it → `@container` (query `inline-size` for RTL safety).
@@ -607,6 +609,7 @@ Spottable in a screenshot or diff in under three seconds. The meta-rule: **spaci
 | 13 | **Inset ignores surface size** (24px on a chip and a panel) | should scale with surface | map inset to surface tier (chip 4–8 → page 32–64) |
 | 14 | **No vertical rhythm** (random prose gaps) | off the baseline cadence | gaps = step multiples (§5) |
 | 15 | **Tight display leading on stacked-diacritic text** (`leading-[0.95]` on Vietnamese caps) | tone marks collide between wrapped lines | floor multi-line headings at ≥1.1 for VN / Thai / Arabic / Devanagari (§5.A) |
+| 16 | **Blanket one-column collapse on mobile** (`.cols-2,.cols-3,.cols-4 { 1fr }`) | a card holding one number does not need a phone's width; four of them eat a screen before any content | set columns from the narrowest cell's content demand — stat rows two-up, tables/prose full width (§8.B) |
 
 **Magic-number triage:** snap `5/6/7→8`, `10–15→8/12/16`, `17–22→16`, `23–26→24`. The only sanctioned non-multiples are hairline borders (1px), 0.5px retina rules, and optical nudges ≤4px (typically 1–2px; up to 4px only for large display glyphs). Font-driven values (line-height, cap offsets, derived control insets) are computed, not magic — exempt.
 

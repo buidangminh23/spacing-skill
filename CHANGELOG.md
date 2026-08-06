@@ -4,6 +4,21 @@ All notable changes to this project are documented here. The format is based on
 [Keep a Changelog](https://keepachangelog.com/en/1.1.0/), and this project
 adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0.html).
 
+## [2.5.0] - 2026-08-06
+
+### Added
+- **§8.B — column count follows the narrowest cell, not the grid** (from a real
+  field bug): the compressible-vs-not test was written only about *gaps*, while
+  §9.D's reflow language invites a blanket `@media (max-width:760px) { .cols-*
+  { 1fr } }`. Reflow requires no *horizontal scroll*, not a single column. A
+  cell holding one number and its label wants about half a phone's width; a
+  cell holding a table, a chart or prose wants all of it. Measured on one
+  dashboard: four one-number stat cards took **822px** of a 375px screen before
+  any real content, **371px** after the same four went two-up. Target the row
+  that holds the small cells (`:has(> .stat)`, or a modifier class as fallback)
+  rather than the breakpoint as a whole.
+- **Anti-pattern #16** — blanket one-column collapse on mobile.
+
 ## [2.4.1] - 2026-07-04
 
 ### Added
