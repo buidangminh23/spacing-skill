@@ -640,6 +640,10 @@ The system is stack-agnostic; the expression is not. **One source of truth for s
   ```jsx
   <div className="split" style={{ '--split-main': '1.2fr' }}>   {/* not gridTemplateColumns */}
   ```
+  **Converting a codebase full of these is a judgement per site, not a find-and-replace** — the class you
+  move to has to encode §8.B's question, what the narrower cell holds, so you need at least two: one that
+  collapses and one that stays two-up. Sending all of them to the collapsing one reproduces anti-pattern #16.
+  Measured on one sweep: 82 sites, 59 collapse and 23 do not.
   The same trap covers any inline `width`, `padding`, `flex-direction` or `gap`. Grep for the property name in markup before trusting a breakpoint: `!important` "fixes" it and is the wrong tool, because it wins everywhere rather than at the breakpoint you meant.
 - **Component libs:** use the theme transform (`theme.spacing(2)`, `gap={4}`, Radix `scaling`), never raw px. shadcn = Tailwind rules.
 - **Design tokens as SSOT:** if `tokens.json` / Style Dictionary / Figma variables exist, import and reference — if a value isn't in the set, *add a named token*, don't inline a number. Tokens flow one direction: Figma → Style Dictionary → CSS vars / Tailwind theme → components.

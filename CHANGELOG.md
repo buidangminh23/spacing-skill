@@ -4,6 +4,16 @@ All notable changes to this project are documented here. The format is based on
 [Keep a Changelog](https://keepachangelog.com/en/1.1.0/), and this project
 adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0.html).
 
+## [2.6.1] - 2026-08-06
+
+### Changed
+- **§12** — clarified that converting inline layout properties to classes is a
+  judgement per site rather than a find-and-replace: the class you move to has
+  to carry §8.B's question (what the narrower cell holds), so at least two are
+  needed — one that collapses and one that stays two-up. Sending every site to
+  the collapsing class reproduces anti-pattern #16. Evidence from one sweep of
+  82 sites: 59 collapse, 23 do not.
+
 ## [2.6.0] - 2026-08-06
 
 ### Added
