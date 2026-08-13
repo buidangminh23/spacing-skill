@@ -345,6 +345,8 @@ A button/input height is `line-height + padding + borders` — computed, not ass
 
 Vertical inset is a **derived** value — pick it so total height lands on a grid multiple (the grid-locked quantity is the **height** 32/40/48, so a computed inset like 6px is exempt, like line-height). Inset is the density dial (≥7 → tighter, ≤3 → 12–14px), but the **touch target must still clear 44×44px / 48×48dp** — pad the hit area, never shrink the target (§9).
 
+**Floor-not-clamp applies to the INLINE axis too — and fails louder there.** An icon rail, logo strip, avatar column, or badge tray given a fixed `width` to line up a text column is the same clamp: it holds only until a row carries one more item than the slot was measured against. Use `min-width` so the slot keeps the shared text edge for the common case and still grows for the fat one. The inline failure is nastier than the block one: a too-short box clips or scrolls, whereas a too-narrow slot whose children are `shrink-0` (or hold an image at `max-w-none`) **overflows and paints over the next flex sibling** — no clip, no scrollbar, no warning, just glyphs on top of glyphs. It also hides until someone adds item N+1 to *one* row, so it reads as "that row is broken" rather than a sizing error, while the untouched rows keep looking right. Measured on one checkout: a rail sized 64px for a single badge got a second row of Visa + `gap-1` + Mastercard needing 96px, and 32px of logo landed 20px deep in its own description text. **When a shared alignment spine and the proximity ladder collide, the ladder wins** — do not widen every rail to the fattest one if that inflates a sparse row's icon↔label gap past its inter-item gap (§6.B); let the fat row run wider and keep each row's own gap tight.
+
 ---
 
 ## 6. WHITESPACE HIERARCHY — Proximity = Relationship
@@ -611,6 +613,7 @@ Spottable in a screenshot or diff in under three seconds. The meta-rule: **spaci
 | 15 | **Tight display leading on stacked-diacritic text** (`leading-[0.95]` on Vietnamese caps) | tone marks collide between wrapped lines | floor multi-line headings at ≥1.1 for VN / Thai / Arabic / Devanagari (§5.A) |
 | 16 | **Blanket one-column collapse on mobile** (`.cols-2,.cols-3,.cols-4 { 1fr }`) | a card holding one number does not need a phone's width; four of them eat a screen before any content | set columns from the narrowest cell's content demand — stat rows two-up, tables/prose full width (§8.B) |
 | 17 | **Layout property written inline** (`style={{ gridTemplateColumns: … }}`) | outranks every media query, so the responsive rule exists and never fires — silently | inline sets a custom property, CSS keeps the property (§12) |
+| 18 | **Fixed-width icon/logo rail** (`w-16` holding two badges) | children are `shrink-0`, so the slot overflows and paints over the next flex sibling — no clip, no scrollbar | `min-w-*` (a floor, not a clamp); measure the rail against its **fattest** row (§5.E) |
 
 **Magic-number triage:** snap `5/6/7→8`, `10–15→8/12/16`, `17–22→16`, `23–26→24`. The only sanctioned non-multiples are hairline borders (1px), 0.5px retina rules, and optical nudges ≤4px (typically 1–2px; up to 4px only for large display glyphs). Font-driven values (line-height, cap offsets, derived control insets) are computed, not magic — exempt.
 

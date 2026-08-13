@@ -4,6 +4,24 @@ All notable changes to this project are documented here. The format is based on
 [Keep a Changelog](https://keepachangelog.com/en/1.1.0/), and this project
 adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0.html).
 
+## [2.7.0] - 2026-08-13
+
+### Added
+- **§5.E — floor-not-clamp extends to the inline axis** (from a real field bug):
+  an icon rail / logo strip / avatar column given a fixed `width` to line up a
+  text column is the same clamp as a fixed control `height`, and fails louder.
+  A too-short box clips or scrolls; a too-narrow slot whose children are
+  `shrink-0` (or hold an image at `max-w-none`) overflows and **paints over the
+  next flex sibling** — no clip, no scrollbar, no warning. It stays invisible
+  until one row gains item N+1, so it reads as one broken row rather than a
+  sizing error. Measured on a checkout method list: a rail sized 64px for one
+  badge met a row needing 96px (Visa + `gap-1` + Mastercard) and put 32px of
+  logo 20px deep into its own description text. Fix is `min-width`. Also records
+  the tie-break: when a shared alignment spine fights the §6.B proximity ladder,
+  the ladder wins — let the fat row run wider instead of inflating a sparse
+  row's icon↔label gap past its inter-item gap.
+- **Anti-pattern #18** — fixed-width icon/logo rail.
+
 ## [2.6.1] - 2026-08-06
 
 ### Changed

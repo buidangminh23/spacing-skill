@@ -31,6 +31,13 @@ one dated entry; lessons that generalize are distilled into the skill (with a
 
 <!-- newest first -->
 
+### 2026-08-13 — Personal-Web / checkout method list — a fixed-width icon rail overflows onto its own label → folded into §5.E
+- Space Read: payment-method-list (modal) · balanced · STEP 8 (Tailwind inherited) · DENSITY 5 · RIGOR 8 · the logo rail must be a floor, not a clamp
+- Did: logo rail `w-16` → `min-w-16` on both method rows in `src/PaymentModal.tsx`. The rail held one VietQR badge (58px) and fit 64px; a second row added Visa (52px) + `gap-1` (4) + Mastercard (40) = 96px into the same 64px. Measured in the browser: box 64 / content 96 → **32px overflow**, logo content edge at x=127 against a text edge at x=107 = **20px of glyph-on-glyph overlap**. After: box 96 = content 96, overflow 0, logo↔text gap back to the row's own `gap-3` (12). Re-measured at button widths 268/300/340px (320px viewport upward): overflow 0, gap 12, no in-button h-scroll.
+- Taught: §5.E already says *use a floor (`min-height`), never a clamp (`height`)* — but states it only for the **block** axis on controls, so it does not fire when the fixed dimension is an inline-axis **slot** (icon rail, logo strip, avatar column, badge tray). The inline case is worse than the block case: a too-short box clips or scrolls, whereas a too-narrow slot whose children are `shrink-0` with `max-w-none` **paints over the next flex sibling** — no clip, no scrollbar, no console warning. It also stays invisible until someone adds item N+1 to *one* row, so it reads as "that one row is broken" rather than a systemic sizing error, and the row that still has N items keeps looking correct.
+- Verdict: refinement(§5.E)
+- Action: folded into §5.E @ v2.7.0 — also added anti-pattern #18. Hardened on first occurrence (visible rendering bug / failure-mode warning, not a baseline-default change), same precedent as §9.D @ v2.2.1.
+
 ### 2026-08-06 — EduPortal / sweeping 90 inline grids — the conversion is a judgement per site (covered; §12 clarified)
 - Space Read: `whole app, mobile · balanced · STEP 8 · DENSITY 6 · RIGOR 7 · each two-column grid stacks or stays two-up by what its narrower cell holds`
 - Did: converted every inline two-column grid in the app after v2.6.0 named the defect — **82 sites in 29 files**, plus **8 fixed rails** (`1fr 340px`, `1fr 300px`) found on the way. 59 took a collapsing class, 23 a stay-two-up class, 33 more were correctly left alone (`auto-fit` already reflows, three-plus columns are not splits, one column count is driven by state). 14 sites had the wide cell second and kept their proportions via `--split-main: 0.667fr` rather than being flipped.
