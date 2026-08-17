@@ -4,6 +4,23 @@ All notable changes to this project are documented here. The format is based on
 [Keep a Changelog](https://keepachangelog.com/en/1.1.0/), and this project
 adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0.html).
 
+## [2.8.0] - 2026-08-17
+
+### Added
+- **§4.E — centering acts on the box, not on the ink** (from a real field bug):
+  the four centering strategies all assume an item's box *is* its content. When
+  `max-content` exceeds the container the item is clamped to the container, the
+  text wraps inside it, and the trailing dead space becomes pure offset — so
+  `align-items:center` centers a box wider than anything it paints and the group
+  drifts toward the leading edge. The drift is that leftover, so it grows with
+  the container: one logo + company-name lockup measured 10.7px off at 375px
+  wide and 63.2px off at 674px from identical markup, meaning a phone-only check
+  certifies it as fine. Fix the sizing, not the position — make the wrap
+  deterministic so `max-content` equals the longest line, then centering bites.
+  Acceptance test is `item box width === longest rendered line` at the widest
+  supported viewport, not an eyeball at one width.
+- **Anti-pattern #19** — centering a clamped text box.
+
 ## [2.7.0] - 2026-08-13
 
 ### Added

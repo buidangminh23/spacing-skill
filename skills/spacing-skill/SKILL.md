@@ -287,6 +287,8 @@ Cards with different title lengths lose internal alignment. `align-items:stretch
 | Text within its box | `text-align:center` (text only) |
 | A row of items as a group | flex parent + `justify-content:center` |
 
+**Centering acts on the box, not on the ink.** An item whose `max-content` is wider than its container is clamped to the container, so the text inside wraps and leaves dead space on the trailing edge — `align-items:center` then centers a box wider than anything it draws, and the group reads pulled toward the leading edge. The drift *is* that leftover, so it grows with the container: one logo + company-name lockup sat 10.7px off at 375px wide and 63.2px off at 674px from identical markup, which is exactly why it survives a phone-only check. Fix the sizing, not the position — make the wrap deterministic so `max-content` equals the longest line (force the break, or cap the text at that measure) until the item shrink-wraps; only then does any strategy above bite. Acceptance test is `item box width === longest rendered line`, measured at the widest viewport you support.
+
 **Never center long-form body copy** (ragged edges wreck the return sweep) — center the *block*, left-align the *text*. Centering is a DENSITY 1–4 move; at higher density / `RIGOR ≥ 6`, left-align and lock to the grid.
 
 ---
@@ -614,6 +616,7 @@ Spottable in a screenshot or diff in under three seconds. The meta-rule: **spaci
 | 16 | **Blanket one-column collapse on mobile** (`.cols-2,.cols-3,.cols-4 { 1fr }`) | a card holding one number does not need a phone's width; four of them eat a screen before any content | set columns from the narrowest cell's content demand — stat rows two-up, tables/prose full width (§8.B) |
 | 17 | **Layout property written inline** (`style={{ gridTemplateColumns: … }}`) | outranks every media query, so the responsive rule exists and never fires — silently | inline sets a custom property, CSS keeps the property (§12) |
 | 18 | **Fixed-width icon/logo rail** (`w-16` holding two badges) | children are `shrink-0`, so the slot overflows and paints over the next flex sibling — no clip, no scrollbar | `min-w-*` (a floor, not a clamp); measure the rail against its **fattest** row (§5.E) |
+| 19 | **Centering a clamped text box** (`items-center` on a lockup whose name wraps) | the item is clamped to the container, so the centered box is wider than its ink and the group drifts toward the leading edge — worse the wider the viewport | make the wrap deterministic so `max-content` = the longest line, then center (§4.E) |
 
 **Magic-number triage:** snap `5/6/7→8`, `10–15→8/12/16`, `17–22→16`, `23–26→24`. The only sanctioned non-multiples are hairline borders (1px), 0.5px retina rules, and optical nudges ≤4px (typically 1–2px; up to 4px only for large display glyphs). Font-driven values (line-height, cap offsets, derived control insets) are computed, not magic — exempt.
 
