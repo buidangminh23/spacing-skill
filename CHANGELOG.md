@@ -4,6 +4,23 @@ All notable changes to this project are documented here. The format is based on
 [Keep a Changelog](https://keepachangelog.com/en/1.1.0/), and this project
 adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0.html).
 
+## [2.9.0] - 2026-08-30
+
+### Added
+- **§12 — unlayered CSS outranks every layered utility** (from a real field bug):
+  a design system on `@layer` (Tailwind v4 puts utilities in `@layer utilities`)
+  loses to any rule written outside a layer regardless of specificity, because
+  layer order is resolved before specificity. Measured on one login screen: an
+  unlayered critical `<style>` holding `input{font:inherit}` silently pulled the
+  field from 22px to 18px while the class stayed on the element, the rule stayed
+  in the stylesheet, and the whole suite stayed green. Wrap critical CSS in the
+  system's own base layer.
+- **§12 — only `<input>` visibly resizes when the stylesheet is late**: the UA
+  sheet renders body text at 16px but form controls at ~13.3px, so late CSS is
+  reported as "the box where you type shrinks then grows" and gets hunted in the
+  field component instead of in CSS delivery.
+- **Anti-pattern #20** — unlayered critical CSS beside a layered design system.
+
 ## [2.8.0] - 2026-08-17
 
 ### Added

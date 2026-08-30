@@ -16,6 +16,14 @@ one dated entry; lessons that generalize are distilled into the skill (with a
    it into the right section of `SKILL.md`, bump `CHANGELOG.md`, then replace the
    entry here with a one-line pointer: `→ folded into §n @ vX.Y.Z`.
 
+### 2026-08-30 — PCC4SH / login screen — unlayered critical CSS beats `@layer utilities` → folded into §12
+
+- Space Read: `auth form · balanced · STEP 4 (Tailwind inherited) · DENSITY 4 · RIGOR 8 · label↔input 8 < field↔field 20 < group↔group 32`
+- Did: user reported the login field's text "starts small, then grows a moment later". Measured by disabling the built stylesheet in the live page: field `13.33px` (UA default for `<input>`; box 22px tall) vs `22px` with CSS (box 60px) — the only element on the screen whose size visibly changes, because the UA sheet renders body text at 16px but form controls at ~13.3px. Fixed delivery two ways: `experimental.inlineCss` (production; CSS ships inside the HTML, no render-blocking round trip) plus a two-line critical `<style>` in the root layout for dev/stale-cache/404-chunk paths. Then rebuilt the screen's ladder: dropped a stray `my-auto` on the `<h1>` that fought the action block's `mt-auto` for the leftover height, so two sibling gaps had been landing at a *random* 46px/47px; now a fixed 32px each. Field internals `gap-1.5` (6px, off a 4-grid) → `gap-2` (8px). Repo-wide: 84 half-step spacing utilities snapped onto the grid, and 153 ad-hoc `text-[…rem]` magic sizes folded into named tokens so one type scale remains.
+- Taught: **the critical block itself was the regression.** Written unlayered, `input,button,select,textarea{font:inherit}` outranked `.text-input{font-size:1.375rem}` — Tailwind v4 puts utilities in `@layer utilities`, and layer order is resolved *before* specificity, so a bare element selector wins over a class. Field silently rendered 18px instead of 22px with the class still on the element, the rule still in the stylesheet, and all 901 tests green. Wrapping it in `@layer base { … }` restored 22px while keeping the 18px floor when the stylesheet is missing. Second, smaller lesson: because only `<input>` moves visibly, users describe late-CSS as a *field* bug, so the hunt starts in the wrong component.
+- Verdict: gap(§12)
+- Action: folded into §12 @ v2.9.0 — added the unlayered-CSS rule + the "only inputs visibly resize" note, and anti-pattern #20. A visible, silent, green-tests failure mode → hardened on first occurrence (§15.D's wait-for-a-repeat gates default changes, not failure-mode warnings).
+
 ### Template
 
 ```text
