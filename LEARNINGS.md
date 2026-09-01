@@ -16,6 +16,14 @@ one dated entry; lessons that generalize are distilled into the skill (with a
    it into the right section of `SKILL.md`, bump `CHANGELOG.md`, then replace the
    entry here with a one-line pointer: `→ folded into §n @ vX.Y.Z`.
 
+### 2026-09-01 — PCC4SH / shell taskbar — a centered clock needs balanced grid tracks and a compact mobile face
+
+- Space Read: authenticated app shell header · balanced · STEP 8 (Tailwind 4px utilities, 8px layout rhythm) · DENSITY 4 · RIGOR 8 · title/control groups stay at the edges while the clock owns the center track
+- Did: changed the header row from one flex line to `grid-template-columns: minmax(0,1fr) auto minmax(0,1fr)` with `gap-2` (8px) below `sm` and `gap-3` (12px) from `sm` upward. Measured the built CSS at 320px: header inner row 288px after 16px side padding, clock 65.86px, clock center delta **−0.0078px**, edge overlap **0px**; the clock keeps only `HH:mm` visually while its DOM/accessible label retains seconds. Measured the desktop shell at 1440px with the 368px navigation rail: taskbar content center x=904, clock center x=904, delta **0px**, overlap **0px**, inner row 1040px.
+- Taught: the first symmetric grid was mathematically centered but left only 92px per side at 320px while the sync icon + avatar cluster needed 104px, creating a 4px collision. A responsive clock face is the smallest change that preserves the center track, the existing controls, and the 48px touch floor; keep the full seconds display where the side groups have room.
+- Verdict: covered
+- Action: none
+
 ### 2026-08-30 — PCC4SH / login screen — unlayered critical CSS beats `@layer utilities` → folded into §12
 
 - Space Read: `auth form · balanced · STEP 4 (Tailwind inherited) · DENSITY 4 · RIGOR 8 · label↔input 8 < field↔field 20 < group↔group 32`
