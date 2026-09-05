@@ -168,3 +168,10 @@ one dated entry; lessons that generalize are distilled into the skill (with a
 - Taught: to bottom-align captions across a row of unequal-length values, `flex-col` card + `flex-1` on the value keeps a fixed value↔label min-gap, whereas the bare §4.C `mt-auto`-on-footer collapses that gap to 0 when a row's cards are already equal height (no free space for the auto-margin to absorb).
 - Verdict: refinement(§4.C)
 - Action: pending pattern — single datapoint; per §15.D, harden into §4.C/§10 only on a repeat.
+
+### 2026-09-05 — PCC4SH / Mẫu 02-VT slip grid — read-only cells were the ones breaking the row's shared box
+- Space Read: data-entry grid row · packed · STEP 3 · DENSITY 7 · RIGOR 9 · every cell in a row must sit on one baseline; gloved outdoor use sets a 44px floor
+- Did: converted the 3 computed cells (ĐVT, Thực xuất, Thành tiền) from bare `<td>{text}` to `<input class="mau02vt-input">`, the same class the row's other 4 cells already used (`min-height: 44px`). Changed **no** spacing value — the 44px floor and cell padding were already there.
+- Taught: in a grid that mixes input cells and read-only cells, the **read-only cells are the defect**, not the inputs. Each input carries its own 44px min-height box; a text-only `<td>` is one line tall and rides on the cell's vertical centring instead, so its content sits on a different optical line from its neighbours — visible as a wobble that reads like a random rendering bug rather than a spacing decision. Making the row homogeneous (every cell the same box) fixes alignment as a side effect of fixing the affordance. Second datapoint for the same rule as the 2026-09-05 signature-row case: **the touch-target floor only aligns a row if every cell in that row is subject to it.**
+- Verdict: covered(§4.C + §9)
+- Action: no skill change — §4.C already says the shared box governs the row, and §9's 44px floor already applies per control. Logged as the second occurrence in a different surface (grid row, not signature row); if a third appears, promote to an explicit anti-pattern "read-only cell inside an input row".
