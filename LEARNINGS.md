@@ -16,6 +16,14 @@ one dated entry; lessons that generalize are distilled into the skill (with a
    it into the right section of `SKILL.md`, bump `CHANGELOG.md`, then replace the
    entry here with a one-line pointer: `→ folded into §n @ vX.Y.Z`.
 
+### 2026-09-05 — PCC4SH / Mẫu 02-VT print margins — the page margin box is also the browser's header/footer canvas
+
+- Space Read: printed A4 accounting form · balanced · STEP 4 · RIGOR 8 · paper margin must stay ~10mm, but nothing may print inside it
+- Did: the user saw `11:52 5/9/26 · Hệ thống quản lý công trình` across the top of every printed slip and the page URL across the bottom. Those are Chrome's own header/footer, drawn **inside the `@page` margin box** — not content, so no selector reaches them. Moved the slip to a named page `@page phieu-mot-trang { margin: 0 }` and put the 10mm back as `padding` on the print root (`main[data-print-page='phieu-kho']`). Kept the default `@page { margin: 10mm }` for the multi-page reports.
+- Taught: `@page` margin is doing **two** jobs — paper whitespace *and* the browser chrome's canvas. Zeroing it is the only CSS lever that removes the chrome, and the whitespace then has to be re-created as padding on the content. The catch that decides where you can apply it: **body/root padding is not per-page.** Left/right padding repeats on every sheet, but top/bottom lands only on the first and last page — so a multi-page document with `margin: 0` prints its middle pages edge-to-edge and the printer's hardware margin clips the top and bottom rows. Safe for a one-page form, a defect for a long report. Scope the named page accordingly, and prefer the failure that adds whitespace (named page ignored ⇒ 10mm margin + 10mm padding) over the one that removes it.
+- Verdict: gap(§12)
+- Action: folded into §12 @ v2.10.0 — added the print-margin dual-role rule and anti-pattern #22. A user-visible defect with no selector-based fix, so hardened on first occurrence per §15.D's failure-mode carve-out.
+
 ### 2026-09-05 — PCC4SH / Mẫu 02-VT slip signature row — bottom-aligned boxes ≠ bottom-aligned text → folded into §4.C
 
 - Space Read: printed accounting form, 4-column signature block · balanced · STEP 4 · DENSITY 4 · RIGOR 8 · four signer names must land on one baseline; the gap above them is hand-signing space
