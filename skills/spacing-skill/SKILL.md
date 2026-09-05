@@ -267,6 +267,7 @@ Unbounded text on wide viewports destroys readability. **Cap the measure at 45�
 
 - Mixed-height inline items must align to text → `align-items:baseline`, not `center`.
 - Equal-height cards in a row → `align-items:stretch` + a flex-column card with `margin-top:auto` on the footer (the one sanctioned auto-margin — it pushes *within* a flex child, owns nothing between siblings).
+- A bottom-aligned row that **mixes an editable control with static text** aligns the *boxes*, not the *text*: the control carries a touch-target `min-height` (44/48px) and centers its text, while a bare `<span>` is one line tall and sits flush at the bottom — so the two labels land at visibly different heights. Give every slot the same box (`min-height` + padding) and center the static ones (`display:flex; align-items:center`). The touch-target floor (§9) is an alignment constraint, not just an ergonomic one.
 - `ALIGNMENT_RIGOR`: at 1–3 freeform centering and optical nudges are fine; at 7–10 every edge lands on a column line and body content uses `start`/`stretch` (not `center`) so left edges lock to the grid.
 
 ### 4.D Subgrid — align nested card content across siblings
@@ -618,6 +619,7 @@ Spottable in a screenshot or diff in under three seconds. The meta-rule: **spaci
 | 18 | **Fixed-width icon/logo rail** (`w-16` holding two badges) | children are `shrink-0`, so the slot overflows and paints over the next flex sibling — no clip, no scrollbar | `min-w-*` (a floor, not a clamp); measure the rail against its **fattest** row (§5.E) |
 | 19 | **Centering a clamped text box** (`items-center` on a lockup whose name wraps) | the item is clamped to the container, so the centered box is wider than its ink and the group drifts toward the leading edge — worse the wider the viewport | make the wrap deterministic so `max-content` = the longest line, then center (§4.E) |
 | 20 | **Unlayered critical CSS beside a layered design system** (a bare `<style>` holding `input{font:inherit}`) | layer order is settled before specificity, so the plain selector beats every `@layer utilities` class — the class is on the element, the rule is in the sheet, and the value is still wrong | wrap the block in the system's own layer: `@layer base { … }` (§12) |
+| 21 | **Bottom-aligning a row that mixes inputs with plain text** (`margin-top:auto` on both) | the input's touch-target `min-height` makes its box ~2× taller than the one-line span, so the two texts sit at different heights even though both boxes are flush at the bottom | give every slot the same `min-height` + padding and vertically center the static ones (§4.C) |
 
 **Magic-number triage:** snap `5/6/7→8`, `10–15→8/12/16`, `17–22→16`, `23–26→24`. The only sanctioned non-multiples are hairline borders (1px), 0.5px retina rules, and optical nudges ≤4px (typically 1–2px; up to 4px only for large display glyphs). Font-driven values (line-height, cap offsets, derived control insets) are computed, not magic — exempt.
 

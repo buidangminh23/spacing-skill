@@ -16,6 +16,14 @@ one dated entry; lessons that generalize are distilled into the skill (with a
    it into the right section of `SKILL.md`, bump `CHANGELOG.md`, then replace the
    entry here with a one-line pointer: `→ folded into §n @ vX.Y.Z`.
 
+### 2026-09-05 — PCC4SH / Mẫu 02-VT slip signature row — bottom-aligned boxes ≠ bottom-aligned text → folded into §4.C
+
+- Space Read: printed accounting form, 4-column signature block · balanced · STEP 4 · DENSITY 4 · RIGOR 8 · four signer names must land on one baseline; the gap above them is hand-signing space
+- Did: signature row was a 4-track grid, each column `flex-col` with `margin-top:auto` on the name. Two columns held `<input class="mau02vt-input">` (`min-height:44px`, `padding:.3rem .2rem`), two held a bare `<span>` (~22px, line-height 1.3 × 1.05rem). Both flush at the bottom, yet the input text sat ~11px higher — the user rejected it on sight. Fix: `.mau02vt-signature-name { min-height:44px; padding:.3rem .2rem; text-align:center }` on **all four**, plus `span.mau02vt-signature-name { display:flex; align-items:center; justify-content:center }`. Print keeps only the spans, so `@media print` resets `min-height:0; padding:0`.
+- Taught: `margin-top:auto` bottom-aligns the **box**; the reader sees the **text**. Any row mixing an editable control with static text inherits the control's touch-target `min-height` (44/48px) as an alignment constraint — the control centers its text inside that tall box, the span fills its short one. Invisible until the two sit side by side. The a11y floor (§9) silently authored a layout rule.
+- Verdict: gap(§4.C)
+- Action: folded into §4.C @ v2.9.1 — added the mixed-control/text bullet and anti-pattern #21. A visible misalignment the user caught on first render → hardened on first occurrence, per the §15.D carve-out for failure-mode warnings.
+
 ### 2026-09-01 — PCC4SH / shell taskbar — a centered clock needs balanced grid tracks and a compact mobile face
 
 - Space Read: authenticated app shell header · balanced · STEP 8 (Tailwind 4px utilities, 8px layout rhythm) · DENSITY 4 · RIGOR 8 · title/control groups stay at the edges while the clock owns the center track
