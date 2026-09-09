@@ -16,6 +16,14 @@ one dated entry; lessons that generalize are distilled into the skill (with a
    it into the right section of `SKILL.md`, bump `CHANGELOG.md`, then replace the
    entry here with a one-line pointer: `→ folded into §n @ vX.Y.Z`.
 
+### 2026-09-09 — PCC4SH / màn Cài đặt + menu tài khoản — `w-auto` loses to the Stack, and a leading icon moves the spine
+
+- Space Read: settings screen (PWA mobile-first, also used on desktop) · balanced · STEP 4 (inherited Tailwind v4 + PCC4SH tokens) · DENSITY 5 · RIGOR 8 · ladder 8 → 16 → 24; every tap target ≥48px and ≥12px apart (the brief's a11y floor outranks every dial)
+- Did: the screen was four white cards stacked, each holding exactly one full-bleed navy 64px button, so nothing read as more or less important than anything else — textbook anti-pattern #7 (a card per group) plus #1 (uniform weight). Collapsed them into three labelled cards ("Tài khoản" / "Trên máy này" / "Thoát tài khoản") whose members are rows: 44px icon tile, title + description, then the action. Secondary actions moved to a new 48px `inline` size (`w-full sm:w-auto`) instead of the 64px full-bleed primary. Two alignment bugs surfaced only after rendering: (1) at 1280px the `inline` buttons were still 640px wide — `sm:w-auto` was set but the row is a `flex-col`, so `align-items:stretch` overrode it; `sm:self-start` fixed it to 184px. (2) the action sat at the card inset while its own description started 56px in, behind the icon tile — added `sm:pl-14` (44 + 12) so title, copy and control share one left edge (measured descLeft 554 = btnLeft 554).
+- Taught: `width` is a main-axis word. In a vertical Stack the cross axis belongs to `align-items`, so every "hug your content" utility is a no-op until an `align-self` backs it — and the failure is invisible on mobile, where full-bleed happened to be the intent, then appears at the first wide breakpoint. Second: a leading icon silently defines a text column, and any control that is a sibling of the icon block re-aligns to the container inset instead. The two edges are 56px apart, which reads as sloppy rather than as a deliberate outdent.
+- Verdict: gap(§4.C)
+- Action: folded into §4.C @ v2.11.0 — both bullets. Visible-misalignment failure modes caught on first render, so hardened on first occurrence per the §15.D carve-out.
+
 ### 2026-09-05 — PCC4SH / Mẫu 02-VT print margins — the page margin box is also the browser's header/footer canvas
 
 - Space Read: printed A4 accounting form · balanced · STEP 4 · RIGOR 8 · paper margin must stay ~10mm, but nothing may print inside it
