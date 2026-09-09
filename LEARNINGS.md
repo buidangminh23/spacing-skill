@@ -23,6 +23,8 @@ one dated entry; lessons that generalize are distilled into the skill (with a
 - Taught: `width` is a main-axis word. In a vertical Stack the cross axis belongs to `align-items`, so every "hug your content" utility is a no-op until an `align-self` backs it — and the failure is invisible on mobile, where full-bleed happened to be the intent, then appears at the first wide breakpoint. Second: a leading icon silently defines a text column, and any control that is a sibling of the icon block re-aligns to the container inset instead. The two edges are 56px apart, which reads as sloppy rather than as a deliberate outdent.
 - Verdict: gap(§4.C)
 - Action: folded into §4.C @ v2.11.0 — both bullets. Visible-misalignment failure modes caught on first render, so hardened on first occurrence per the §15.D carve-out.
+- Follow-up (same day, after the owner asked for a different look): the row/button split was dropped entirely for the **whole row as the tap target** — 64px rows carrying icon tile, one-line label and a chevron, with the long explanation moved to a note at the foot of the group. Measured 341×65px per target versus 279×48px before, ~1.7× the area, and the §4.C indent problem stopped existing because there is no separate control to align. Kept both §4.C bullets: the `align-self` trap is general, and the measurement stands. Added the row-as-target rule to §10.B @ v2.12.0.
+
 
 ### 2026-09-05 — PCC4SH / Mẫu 02-VT print margins — the page margin box is also the browser's header/footer canvas
 
