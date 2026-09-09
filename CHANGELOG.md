@@ -4,6 +4,11 @@ All notable changes to this project are documented here. The format is based on
 [Keep a Changelog](https://keepachangelog.com/en/1.1.0/), and this project
 adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0.html).
 
+## [2.12.0] - 2026-09-09
+
+### Added
+- §10.B: settings/list row with a single action — make the whole 64px row the tap target (icon tile + label + chevron) instead of embedding a button; ~1.7× the tap area and it dissolves the §4.C icon-column alignment problem. Costs: one action per row, long copy moves to a group note.
+
 ## [2.11.0] - 2026-09-09
 
 ### Added
