@@ -4,6 +4,12 @@ All notable changes to this project are documented here. The format is based on
 [Keep a Changelog](https://keepachangelog.com/en/1.1.0/), and this project
 adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0.html).
 
+## [2.11.0] - 2026-09-09
+
+### Added
+- §4.C: a hug-width child (`w-auto` / `fit-content`) inside a `flex-direction:column` Stack is still stretched across the cross axis by the default `align-items:stretch` — it needs `align-self:start`. Measured 640px → 184px on one settings screen.
+- §4.C: in an icon + title/description row, the action must be indented by `icon width + gap` so it shares the text column's left edge; drop the indent below `sm`, where the control goes full-width for touch.
+
 ## [2.10.0] - 2026-09-05
 
 ### Added
