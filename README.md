@@ -30,6 +30,9 @@ a dashboard doesn't get marketing-hero air and a hero doesn't get table density.
 
 ## Install
 
+Stable downloads and release notes: [GitHub Releases](https://github.com/buidangminh23/spacing-skill/releases).
+Each release includes a portable ZIP and `SHA256SUMS.txt`. Extract the ZIP to retain the native plugin directory structure.
+
 Pick your tool. Every block below has a **copy button** (hover its top-right corner).
 
 #### `npx` · skills
@@ -161,6 +164,20 @@ Read, the real numbers, and a `covered` / `gap` / `refinement` verdict — and a
 lesson that generalizes is distilled back into `SKILL.md` with a `CHANGELOG.md`
 version bump. The journal stays out of the context-loaded skill, so the brain
 stays lean while the experience compounds.
+
+## Release policy
+
+Releases follow Semantic Versioning: patch for corrections, minor for compatible
+skill additions, major for incompatible installation or behavior changes.
+`package.json` is the version source; this private development manifest is never
+published to npm. See [CONTRIBUTING.md](CONTRIBUTING.md#releasing) for the full procedure.
+
+A `vX.Y.Z` tag triggers validation on Windows, macOS, and Linux with Node 22 and
+24. Every versioned manifest and the latest changelog entry must match the tag.
+Only passing releases publish: notes come from that changelog entry, and the ZIP
+contains the committed skill, native plugin metadata, license, and documentation.
+Existing releases are verified on rerun instead of overwritten. Published tags
+and assets must not be moved or replaced; corrections require a new version.
 
 ---
 

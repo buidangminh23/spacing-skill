@@ -8,6 +8,10 @@ adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0.html).
 
 ### Added
 - §10.B: settings/list row with a single action — make the whole 64px row the tap target (icon tile + label + chevron) instead of embedding a button; ~1.7× the tap area and it dissolves the §4.C icon-column alignment problem. Costs: one action per row, long copy moves to a group note.
+- Tag-triggered GitHub Releases with changelog notes, a portable plugin ZIP, SHA-256 checksums, and validation on Linux, macOS, and Windows with Node 22 and 24.
+
+### Fixed
+- Synchronize Claude marketplace, Codex plugin, and Gemini extension versions with the skill release. Future version bumps update all manifests together, and CI rejects version drift.
 
 ## [2.11.0] - 2026-09-09
 

@@ -1,0 +1,71 @@
+name: Publish
+on:
+  push:
+    tags: ["v*"]
+  workflow_dispatch:
+    inputs:
+      tag:
+        description: Existing version tag to publish or verify
+        required: true
+        type: string
+permissions:
+  contents: read
+concurrency:
+  group: release-${{ inputs.tag || github.ref_name }}
+  cancel-in-progress: false
+jobs:
+  validate:
+    strategy:
+      matrix:
+        os: [ubuntu-latest, windows-latest, macos-latest]
+        node: [22, 24]
+    runs-on: ${{ matrix.os }}
+    steps:
+      - uses: actions/checkout@v7
+        with:
+          ref: refs/tags/${{ inputs.tag || github.ref_name }}
+      - uses: actions/setup-node@v7
+        with:
+          node-version: ${{ matrix.node }}
+      - run: npm test
+      - name: Check tag and build archive
+        env:
+          TAG: ${{ inputs.tag || github.ref_name }}
+        shell: bash
+        run: node scripts/release.mjs pack "$TAG"
+  release:
+    needs: validate
+    runs-on: ubuntu-latest
+    permissions:
+      contents: write
+    steps:
+      - uses: actions/checkout@v7
+        with:
+          ref: refs/tags/${{ inputs.tag || github.ref_name }}
+      - uses: actions/setup-node@v7
+        with:
+          node-version: 24
+      - name: Publish changelog notes and verified assets
+        env:
+          GH_TOKEN: ${{ github.token }}
+          TAG: ${{ inputs.tag || github.ref_name }}
+        shell: bash
+        run: |
+          node scripts/release.mjs pack "$TAG"
+          node scripts/release.mjs notes "$TAG" > "$RUNNER_TEMP/notes.md"
+          if gh release view "$TAG" --json tagName > /dev/null 2>&1; then
+            if [ "$(gh release view "$TAG" --json isDraft --jq .isDraft)" = true ]; then
+              gh release upload "$TAG" dist/*.zip dist/SHA256SUMS.txt --clobber
+            fi
+            mkdir "$RUNNER_TEMP/released"
+            gh release download "$TAG" --dir "$RUNNER_TEMP/released" --pattern 'spacing-skill-*.zip' --pattern SHA256SUMS.txt
+            cmp dist/SHA256SUMS.txt "$RUNNER_TEMP/released/SHA256SUMS.txt"
+            (cd "$RUNNER_TEMP/released" && sha256sum --check SHA256SUMS.txt)
+            if [ "$(gh release view "$TAG" --json isDraft --jq .isDraft)" = true ]; then
+              gh release edit "$TAG" --draft=false --latest
+            fi
+            echo "$TAG already published and verified"
+            exit 0
+          fi
+          gh release create "$TAG" --verify-tag --draft --title "$TAG" --notes-file "$RUNNER_TEMP/notes.md" dist/*.zip dist/SHA256SUMS.txt
+          gh release edit "$TAG" --draft=false --latest

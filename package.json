@@ -1,0 +1,14 @@
+{
+  "name": "spacing-skill",
+  "version": "2.12.0",
+  "private": true,
+  "type": "module",
+  "scripts": {
+    "test": "node --test",
+    "check": "node scripts/release.mjs check",
+    "version": "node scripts/release.mjs sync && git add .claude-plugin .codex-plugin gemini-extension.json",
+    "release:notes": "node scripts/release.mjs notes",
+    "release:pack": "node scripts/release.mjs pack"
+  },
+  "engines": { "node": ">=22" }
+}
