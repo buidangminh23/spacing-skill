@@ -7,11 +7,16 @@
 *One scale. Real rhythm. Optical alignment. UI that breathes instead of looking templated.*
 
 [![License: MIT](https://img.shields.io/badge/License-MIT-0078D4?style=for-the-badge)](LICENSE)
+[![npm installer: skills](https://img.shields.io/badge/npm_installer-skills-CB3837?style=for-the-badge&logo=npm)](https://www.npmjs.com/package/skills)
+[![Release](https://img.shields.io/github/v/release/buidangminh23/spacing-skill?style=for-the-badge&label=release)](https://github.com/buidangminh23/spacing-skill/releases/latest)
+[![CI](https://github.com/buidangminh23/spacing-skill/actions/workflows/ci.yml/badge.svg)](https://github.com/buidangminh23/spacing-skill/actions/workflows/ci.yml)
 [![Agent Skills](https://img.shields.io/badge/Agent-Skills-E53935?style=for-the-badge)](https://github.com/buidangminh23/spacing-skill)
 [![Claude Code](https://img.shields.io/badge/Claude_Code-Plugin-FFB300?style=for-the-badge)](https://github.com/buidangminh23/spacing-skill)
 [![Tools](https://img.shields.io/badge/Works_with-Claude_·_Cursor_·_Codex_·_Gemini-43A047?style=for-the-badge)](https://github.com/buidangminh23/spacing-skill)
 
 </div>
+
+[Latest release](https://github.com/buidangminh23/spacing-skill/releases/latest) · [CI checks](https://github.com/buidangminh23/spacing-skill/actions/workflows/ci.yml) · [npm installer: skills](https://www.npmjs.com/package/skills) · [Release policy](CONTRIBUTING.md#releasing)
 
 ---
 
@@ -36,6 +41,10 @@ Each release includes a portable ZIP and `SHA256SUMS.txt`. Extract the ZIP to re
 Pick your tool. Every block below has a **copy button** (hover its top-right corner).
 
 #### `npx` · skills
+
+The [`skills` CLI on npm](https://www.npmjs.com/package/skills) installs this skill
+from GitHub. The npm link is for the installer; `spacing-skill` is distributed
+through this repository and its GitHub Releases.
 
 ```bash
 npx skills add buidangminh23/spacing-skill
