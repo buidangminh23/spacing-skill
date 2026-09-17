@@ -1,0 +1,35 @@
+name: Notify Personal Web
+
+on:
+  workflow_run:
+    workflows: ["Publish"]
+    types: [completed]
+  workflow_dispatch:
+
+permissions:
+  contents: read
+
+concurrency:
+  group: notify-personal-web
+  cancel-in-progress: false
+
+jobs:
+  notify:
+    # Only a successful publish is worth telling the site about
+    if: github.event_name == 'workflow_dispatch' || github.event.workflow_run.conclusion == 'success'
+    runs-on: ubuntu-latest
+    steps:
+      - name: Ask the site to re-sync its skill cards
+        env:
+          GH_TOKEN: ${{ secrets.PERSONAL_WEB_DISPATCH_TOKEN }}
+        run: |
+          if [ -z "$GH_TOKEN" ]; then
+            echo "PERSONAL_WEB_DISPATCH_TOKEN is not set."
+            echo "Nothing is broken: the daily sync in Personal-Web still picks this release up."
+            echo "Set the secret to make the site update within minutes instead."
+            exit 0
+          fi
+          gh api repos/buidangminh23/Personal-Web/dispatches \
+            -f event_type=skill-published \
+            -F "client_payload[repo]=${{ github.repository }}"
+          echo "Personal-Web asked to re-sync."

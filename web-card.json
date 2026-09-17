@@ -1,0 +1,69 @@
+{
+  "id": "spacing",
+  "industry": "design",
+  "type": "myskills",
+  "vi": {
+    "nameA": "Spacing",
+    "nameB": "Skill",
+    "tagline": "Anti-Cramped Spacing System",
+    "desc": "Skill spacing chống dồn nén cho AI agent — một thang spacing duy nhất, nhịp điệu dọc theo typography, căn chỉnh quang học và kỷ luật mật độ. Đọc bố cục, chỉnh ba núm, lấy mọi giá trị từ cùng một thang; UI biết \"thở\" thay vì trông như đúc khuôn.",
+    "stats": [
+      {
+        "value": "1",
+        "label": "Thang spacing"
+      },
+      {
+        "value": "3",
+        "label": "Núm điều chỉnh"
+      },
+      {
+        "value": "16",
+        "label": "Mục quy tắc"
+      },
+      {
+        "value": "6",
+        "label": "Công cụ AI"
+      },
+      {
+        "value": "Optical",
+        "label": "Căn chỉnh"
+      },
+      {
+        "value": "MIT",
+        "label": "Giấy phép"
+      }
+    ]
+  },
+  "en": {
+    "nameA": "Spacing",
+    "nameB": "Skill",
+    "tagline": "Anti-Cramped Spacing System",
+    "desc": "An anti-cramped spacing skill for AI agents — one spacing scale, type-driven vertical rhythm, optical alignment, and density discipline. Read the layout, set three dials, pull every value from one scale; UI that breathes instead of looking templated.",
+    "stats": [
+      {
+        "value": "1",
+        "label": "Spacing Scale"
+      },
+      {
+        "value": "3",
+        "label": "Tuning Dials"
+      },
+      {
+        "value": "16",
+        "label": "Rule Sections"
+      },
+      {
+        "value": "6",
+        "label": "AI Tools"
+      },
+      {
+        "value": "Optical",
+        "label": "Alignment"
+      },
+      {
+        "value": "MIT",
+        "label": "License"
+      }
+    ]
+  }
+}
