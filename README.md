@@ -7,7 +7,7 @@
 *One scale. Real rhythm. Optical alignment. UI that breathes instead of looking templated.*
 
 [![License: MIT](https://img.shields.io/badge/License-MIT-0078D4?style=for-the-badge)](LICENSE)
-[![npm installer: skills](https://img.shields.io/badge/npm_installer-skills-CB3837?style=for-the-badge&logo=npm)](https://www.npmjs.com/package/skills)
+[![npm](https://img.shields.io/npm/v/@minhspark/spacing-skill?style=for-the-badge&logo=npm&color=CB3837)](https://www.npmjs.com/package/@minhspark/spacing-skill)
 [![Release](https://img.shields.io/github/v/release/buidangminh23/spacing-skill?style=for-the-badge&label=release)](https://github.com/buidangminh23/spacing-skill/releases/latest)
 [![CI](https://github.com/buidangminh23/spacing-skill/actions/workflows/ci.yml/badge.svg)](https://github.com/buidangminh23/spacing-skill/actions/workflows/ci.yml)
 [![Agent Skills](https://img.shields.io/badge/Agent-Skills-E53935?style=for-the-badge)](https://github.com/buidangminh23/spacing-skill)
@@ -16,7 +16,7 @@
 
 </div>
 
-[Latest release](https://github.com/buidangminh23/spacing-skill/releases/latest) · [CI checks](https://github.com/buidangminh23/spacing-skill/actions/workflows/ci.yml) · [npm installer: skills](https://www.npmjs.com/package/skills) · [Release policy](CONTRIBUTING.md#releasing)
+[Latest release](https://github.com/buidangminh23/spacing-skill/releases/latest) · [CI checks](https://github.com/buidangminh23/spacing-skill/actions/workflows/ci.yml) · [npm package](https://www.npmjs.com/package/@minhspark/spacing-skill) · [Release policy](CONTRIBUTING.md#releasing)
 
 ---
 
@@ -35,6 +35,18 @@ a dashboard doesn't get marketing-hero air and a hero doesn't get table density.
 
 ## Install
 
+#### npm package
+
+Download the versioned bundle from [npm](https://www.npmjs.com/package/@minhspark/spacing-skill):
+
+```bash
+npm install @minhspark/spacing-skill
+```
+
+The files are installed under node_modules/@minhspark/spacing-skill. This command
+does not register the skill with an agent; use the agent installation commands below
+or copy the bundled skill into the agent's skill directory.
+
 Stable downloads and release notes: [GitHub Releases](https://github.com/buidangminh23/spacing-skill/releases).
 Each release includes a portable ZIP and `SHA256SUMS.txt`. Extract the ZIP to retain the native plugin directory structure.
 
@@ -42,9 +54,8 @@ Pick your tool. Every block below has a **copy button** (hover its top-right cor
 
 #### `npx` · skills
 
-The [`skills` CLI on npm](https://www.npmjs.com/package/skills) installs this skill
-from GitHub. The npm link is for the installer; `spacing-skill` is distributed
-through this repository and its GitHub Releases.
+The [`skills` CLI on npm](https://www.npmjs.com/package/skills) installs and
+registers this skill from GitHub. It is an alternative to downloading the npm bundle.
 
 ```bash
 npx skills add buidangminh23/spacing-skill
@@ -178,7 +189,7 @@ stays lean while the experience compounds.
 
 Releases follow Semantic Versioning: patch for corrections, minor for compatible
 skill additions, major for incompatible installation or behavior changes.
-`package.json` is the version source; this private development manifest is never
+`package.json` is the version source; the skill and plugin manifests are
 published to npm. See [CONTRIBUTING.md](CONTRIBUTING.md#releasing) for the full procedure.
 
 A `vX.Y.Z` tag triggers validation on Windows, macOS, and Linux with Node 22 and

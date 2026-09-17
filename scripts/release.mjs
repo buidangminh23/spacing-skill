@@ -19,11 +19,11 @@ export function releaseNotes(changelog, version) {
 export function validate(base = root, tag) {
   const pkg = readJson(base, 'package.json');
   if (!/^\d+\.\d+\.\d+$/.test(pkg.version)) throw new Error('Use a stable major.minor.patch version');
-  if (pkg.private !== true) throw new Error('This repository is not an npm package');
+  if (pkg.private === true || pkg.name !== '@minhspark/spacing-skill' || pkg.publishConfig?.access !== 'public') throw new Error('Expected public @minhspark/spacing-skill package');
   if (tag && tag !== `v${pkg.version}`) throw new Error(`Tag ${tag} does not match v${pkg.version}`);
   for (const file of manifests) {
     const data = readJson(base, file);
-    const version = file.endsWith('marketplace.json') ? data.plugins.find((plugin) => plugin.name === pkg.name)?.version : data.version;
+    const version = file.endsWith('marketplace.json') ? data.plugins.find((plugin) => plugin.name === 'spacing-skill')?.version : data.version;
     if (version !== pkg.version) throw new Error(`${file}: ${version} does not match ${pkg.version}`);
   }
   const changelog = fs.readFileSync(path.join(base, 'CHANGELOG.md'), 'utf8');

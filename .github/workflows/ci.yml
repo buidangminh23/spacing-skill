@@ -19,4 +19,5 @@ jobs:
           node-version: ${{ matrix.node }}
       - run: npm test
       - run: npm run check
+      - run: npm pack --dry-run
       - run: npm run release:pack
