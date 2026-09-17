@@ -78,3 +78,17 @@ they change installation or usage instructions delivered in the release bundle.
 
 The first GitHub Release is `v2.12.0`, preserving the version history already
 recorded in the changelog. Historical entries are not retroactively published.
+
+## GitHub Packages mirror
+
+The GitHub Packages workflow publishes each version tag to npm.pkg.github.com
+using the repository's short-lived GITHUB_TOKEN with packages:write. It validates
+the tagged source before changing only the registry scope in the runner checkout
+from @minhspark to @buidangminh23. The repository metadata links the package to this
+repository. No npmjs.com package or existing release asset is changed.
+
+For an existing release, manually run github-packages.yml from main with its tag.
+The workflow rejects tags outside main, checks version consistency, skips an
+already published version, and verifies registry metadata and package download.
+After the first publication, check the package visibility and repository link in
+GitHub package settings. GitHub defaults new packages to private.
