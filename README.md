@@ -34,6 +34,20 @@ a dashboard doesn't get marketing-hero air and a hero doesn't get table density.
 ---
 
 ## Install
+#### GitHub Packages
+
+A repository-linked copy is available as `@buidangminh23/spacing-skill` on
+[GitHub Packages](https://github.com/buidangminh23/spacing-skill/packages).
+The npmjs.com package remains `@minhspark/spacing-skill`.
+GitHub's npm registry requires authentication with a classic token with
+`read:packages` even for public packages. Authenticate locally, never commit a token:
+
+```bash
+npm login --scope=@buidangminh23 --registry=https://npm.pkg.github.com --auth-type=legacy
+npm install @buidangminh23/spacing-skill --registry=https://npm.pkg.github.com
+```
+
+This downloads the bundle; use the agent-specific instructions below to register it.
 
 #### npm package
 
