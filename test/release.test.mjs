@@ -38,6 +38,10 @@ test('validation blocks individual manifest drift and invalid release versions',
     }
     const pkgPath = path.join(fixture, 'package.json');
     const pkg = JSON.parse(fs.readFileSync(pkgPath, 'utf8'));
+    pkg.private = true;
+    fs.writeFileSync(pkgPath, JSON.stringify(pkg));
+    assert.throws(() => validate(fixture), /Expected public/);
+    delete pkg.private;
     pkg.version = '2.12.0-beta.1';
     fs.writeFileSync(pkgPath, JSON.stringify(pkg));
     assert.throws(() => validate(fixture), /stable/);

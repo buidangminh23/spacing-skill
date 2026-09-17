@@ -1,11 +1,19 @@
 {
-  "name": "spacing-skill",
-  "version": "2.12.0",
-  "private": true,
+  "name": "@minhspark/spacing-skill",
+  "version": "2.12.1",
+  "description": "Portable spacing and rhythm skill for AI coding agents",
+  "license": "MIT",
+  "repository": { "type": "git", "url": "git+https://github.com/buidangminh23/spacing-skill.git" },
+  "homepage": "https://github.com/buidangminh23/spacing-skill#readme",
+  "bugs": { "url": "https://github.com/buidangminh23/spacing-skill/issues" },
+  "keywords": ["agent-skills", "spacing", "design", "claude", "codex", "gemini"],
+  "publishConfig": { "access": "public" },
+  "files": ["skills/", ".agents/", ".claude-plugin/", ".codex-plugin/", "gemini-extension.json", "CHANGELOG.md", "LEARNINGS.md"],
   "type": "module",
   "scripts": {
     "test": "node --test",
     "check": "node scripts/release.mjs check",
+    "prepublishOnly": "npm test && npm run check",
     "version": "node scripts/release.mjs sync && git add .claude-plugin .codex-plugin gemini-extension.json",
     "release:notes": "node scripts/release.mjs notes",
     "release:pack": "node scripts/release.mjs pack"

@@ -4,6 +4,12 @@ All notable changes to this project are documented here. The format is based on
 [Keep a Changelog](https://keepachangelog.com/en/1.1.0/), and this project
 adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0.html).
 
+## [2.12.1] - 2026-09-17
+
+### Added
+- Publish the complete skill and native plugin manifests as `@minhspark/spacing-skill` on npm, with an explicit package file allowlist and GitHub Actions trusted publishing.
+- Link the npm package from the README and document npm installation without implying automatic agent registration.
+
 ## [2.12.0] - 2026-09-09
 
 ### Added
