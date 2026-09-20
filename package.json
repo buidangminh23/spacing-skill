@@ -1,6 +1,6 @@
 {
   "name": "@minhspark/spacing-skill",
-  "version": "2.12.1",
+  "version": "2.12.2",
   "description": "Portable spacing and rhythm skill for AI coding agents",
   "license": "MIT",
   "repository": { "type": "git", "url": "git+https://github.com/buidangminh23/spacing-skill.git" },

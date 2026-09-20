@@ -4,6 +4,13 @@ All notable changes to this project are documented here. The format is based on
 [Keep a Changelog](https://keepachangelog.com/en/1.1.0/), and this project
 adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0.html).
 
+## [2.12.2] - 2026-09-20
+
+### Fixed
+- §4.C: `margin-top:auto` is a claim on free space, so in a hug-height container (`flex:none`, `height:auto`, a `max-content` cell) it computes to `0` and the footer sits flush against the block above — the declaration is present and the gap is not. Measured 44px in a landscape build and 0px in the portrait build of the same layout. Use it only where stretch is guaranteed; otherwise a literal scale value.
+- §8.E: anything composited over the layout — burnt-in captions, a player control bar, a HUD, a watermark — is a safe area that `env()` cannot see, so the band must be reserved in the layout. Measured on a 1920×1080 slide: 72px of block-end padding against a 46px caption at `MarginV 56` covered the last two lines of a panel; 184px cleared it.
+- §11: anti-patterns #23 (auto-margin used as a gap with no slack) and #24 (layout padded as if nothing will be drawn over it).
+
 ## [2.12.1] - 2026-09-17
 
 ### Added
