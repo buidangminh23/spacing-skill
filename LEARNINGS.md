@@ -16,6 +16,14 @@ one dated entry; lessons that generalize are distilled into the skill (with a
    it into the right section of `SKILL.md`, bump `CHANGELOG.md`, then replace the
    entry here with a one-line pointer: `→ folded into §n @ vX.Y.Z`.
 
+### 2026-09-22 — PCC4SH / kho-vat-tu.xlsm bảng lịch sử hiện tại chỗ dưới bảng tồn kho và dưới tờ phiếu — "below the last filled cell" is not "below the layout"
+
+- Space Read: Excel workbook; a button pastes a hidden history table underneath whatever the reader is looking at (stock list or a 02-VT invoice form) and pastes it away again on the next press · balanced · STEP 1 row.
+- Did: placed the pasted table `last used row + 2 blank rows + 1`, where "last used" came from `Cells.Find("*")`. On the invoice sheet that landed the table on row 36 — the signer-name row, which is *inside the print area* but empty on the blank template — and collapsing the table deleted that row. Fixed by taking `max(last filled row, bottom of PageSetup.PrintArea)` as the anchor (invoice: 37 → table starts at 39). Second bug: the italic hint under the title inherited a right-aligned column A on the stock sheet, so the overflow ran left off the sheet and read as "bấm để thu gọn bảng này." (front half missing); forced `xlLeft`.
+- Taught: the bottom of a form is defined by its **print/layout box**, not by its last non-empty cell — a template's reserved rows are blank by design. And overflow direction follows text alignment: a long label in a narrow left column must be left-aligned or it spills into nothing.
+- Verdict: refinement(§4 — a reserved-but-empty slot still occupies space; anchor "after" on the declared box) · covered(§9/§14 — render with real data; the blank template hid both bugs, the COM run with three filled rows exposed them).
+- Action: `ModKho.HienBangTaiCho` anchors on `max(Find, PrintArea)`, hint cell `HorizontalAlignment = xlLeft`; verified by running the macros through Excel COM and `CopyPicture` (PR #425). Not bumping the skill version — folding into §4 wording later if it recurs.
+
 ### 2026-09-22 — PCC4SH / kho-vat-tu.xlsm trang Tồn kho + nút quay về — a width table keyed by column letter drifts from a header list keyed by name
 
 - Space Read: Excel workbook the warehouse staff download from the web (Rules §0.49: must mirror the web table) · balanced · STEP 1 char (Excel column units) · DENSITY 5 · RIGOR 7 · column widths by content, buttons 150×22pt in a 26pt row
