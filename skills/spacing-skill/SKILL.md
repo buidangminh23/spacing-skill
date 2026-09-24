@@ -505,6 +505,15 @@ html      { scroll-padding-block-start: calc(var(--header-h) + var(--space-2)); 
 
 Animate `opacity`/`transform`, never layout (`gap`/`padding`/`width`) — animated layout reflows the grid and breaks rhythm. Stagger list reveals by *time*, not by spacing. Honor `prefers-reduced-motion`.
 
+### 8.I A resize is a round trip — re-measure what the toolkit cached
+
+Checking a layout once at each width proves each width, not the trip between them. Toolkits keep sizes they measured while the container was narrow: grid rows auto-sized only while visible, controls that auto-size and only ever grow (WinForms `GrowOnly`), fill columns whose working ratio shifted when one of them hit its minimum width, virtualized lists that cache measured row heights. Widen the container and those sizes stay: rows too tall, a toolbar still wrapped, the least important column still wide. Measured on one WinForms table: two rows grown to 78px at 1000px kept 78px at 1680px where they needed the 54px floor, and the name / status / file columns came back as 216 / 151 / 112px instead of 226 / 157 / 96px at the same width. **Once the width settles, re-measure every item — off-screen ones included — and put working ratios back to the declared ones;** debounce it (~150ms) so dragging stays cheap (a full pass cost 131ms at 300 rows, a drag step 15ms). Test the round trip narrow → wide → narrow, not each width once.
+
+- **WinForms `DataGridView`:** while an `AutoSizeRowsMode` is active, `AutoResizeRows` only caches heights — set the mode to `None`, run `AutoResizeRows(AllCellsExceptHeaders)`, restore the mode. Nudging one `FillWeight` up and back makes fill columns redistribute from their current weights (a column the user dragged keeps its width: the drag already rewrote its `FillWeight`).
+- **The settle pass must not re-arm itself.** Resetting a ratio or re-measuring changes widths, which fires the same width-changed event that scheduled the pass. Ignore the events your own pass raises, and re-measure only when the widths really moved; otherwise the pass runs every debounce interval forever (measured: a 150ms timer that never settled, so a test harness waiting for the table to go idle timed out after 240s).
+- **Virtualized lists:** reset the measured-size cache when the container width changes (react-window `resetAfterIndex(0)`, react-virtualized `CellMeasurerCache.clearAll()`).
+- **Auto-sized controls:** a label that changes with data must keep a constant width or reserve its widest text; `GrowOnly` never gives the space back, so one transient long caption keeps a toolbar wrapped for the rest of the session.
+
 ---
 
 ## 9. ACCESSIBILITY — Spacing Floors That Override Every Dial
@@ -629,6 +638,7 @@ Spottable in a screenshot or diff in under three seconds. The meta-rule: **spaci
 | 23 | **`margin-top:auto` as a gap in a hug-height container** (`flex:none` column, `max-content` cell) | no free space to consume, so it computes to `0` and the footer sits flush — the rule is in the sheet and the gap is not on screen | `auto` only where stretch is guaranteed; otherwise a real scale value (§4.C) |
 | 24 | **Layout padded as if nothing will be drawn over it** (burnt-in caption / HUD / control bar lands on content) | `env()` does not see composited overlays, and the page looks correct right up until the frame is rendered | reserve the band: block-end padding ≥ the overlay's measured box (§8.E) |
 | 21 | **Bottom-aligning a row that mixes inputs with plain text** (`margin-top:auto` on both) | the input's touch-target `min-height` makes its box ~2× taller than the one-line span, so the two texts sit at different heights even though both boxes are flush at the bottom | give every slot the same `min-height` + padding and vertically center the static ones (§4.C) |
+| 25 | **Checking each width once, never the trip between them** (layout verified at 1000px and at 1680px, separately) | toolkits keep what they measured while narrow, so after widening rows stay tall, toolbars stay wrapped and fill ratios stay skewed — every single-width check still passes | re-measure every item once the width settles, off-screen rows included, and test narrow → wide → narrow (§8.I) |
 
 **Magic-number triage:** snap `5/6/7→8`, `10–15→8/12/16`, `17–22→16`, `23–26→24`. The only sanctioned non-multiples are hairline borders (1px), 0.5px retina rules, and optical nudges ≤4px (typically 1–2px; up to 4px only for large display glyphs). Font-driven values (line-height, cap offsets, derived control insets) are computed, not magic — exempt.
 
@@ -753,6 +763,7 @@ Override deltas apply to the **current** dial value and clamp to each dial's `[1
 - [ ] Dials re-evaluated per breakpoint; layout reflows, never shrinks to illegible.
 - [ ] No horizontal scroll at 320px; grids collapse to a stack; 2-D-scroll content isolated in its own container.
 - [ ] Section/component spacing fluid via `clamp()` with a `rem` term; safe-area insets on edge-anchored UI.
+- [ ] Round trip narrow → wide → narrow returns the same layout; rows, columns and controls measured while narrow are re-measured once the width settles, off-screen rows included (§8.I).
 
 **A11y**
 - [ ] Interactive targets ≥ 24×24px (or the 24px-circle spacing exception); 44/48 on touch.

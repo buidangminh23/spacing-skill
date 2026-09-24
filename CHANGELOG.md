@@ -4,6 +4,12 @@ All notable changes to this project are documented here. The format is based on
 [Keep a Changelog](https://keepachangelog.com/en/1.1.0/), and this project
 adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0.html).
 
+## [2.13.0] - 2026-09-24
+
+### Added
+- §8.I: a resize is a round trip. Toolkits keep sizes they measured while the container was narrow — grid rows auto-sized only while visible, `GrowOnly` controls, fill ratios adjusted when a column hit its minimum width, virtualized-list height caches — so re-measure every item, off-screen ones included, once the width settles, and test narrow → wide → narrow. Measured on a WinForms table: rows grown to 78px kept 78px after widening where 54px was needed, and the name / status / file columns came back as 216 / 151 / 112px instead of 226 / 157 / 96px. Includes the WinForms `DataGridView` fix (public `AutoResizeRows` only caches heights while an autosize mode is on) and the rule that the settle pass must ignore the width events it raises itself, or it re-arms forever.
+- §13.C: Responsive checklist item for the round trip.
+- §11: anti-pattern #25 — checking each width once, never the trip between them.
 ## [2.12.2] - 2026-09-20
 
 ### Fixed
