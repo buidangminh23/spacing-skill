@@ -119,6 +119,37 @@ one dated entry; lessons that generalize are distilled into the skill (with a
 
 <!-- newest first -->
 
+### 2026-09-26 — Quota Control / Windows taskbar strip beside a Windhawk tray island — docking into OS chrome: the host's measured geometry is the scale
+- Space Read: OS chrome (Windows 11 taskbar restyled by Windhawk into centered islands) · packed · STEP 4 (the host's) · DENSITY 8 · RIGOR 9 · the strip must read as a sibling island of the tray: same inter-island gap, top, height, radius and fill
+- Did: measured the host through UI Automation and pixel scans:
+  - islands 48px tall at y 4–52 in a 56px bar;
+  - 4px between the apps island and the tray island;
+  - a ≈4px corner radius, antialiased over 4 rows;
+  - a fill of ≈#23293D with a 2-level vertical gradient.
+  Then drew the strip as its own island 4pt after the tray:
+  - height taken from the TaskbarFrame element;
+  - 6pt inner padding (the content keeps its own 6pt, so 12px from edge to glyph, beside the tray's ≈16px);
+  - antialiased 4pt corners;
+  - a flat fill sampled with GetPixel in the island's top padding, above the buttons.
+  Verified live: the tray ends at 1284 and the strip starts at 1288 (a 4px gap); both span rows 1028–1075; the fill is within 2 levels; the corner antialiasing rows match.
+- Taught:
+  (a) when docking into a layout system that exposes no tokens (OS chrome, a third-party skin), §0.A's detect-and-conform means *measure*: take gap, height, radius and fill from the host's pixels and reuse them exactly instead of applying our own STEP;
+  (b) sample a host's fill where no interactive state can tint it (padding outside any button), never on a hoverable sliver;
+  (c) read gaps on straight-edge rows, because corner rows read 1–3px wider through the radius.
+- Verdict: refinement(§0.A — "existing scale / tokens" assumes tokens you can read; a host you can only measure has none)
+- Action: pending pattern — single datapoint; per §15.D fold into §0.A on a repeat. quota-control 93decc6.
+
+### 2026-09-26 — Quota Control / bounded metric row — a caption tied to one line gets its own 2px stack; pulling the row gap back with a negative margin is two owners
+- Space Read: desktop tray popup (320px), a bounded metric row (label · meter · headline and countdown) gaining an exact restore-time caption under the countdown · packed · STEP 4 · DENSITY 7 · RIGOR 7 · the caption is intra-item (it belongs to the countdown) inside a 4px inter-item row stack, and it shares the countdown's right edge
+- Did:
+  - 14f5600 first shipped `margin-top: calc(2px - var(--uc-row-gap))` on the caption. That gives exactly 2px in both densities, but with two owners (the row gap of 4 plus a margin of −2).
+  - f6e5706 wraps the countdown and the caption in `.uc-row-readout { display:flex; flex-direction:column; gap:2px }`. The caption is 10px, right-aligned, `--uc-tertiary`.
+  - Measured in the preview: meter to readout 4px, countdown to caption 2.00px, right edges 308 = 308; contrast ≈4.8:1 light and ≈4.75:1 dark.
+  - In compact density the row gap is 3px against the caption's 2px: 1.5×, the ladder's floor.
+- Taught: a sub-caption attached to one line is intra-item space inside an inter-item stack. The tempting fix is to pull the parent gap back with a negative margin written against the gap token. It measures right, but it is a sum of two owners and drifts as soon as the gap token changes shape (a clamp, a density rung). Group the pair in its own stack instead.
+- Verdict: covered(§3.A single-owner law; §6.B proximity ladder)
+- Action: none — §3.A already forbids the sum ("8 here plus 8 there"); the self-correction is the datapoint. quota-control 14f5600 → f6e5706.
+
 ### 2026-09-26 — Quota Control / dashboard tab bar — a switch added to an existing bar takes the bar's metrics; nested padded shapes keep concentric radii; fixed chrome outside a scroller loses the scrollbar's width on its right edge
 - Space Read: desktop tray popup (320px), a new two-tab switch ("Hạn mức" | "Token") above a stack of cards, where the Token tab holds a card with its own capsule period picker · balanced · STEP 4 (inherited popup tokens: 14px inline inset, 44px top bar, 28px bar controls) · DENSITY 6 · RIGOR 8 · the switch must read as navigation rather than a second filter, and its left edge must sit on the cards' 14px spine.
 - Did: put the tab bar in the top-bar slot the other screens already use, with the same class (`.uc-topbar`: 44px, 14px inline inset, translucent bar, 0.5px bottom rule) instead of new bar CSS, and sized the switch to the bars' 28px control height (the top bar's circle buttons, the footer's Options pill): 2px track padding + 24px segments, 2px between segments, 12px labels. Measured in the preview: bar 44px, switch 28px at y=7.5 (centred in the 43px above the rule), segments 143×24 at x=16 and x=161, switch x=14 → 306, first card x=14. Radii: segment 6px (`--uc-control-radius`), track 8px = 6 + 2 padding, so the 2px band between the curves stays even round the corners. To keep it from reading as the in-card period picker (capsule, 11px), the tab switch is a rounded rectangle in the bar and the picker stays a capsule in the card. The first render left-aligned both labels, because the reset's `button { text-align: inherit }` reached them; segments are now `inline-flex` with `justify-content: center`. The right edge does not share the spine while the list scrolls: the switch ends at 306px and the cards at 298px, because the scroller's classic 8px scrollbar takes layout width and the bar sits outside the scroller. The footer's Options pill already had the same offset, so the bar stays consistent with it rather than changing every screen's inset.
