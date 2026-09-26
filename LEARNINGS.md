@@ -119,6 +119,13 @@ one dated entry; lessons that generalize are distilled into the skill (with a
 
 <!-- newest first -->
 
+### 2026-09-26 — Quota Control / Codex "Lượt đặt lại hạn mức" row — an action for one row hangs under its value and reuses the row's inset as the tie
+- Space Read: desktop tray popup (320px), a text row ("Lượt đặt lại hạn mức · ● 2 khả dụng") that gains a "Dùng 1 lượt" button acting on that row alone · packed · STEP 4 · DENSITY 7 · RIGOR 7 · the button must read as belonging to that value, not as a new row or a card footer
+- Did: put the button on its own right-aligned line (`.uc-row-action { display:flex; justify-content:flex-end; padding: 0 var(--uc-pad-x) var(--uc-text-row-pad) }`) inside the same row host, with no top padding. The row's existing 6px bottom inset is therefore the only value→button gap. Measured in the preview: value bottom to button top 6.00px; right edges 308 = 308; button 22px tall; 6px under the button before the card's caret.
+- Taught: an action scoped to one row reads as that row's when it sits in the row's own box and its gap is the row inset (intra-item), not a new stack item with its own margin. Right-aligning it to the value's edge ties it to the number it changes.
+- Verdict: covered(§6.B proximity ladder; §3.A single owner — the row inset is the only owner of the value→button gap)
+- Action: none. quota-control d15d876.
+
 ### 2026-09-26 — Quota Control / Windows taskbar strip beside a Windhawk tray island — docking into OS chrome: the host's measured geometry is the scale
 - Space Read: OS chrome (Windows 11 taskbar restyled by Windhawk into centered islands) · packed · STEP 4 (the host's) · DENSITY 8 · RIGOR 9 · the strip must read as a sibling island of the tray: same inter-island gap, top, height, radius and fill
 - Did: measured the host through UI Automation and pixel scans:
