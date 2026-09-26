@@ -4,6 +4,13 @@ All notable changes to this project are documented here. The format is based on
 [Keep a Changelog](https://keepachangelog.com/en/1.1.0/), and this project
 adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0.html).
 
+## [2.14.0] - 2026-09-26
+
+### Added
+- §4.C: in a flex row, decide which item yields. The long, tail-tolerant text (a name, an email, a path) truncates with an ellipsis, while buttons and plan or status badges are `flex:none`, because flex shrink otherwise lands on whatever can give. Measured on one 320px tray popup: a `flex:none` card title of 283px in a 209px slot squeezed the plan badge that told two accounts apart to 0px, and a `min-width:0` button in a label row was squeezed from 102px to 79px, clipping its label. After the swap the title truncated at 166px, the badge kept its 37.8px and the button its 102px.
+- §11: anti-pattern #26, no item told to yield in a flex row.
+- §13.C: an Alignment checklist item for it.
+
 ## [2.13.0] - 2026-09-24
 
 ### Added
