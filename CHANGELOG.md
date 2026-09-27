@@ -4,6 +4,13 @@ All notable changes to this project are documented here. The format is based on
 [Keep a Changelog](https://keepachangelog.com/en/1.1.0/), and this project
 adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0.html).
 
+## [2.15.0] - 2026-09-27
+
+### Added
+- §9.D: measure dynamic text at its widest value. A no-wrap label assembled from parts that data or the viewer's settings choose (counts, language, 12/24-hour clock, time-zone offset, date order) has no single width, so build the string from each part's widest form and measure it against the slot the container allots, never against the control's own auto-sized width. When it does not fit and the tail carries meaning, split it into lines by meaning instead of letting the ellipsis cut the offset or unit. Measured on a 320px tray popup: a reset caption fitted its 256px slot at 244px in Vietnamese 24-hour and overflowed at 258–298px in 12-hour, half-hour-zone and English builds; split into a time line and a qualifier line, the worst English case measured 210.5px and 149.5px.
+- §11: anti-pattern #27, a composed caption checked in one locale and one clock.
+- §13.C: a Responsive checklist item for it.
+
 ## [2.14.0] - 2026-09-26
 
 ### Added
