@@ -42,6 +42,27 @@ a dashboard doesn't get marketing-hero air and a hero doesn't get table density.
 ---
 
 ## Install
+
+#### ChatGPT and Codex portable plugin
+
+Download `spacing-skill-plugin-vX.Y.Z.zip` and `SHA256SUMS.txt` from
+[GitHub Releases](https://github.com/buidangminh23/spacing-skill/releases).
+The plugin ZIP has `plugin.json` at its root and bundles the spacing skill and
+presentation assets. It needs no external service, login, or MCP server.
+
+For local Codex distribution, add this repository with
+`codex plugin marketplace add buidangminh23/spacing-skill`, then select its
+marketplace in the Plugins Directory and install Spacing Skill. Local marketplace
+availability depends on the client. A GitHub release is available immediately;
+installation from the universal public ChatGPT directory requires verified
+developer submission and OpenAI review. This repository does not claim a public
+directory listing before that review completes.
+
+The plugin applies spacing guidance without writing a learning journal by default.
+Recipients can opt into a journal in their own project. The author's historical
+`LEARNINGS.md` is not needed by the plugin and is excluded from its ZIP and npm
+bundle. Maintaining a fork or contributing upstream is a separate request.
+
 #### GitHub Packages
 
 A repository-linked copy is available as `@buidangminh23/spacing-skill` on
@@ -194,18 +215,19 @@ generous section rhythm."*
 - **§12 Implementation per stack** — Tailwind, plain CSS, MUI/Chakra/Radix/shadcn, design tokens, debugging.
 - **§13 Operating procedure** — 8-step pipeline, conversational override protocol, full pre-flight checklist.
 - **§14 Document & long-form** — Word / Google Docs / PDF / Markdown: page margins, line spacing, the indent-vs-space rule, heading styles, print pagination, and a concept→tool mapping.
-- **§15 Continuous improvement** — a field-learnings loop: every real spacing edit is logged in `LEARNINGS.md` and distilled back into the skill, so it gets sharper with use.
+- **§15 Continuous improvement** — an optional field-learnings loop in a recipient-owned journal; source maintenance remains a separate, authorized activity.
 
 ---
 
 ## Continuous improvement
 
-This skill is built to **get sharper with use** (§15). Every real spacing or
-alignment edit is captured in [`LEARNINGS.md`](LEARNINGS.md) — a one-line Space
-Read, the real numbers, and a `covered` / `gap` / `refinement` verdict — and any
-lesson that generalizes is distilled back into `SKILL.md` with a `CHANGELOG.md`
-version bump. The journal stays out of the context-loaded skill, so the brain
-stays lean while the experience compounds.
+This skill can **get sharper with use** (§15) when recipients opt into a journal
+in their own project. Record a Space Read, the real numbers, and a `covered` /
+`gap` / `refinement` verdict only when requested. A reusable lesson can become a
+proposed change to a recipient-owned fork or an authorized upstream contribution.
+The installed plugin stays unchanged during ordinary use. The source repository's
+historical `LEARNINGS.md` is author material, not a recipient journal or required
+plugin resource.
 
 ## Release policy
 
