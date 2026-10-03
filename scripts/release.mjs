@@ -5,9 +5,24 @@ import { execFileSync } from 'node:child_process';
 import { createHash } from 'node:crypto';
 
 const root = path.resolve(path.dirname(fileURLToPath(import.meta.url)), '..');
-const manifests = ['.claude-plugin/plugin.json', '.claude-plugin/marketplace.json', '.codex-plugin/plugin.json', 'gemini-extension.json'];
+const manifests = ['plugin.json', '.claude-plugin/plugin.json', '.claude-plugin/marketplace.json', '.codex-plugin/plugin.json', 'gemini-extension.json'];
 const payload = ['README.md', 'LICENSE', 'CHANGELOG.md', 'LEARNINGS.md', 'skills', '.claude-plugin', '.codex-plugin', '.agents', 'gemini-extension.json'];
+const pluginPayload = ['plugin.json', 'README.md', 'LICENSE', 'skills', 'assets', '.codex-plugin'];
 const readJson = (base, file) => JSON.parse(fs.readFileSync(path.join(base, file), 'utf8'));
+
+export function pluginArchivePaths(base = root) {
+  const visit = (relative) => {
+    if (/(?:^|\/)(?:\.env(?:\.[^/]*)?|node_modules|connector\.json|[^/]*\.(?:pem|key))(?:\/|$)/i.test(relative)) throw new Error(`Unsafe plugin input: ${relative}`);
+    const info = fs.lstatSync(path.join(base, relative));
+    if (info.isSymbolicLink()) throw new Error(`Plugin payload cannot contain a symlink: ${relative}`);
+    if (info.isDirectory()) {
+      return fs.readdirSync(path.join(base, relative)).flatMap((name) => visit(`${relative}/${name}`));
+    }
+    if (!info.isFile()) throw new Error(`Unsafe plugin input: ${relative}`);
+    return [relative];
+  };
+  return pluginPayload.flatMap(visit).sort();
+}
 
 export function releaseNotes(changelog, version) {
   const sections = [...changelog.matchAll(/^## \[([^\]]+)\][^\r\n]*\r?\n([\s\S]*?)(?=^## \[|(?![\s\S]))/gm)];
@@ -26,6 +41,13 @@ export function validate(base = root, tag) {
     const version = file.endsWith('marketplace.json') ? data.plugins.find((plugin) => plugin.name === 'spacing-skill')?.version : data.version;
     if (version !== pkg.version) throw new Error(`${file}: ${version} does not match ${pkg.version}`);
   }
+  const portable = readJson(base, 'plugin.json');
+  if (portable.$schema !== 'https://agent-plugins.org/schemas/1.0.0/plugin.schema.json' || portable.name !== 'spacing-skill' || portable.author?.url !== 'https://github.com/buidangminh23') throw new Error('Invalid portable plugin identity');
+  const presentation = portable.extensions?.['com.openai']?.interface;
+  if (!presentation?.displayName || !presentation.shortDescription || presentation.shortDescription.length > 80) throw new Error('Missing or invalid plugin presentation');
+  const logo = presentation.logo;
+  if (typeof logo !== 'string' || !logo.startsWith('./assets/') || logo.includes('..') || !fs.existsSync(path.join(base, logo))) throw new Error('Plugin logo must be bundled inside assets');
+  pluginArchivePaths(base);
   const changelog = fs.readFileSync(path.join(base, 'CHANGELOG.md'), 'utf8');
   const first = changelog.match(/^## \[([^\]]+)\]/m)?.[1];
   if (first !== pkg.version) throw new Error('Latest changelog entry must match package.json');
@@ -57,9 +79,12 @@ function pack(tag) {
   const filename = `spacing-skill-v${version}.zip`;
   const archive = path.join(dist, filename);
   execFileSync('git', ['archive', '--format=zip', `--output=${archive}`, 'HEAD'], { cwd: root });
-  const checksum = createHash('sha256').update(fs.readFileSync(archive)).digest('hex');
-  fs.writeFileSync(path.join(dist, 'SHA256SUMS.txt'), `${checksum}  ${filename}\n`);
-  process.stdout.write(`${archive}\n`);
+  const pluginFilename = `spacing-skill-plugin-v${version}.zip`;
+  const pluginArchive = path.join(dist, pluginFilename);
+  execFileSync('git', ['archive', '--format=zip', `--output=${pluginArchive}`, 'HEAD', '--', ...pluginArchivePaths()], { cwd: root });
+  const checksums = [filename, pluginFilename].map((name) => `${createHash('sha256').update(fs.readFileSync(path.join(dist, name))).digest('hex')}  ${name}`).join('\n');
+  fs.writeFileSync(path.join(dist, 'SHA256SUMS.txt'), `${checksums}\n`);
+  process.stdout.write(`${archive}\n${pluginArchive}\n`);
 }
 
 if (process.argv[1] && path.resolve(process.argv[1]) === fileURLToPath(import.meta.url)) {

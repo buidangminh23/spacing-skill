@@ -871,22 +871,23 @@ Turn on **Widow/Orphan control** (no single line stranded at a page top/bottom),
 
 ## 15. CONTINUOUS IMPROVEMENT — The Field-Learnings Loop
 
-This skill is built to get sharper with use. The sections above are the distilled
-brain; **`LEARNINGS.md`** (repo root) is the raw journal it distills from. After
-any real spacing/alignment edit, run a short capture-and-distill pass so lessons
-compound instead of evaporating — the difference between a skill that ages and
-one that improves.
+This loop is optional. Apply the spacing guidance without changing the installed
+plugin, its cache, or the author's repository. Capture lessons only when the
+recipient explicitly requests journaling and chooses a writable file in their
+own project. The source repository's `LEARNINGS.md` is historical author material,
+not a destination for recipients' work and not a runtime dependency.
 
 ### 15.A When it fires
 
-Any edit that creates or changes spacing/alignment on a real artifact — a `gap`,
+After the recipient opts in, an edit that creates or changes spacing/alignment
+on a real artifact can provide a lesson — a `gap`,
 padding, inset, grid/flex alignment, vertical rhythm, an optical nudge, or a
 document's margins / leading / indents. Skip pure reading, restating a value that
 is already on-scale, or a throwaway sketch.
 
-### 15.B Capture — append one entry to `LEARNINGS.md` (≈30s)
+### 15.B Capture — append one entry to the recipient's chosen journal
 
-Date it, newest first. Record the **Space Read** (surface · dials · the one ratio
+Use the recipient's existing journal format. Record the **Space Read** (surface · dials · the one ratio
 that mattered), **what changed with the real numbers**, **what the situation
 taught**, and a one-word **verdict**:
 
@@ -901,12 +902,11 @@ did not hit — **evidence, not vibes.**
 
 ### 15.C Distill — graduate the lesson into the brain
 
-For a `gap` / `refinement` that generalizes past the one case, fold the lesson
-into the section it belongs to (§0–§14) as a **contextual rule**, not an
-anecdote: on-scale, dial-gated, consistent with its neighbors. Then bump
-`CHANGELOG.md` (SemVer — new guidance = minor, correction = patch) and prune the
-graduated entry in `LEARNINGS.md` to a one-line pointer (`→ folded into §n @
-vX.Y.Z`).
+For a `gap` / `refinement` that generalizes past the one case, propose a contextual
+rule for the relevant section (§0–§14). Change a recipient-owned fork only when
+the recipient explicitly requests skill maintenance. Upstream contributions
+require a separate, authorized pull request. Journaling does not authorize a
+version bump, source modification, commit, push, or publication.
 
 ### 15.D Guardrails
 

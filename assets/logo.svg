@@ -1,0 +1,11 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="512" height="512" viewBox="0 0 512 512" role="img" aria-label="Spacing Skill">
+  <rect width="512" height="512" rx="112" fill="#2563EB"/>
+  <g fill="#fff">
+    <rect x="112" y="116" width="288" height="40" rx="12"/>
+    <rect x="112" y="216" width="192" height="40" rx="12"/>
+    <rect x="112" y="356" width="288" height="40" rx="12"/>
+  </g>
+  <g stroke="#BFDBFE" stroke-width="12" stroke-linecap="round">
+    <path d="M352 182v-10m0 18v10m0 80v-10m0 28v16m0 18v8"/>
+  </g>
+</svg>

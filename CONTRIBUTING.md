@@ -27,7 +27,7 @@ Windows with Node 22 and 24. All checks must pass before releasing.
    ```
 
    Use `patch` or `major` when appropriate. The version hook synchronizes the
-   Claude plugin, Claude marketplace, Codex plugin, and Gemini extension.
+   portable root manifest, Claude plugin, Claude marketplace, Codex plugin, and Gemini extension.
    `package.json` declares the public npm package `@minhspark/spacing-skill`.
    Inspect `npm pack --dry-run` before publishing; only the skill, plugin manifests,
    user documentation, and license belong in the npm bundle.
@@ -41,7 +41,10 @@ Windows with Node 22 and 24. All checks must pass before releasing.
    ```
 
    Check that `dist/spacing-skill-vX.Y.Z.zip` includes the hidden plugin folders,
-   the skill, and LICENSE. `dist/SHA256SUMS.txt` records its SHA-256 checksum.
+   the skill, and LICENSE. The separate `dist/spacing-skill-plugin-vX.Y.Z.zip`
+   includes only portable manifests, skills, presentation assets, README, and
+   LICENSE. It excludes historical journals, development scripts, CI files,
+   symlinks, and credentials. `dist/SHA256SUMS.txt` records both SHA-256 checksums.
 6. Create an annotated tag matching the version, then push it:
 
    ```bash

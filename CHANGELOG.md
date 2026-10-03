@@ -4,6 +4,16 @@ All notable changes to this project are documented here. The format is based on
 [Keep a Changelog](https://keepachangelog.com/en/1.1.0/), and this project
 adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0.html).
 
+## [2.15.1] - 2026-10-03
+
+### Added
+- Portable Agent Plugins manifest and presentation assets for ChatGPT and Codex, alongside existing Claude and Gemini compatibility.
+- A separate allowlisted plugin ZIP with a root manifest and checksum in every release.
+
+### Fixed
+- Make journaling and source maintenance opt-in and recipient-owned. Installing the skill no longer implies permission to change upstream files or publish lessons.
+- Exclude the author's historical learning journal from the npm package and plugin ZIP; the skill works independently of that journal.
+
 ## [2.15.0] - 2026-09-27
 
 ### Added

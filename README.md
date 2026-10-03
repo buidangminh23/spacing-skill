@@ -42,6 +42,27 @@ a dashboard doesn't get marketing-hero air and a hero doesn't get table density.
 ---
 
 ## Install
+
+#### ChatGPT and Codex portable plugin
+
+Download `spacing-skill-plugin-vX.Y.Z.zip` and `SHA256SUMS.txt` from
+[GitHub Releases](https://github.com/buidangminh23/spacing-skill/releases).
+The plugin ZIP has `plugin.json` at its root and bundles the spacing skill and
+presentation assets. It needs no external service, login, or MCP server.
+
+For local Codex distribution, add this repository with
+`codex plugin marketplace add buidangminh23/spacing-skill`, then select its
+marketplace in the Plugins Directory and install Spacing Skill. Local marketplace
+availability depends on the client. A GitHub release is available immediately;
+installation from the universal public ChatGPT directory requires verified
+developer submission and OpenAI review. This repository does not claim a public
+directory listing before that review completes.
+
+The plugin applies spacing guidance without writing a learning journal by default.
+Recipients can opt into a journal in their own project. The author's historical
+`LEARNINGS.md` is not needed by the plugin and is excluded from its ZIP and npm
+bundle. Maintaining a fork or contributing upstream is a separate request.
+
 #### GitHub Packages
 
 A repository-linked copy is available as `@buidangminh23/spacing-skill` on
