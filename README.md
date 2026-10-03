@@ -215,18 +215,19 @@ generous section rhythm."*
 - **§12 Implementation per stack** — Tailwind, plain CSS, MUI/Chakra/Radix/shadcn, design tokens, debugging.
 - **§13 Operating procedure** — 8-step pipeline, conversational override protocol, full pre-flight checklist.
 - **§14 Document & long-form** — Word / Google Docs / PDF / Markdown: page margins, line spacing, the indent-vs-space rule, heading styles, print pagination, and a concept→tool mapping.
-- **§15 Continuous improvement** — a field-learnings loop: every real spacing edit is logged in `LEARNINGS.md` and distilled back into the skill, so it gets sharper with use.
+- **§15 Continuous improvement** — an optional field-learnings loop in a recipient-owned journal; source maintenance remains a separate, authorized activity.
 
 ---
 
 ## Continuous improvement
 
-This skill is built to **get sharper with use** (§15). Every real spacing or
-alignment edit is captured in [`LEARNINGS.md`](LEARNINGS.md) — a one-line Space
-Read, the real numbers, and a `covered` / `gap` / `refinement` verdict — and any
-lesson that generalizes is distilled back into `SKILL.md` with a `CHANGELOG.md`
-version bump. The journal stays out of the context-loaded skill, so the brain
-stays lean while the experience compounds.
+This skill can **get sharper with use** (§15) when recipients opt into a journal
+in their own project. Record a Space Read, the real numbers, and a `covered` /
+`gap` / `refinement` verdict only when requested. A reusable lesson can become a
+proposed change to a recipient-owned fork or an authorized upstream contribution.
+The installed plugin stays unchanged during ordinary use. The source repository's
+historical `LEARNINGS.md` is author material, not a recipient journal or required
+plugin resource.
 
 ## Release policy
 
