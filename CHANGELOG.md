@@ -4,6 +4,13 @@ All notable changes to this project are documented here. The format is based on
 [Keep a Changelog](https://keepachangelog.com/en/1.1.0/), and this project
 adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0.html).
 
+## [2.15.2] - 2026-10-03
+
+### Fixed
+- Use the supported Creativity category in public OpenAI plugin metadata. Keep the repository marketplace's Design category unchanged.
+- Validate the public category before packaging to catch unsupported submission metadata locally.
+- Shorten the public subtitle to the final directory limit and bundle the required square composer icon. Validate listing text, prompts, and both image paths before packaging.
+
 ## [2.15.1] - 2026-10-03
 
 ### Added

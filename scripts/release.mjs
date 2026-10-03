@@ -44,9 +44,16 @@ export function validate(base = root, tag) {
   const portable = readJson(base, 'plugin.json');
   if (portable.$schema !== 'https://agent-plugins.org/schemas/1.0.0/plugin.schema.json' || portable.name !== 'spacing-skill' || portable.author?.url !== 'https://github.com/buidangminh23') throw new Error('Invalid portable plugin identity');
   const presentation = portable.extensions?.['com.openai']?.interface;
-  if (!presentation?.displayName || !presentation.shortDescription || presentation.shortDescription.length > 80) throw new Error('Missing or invalid plugin presentation');
-  const logo = presentation.logo;
-  if (typeof logo !== 'string' || !logo.startsWith('./assets/') || logo.includes('..') || !fs.existsSync(path.join(base, logo))) throw new Error('Plugin logo must be bundled inside assets');
+  for (const [field, limit] of [['displayName', 30], ['shortDescription', 30], ['longDescription', 4000], ['developerName', 80]]) {
+    if (typeof presentation?.[field] !== 'string' || !presentation[field].trim() || presentation[field].length > limit || (field !== 'longDescription' && /[\r\n]/.test(presentation[field]))) throw new Error(`Invalid public plugin ${field}`);
+  }
+  if (presentation.category !== 'Creativity') throw new Error('Spacing Skill requires the supported public Creativity category');
+  for (const field of ['logo', 'composerIcon']) {
+    const image = presentation[field];
+    if (typeof image !== 'string' || !image.startsWith('./assets/') || image.includes('..') || !fs.existsSync(path.join(base, image))) throw new Error(`Plugin ${field} must be bundled inside assets`);
+  }
+  const prompts = presentation.defaultPrompt;
+  if (!Array.isArray(prompts) || prompts.length > 3 || prompts.some((value) => typeof value !== 'string' || !value.trim() || value.length > 128 || /[\r\n@]/.test(value)) || new Set(prompts.map((value) => value.normalize('NFKC').replace(/\s+/g, ' ').trim())).size !== prompts.length) throw new Error('Invalid public plugin starter prompts');
   pluginArchivePaths(base);
   const changelog = fs.readFileSync(path.join(base, 'CHANGELOG.md'), 'utf8');
   const first = changelog.match(/^## \[([^\]]+)\]/m)?.[1];
