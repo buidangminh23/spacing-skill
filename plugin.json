@@ -20,7 +20,7 @@
     "com.openai": {
       "interface": {
         "displayName": "Spacing Skill",
-        "shortDescription": "Consistent spacing, readable rhythm, and alignment",
+        "shortDescription": "Spacing and layout rhythm",
         "longDescription": "Read the existing layout and tokens, select contextual density, and apply one spacing scale across interfaces or written documents. Works with packaged guidance; no external account or MCP server is required.",
         "developerName": "Bui Dang Minh",
         "category": "Creativity",
@@ -30,7 +30,8 @@
           "Improve the paragraph and heading rhythm of this document."
         ],
         "brandColor": "#2563EB",
-        "logo": "./assets/logo.svg"
+        "logo": "./assets/logo.svg",
+        "composerIcon": "./assets/logo.svg"
       }
     }
   }
