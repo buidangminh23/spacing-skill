@@ -70,6 +70,10 @@ test('plugin payload rejects credential files and escaping symlinks', () => {
     fs.unlinkSync(link);
     const manifestPath = path.join(fixture, 'plugin.json');
     const manifest = JSON.parse(fs.readFileSync(manifestPath, 'utf8'));
+    manifest.extensions['com.openai'].interface.category = 'Design';
+    fs.writeFileSync(manifestPath, JSON.stringify(manifest));
+    assert.throws(() => validate(fixture), /public Creativity category/);
+    manifest.extensions['com.openai'].interface.category = 'Creativity';
     manifest.extensions['com.openai'].interface.logo = '../outside.svg';
     fs.writeFileSync(manifestPath, JSON.stringify(manifest));
     assert.throws(() => validate(fixture), /logo must be bundled/);

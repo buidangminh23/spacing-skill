@@ -45,6 +45,7 @@ export function validate(base = root, tag) {
   if (portable.$schema !== 'https://agent-plugins.org/schemas/1.0.0/plugin.schema.json' || portable.name !== 'spacing-skill' || portable.author?.url !== 'https://github.com/buidangminh23') throw new Error('Invalid portable plugin identity');
   const presentation = portable.extensions?.['com.openai']?.interface;
   if (!presentation?.displayName || !presentation.shortDescription || presentation.shortDescription.length > 80) throw new Error('Missing or invalid plugin presentation');
+  if (presentation.category !== 'Creativity') throw new Error('Spacing Skill requires the supported public Creativity category');
   const logo = presentation.logo;
   if (typeof logo !== 'string' || !logo.startsWith('./assets/') || logo.includes('..') || !fs.existsSync(path.join(base, logo))) throw new Error('Plugin logo must be bundled inside assets');
   pluginArchivePaths(base);

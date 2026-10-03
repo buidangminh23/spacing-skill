@@ -1,7 +1,7 @@
 {
   "$schema": "https://agent-plugins.org/schemas/1.0.0/plugin.schema.json",
   "name": "spacing-skill",
-  "version": "2.15.1",
+  "version": "2.15.2",
   "description": "Apply a consistent spacing scale, readable rhythm, and contextual alignment to interfaces and documents.",
   "author": {
     "name": "Bui Dang Minh",
@@ -23,7 +23,7 @@
         "shortDescription": "Consistent spacing, readable rhythm, and alignment",
         "longDescription": "Read the existing layout and tokens, select contextual density, and apply one spacing scale across interfaces or written documents. Works with packaged guidance; no external account or MCP server is required.",
         "developerName": "Bui Dang Minh",
-        "category": "Design",
+        "category": "Creativity",
         "websiteURL": "https://github.com/buidangminh23/spacing-skill",
         "defaultPrompt": [
           "Review this interface for spacing, density, and alignment.",
