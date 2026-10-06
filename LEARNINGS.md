@@ -389,3 +389,10 @@ one dated entry; lessons that generalize are distilled into the skill (with a
 - Taught: a README renderer supplies its own vertical rhythm. Use semantic blocks and supported alignment attributes, then measure the rendered article; a local mockup's gap does not establish the gap on GitHub. Independent centered blocks can share the same axis without a flex layout or custom CSS.
 - Verdict: covered(§4.C + §14)
 - Action: no skill or version change. Existing alignment and renderer rules cover this case; recorded the actual GitHub measurements.
+
+### 2026-10-06 — codex-mcp-bridge / README views badge — keep a single metric at its intrinsic size
+- Space Read: repository README header · balanced · STEP 8 · DENSITY 3 · RIGOR 8 · one GitHub views badge joins the existing package badges; the separate statistics panel is removed at the owner's request
+- Did: added the badge as an ordinary linked Markdown image, with a 24px SVG height and width determined by its label and value. Measured on the actual GitHub branch page: badge 184×24px, loaded successfully, within the 838px article column. The label reads GitHub views / 14d and the source value is 207. The Project statistics heading is absent.
+- Taught: the renderer already supplies the inline badge flow. Keep the metric at its intrinsic size and measure it in the real article; no custom grid or compressed type is needed for one additional value.
+- Verdict: covered(§9.D + §14)
+- Action: no skill or version change. Existing intrinsic sizing and renderer checks cover this edit.
