@@ -7,12 +7,8 @@
 *One scale. Real rhythm. Optical alignment. UI that breathes instead of looking templated.*
 
 [![License: MIT](https://img.shields.io/badge/License-MIT-0078D4?style=for-the-badge)](LICENSE)
-[![npm](https://img.shields.io/npm/v/@minhspark/spacing-skill?style=for-the-badge&logo=npm&color=CB3837)](https://www.npmjs.com/package/@minhspark/spacing-skill)
-[![Release](https://img.shields.io/github/v/release/buidangminh23/spacing-skill?style=for-the-badge&label=release)](https://github.com/buidangminh23/spacing-skill/releases/latest)
-[![CI](https://github.com/buidangminh23/spacing-skill/actions/workflows/ci.yml/badge.svg)](https://github.com/buidangminh23/spacing-skill/actions/workflows/ci.yml)
-[![Agent Skills](https://img.shields.io/badge/Agent-Skills-E53935?style=for-the-badge)](https://github.com/buidangminh23/spacing-skill)
-[![Claude Code](https://img.shields.io/badge/Claude_Code-Plugin-FFB300?style=for-the-badge)](https://github.com/buidangminh23/spacing-skill)
-[![Tools](https://img.shields.io/badge/Works_with-Claude_·_Cursor_·_Codex_·_Gemini-43A047?style=for-the-badge)](https://github.com/buidangminh23/spacing-skill)
+[![npm downloads](assets/badges/npm-downloads.svg)](https://www.npmjs.com/package/@minhspark/spacing-skill)
+[![npm downloads / 30d](assets/badges/npm-downloads-month.svg)](https://www.npmjs.com/package/@minhspark/spacing-skill)
 
 </div>
 

@@ -410,3 +410,9 @@ one dated entry; lessons that generalize are distilled into the skill (with a
 - Taught: a wrapping flex group needs room to shrink — pinning it with `flex:none`/`shrink-0` turns `flex-wrap` off in practice and moves the overflow to its neighbours. And a card that sits in a form row should take the field's shape (label above, control-height box), not merely span the row height.
 - Verdict: (1) covered(§9.D) · (2) refinement(§4.C) — pending, single datapoint · (3) covered(§4.C)
 - Action: not folded. If it recurs, extend the §4.C "decide which item yields" bullet: a group that wraps its children must itself stay shrinkable; give `flex:none` only to atomic items.
+### 2026-10-11 — spacing-skill / npm download badges — retain intrinsic segment widths
+- Space Read: centered README badge row · balanced · STEP 8 · DENSITY 3 · RIGOR 8 · two related download metrics share one 24px height and 16px text baseline.
+- Did: reused the reference badge's 12px monospace type, 4px corner radius and content-derived segment widths. Generated SVG dimensions with the real count 676 are 148×24px for the total and 191×24px for the 30-day count. Removed the six owner-selected metadata badges, retaining License. These are generated SVG measurements, not GitHub layout measurements.
+- Taught: preserve intrinsic widths when labels differ; equal height and baseline group the metrics without stretching the shorter label.
+- Verdict: covered(§9.D + §14)
+- Action: no skill or version change; existing content sizing guidance covers this edit.
