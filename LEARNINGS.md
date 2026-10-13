@@ -16,6 +16,14 @@ one dated entry; lessons that generalize are distilled into the skill (with a
    it into the right section of `SKILL.md`, bump `CHANGELOG.md`, then replace the
    entry here with a one-line pointer: `→ folded into §n @ vX.Y.Z`.
 
+### 2026-10-13 — Repository badges and skill-card artwork — intrinsic SVG sizes survive host CSS
+
+- Space Read: GitHub README badge rows and portfolio skill cards · balanced · STEP 4 · DENSITY 5 · RIGOR 8 · web badges 24 px, wrapping gap 8 px, artwork 144 × 52 px.
+- Did: GitHub rendered the generated analytics badges at 24 px while adjacent external badges were 20 px; the host's image height:auto overrode HTML height attributes. Normalized the three generated SVGs to intrinsic height 20 px with proportional widths and unchanged viewBox. On the portfolio, a shared component sets all badge images and link targets to 24 px, with an 8 px flex gap. Chrome measurements at 320 px and 390 px viewport widths found zero horizontal overflow; all loaded bridge badges were 24 px high. Changed the shared bridge artwork from self-start to self-center for both card sections. Final centering screenshot is pending because the Chrome extension detached during verification; no measured centering claim is made here.
+- Taught: HTML dimension attributes do not override host CSS. Normalize the delivered asset dimensions when the host owns image sizing, and use one shared layout component where the application owns CSS. Preserve image aspect ratios rather than stretching each badge to the same width.
+- Verdict: covered (§3 — consistent rhythm; §4 — one owner per space and cross-axis alignment; §9 — minimum target floor; §15 — verify the rendered result).
+- Action: journal only; existing guidance covers this case. Renderer regression tests and public SVG readback verified 20 px intrinsic height. Portfolio unit suite passed 404/404 locally and in a fresh source archive.
+
 ### 2026-09-25 — Gemera dashboard / mobile login card — a status line reserved *below* the last control is dead space: the card's bottom inset came out twice its top
 
 - Space Read: web login page for a dark admin dashboard, one centred card · balanced · STEP 8 · card `max-width:380px`, padding 32 px block / 24 px inline, field groups 16 px apart, label → input 8 px, inputs and button `min-height:48px` (touch floor), input text 16 px so iOS does not zoom · DENSITY 5 · RIGOR 7 · rendered in WebKit 26.5 with Playwright's iPhone 15 Pro and iPad Pro 11 profiles.
