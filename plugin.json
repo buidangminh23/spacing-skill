@@ -1,7 +1,7 @@
 {
   "$schema": "https://agent-plugins.org/schemas/1.0.0/plugin.schema.json",
   "name": "spacing-skill",
-  "version": "2.16.1",
+  "version": "2.16.2",
   "description": "Apply a consistent spacing scale, readable rhythm, and contextual alignment to interfaces and documents.",
   "author": {
     "name": "Bui Dang Minh",

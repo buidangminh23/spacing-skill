@@ -6,7 +6,7 @@ import { createHash } from 'node:crypto';
 
 const root = path.resolve(path.dirname(fileURLToPath(import.meta.url)), '..');
 const manifests = ['plugin.json', '.claude-plugin/plugin.json', '.claude-plugin/marketplace.json', '.codex-plugin/plugin.json', 'gemini-extension.json'];
-const payload = ['README.md', 'LICENSE', 'CHANGELOG.md', 'LEARNINGS.md', 'skills', '.claude-plugin', '.codex-plugin', '.agents', 'gemini-extension.json'];
+const payload = ['README.md', 'LICENSE', 'CHANGELOG.md', 'docs/LEARNINGS.md', 'skills', '.claude-plugin', '.codex-plugin', '.agents', 'gemini-extension.json'];
 const pluginPayload = ['plugin.json', 'README.md', 'LICENSE', 'skills', 'assets', '.codex-plugin'];
 const readJson = (base, file) => JSON.parse(fs.readFileSync(path.join(base, file), 'utf8'));
 
