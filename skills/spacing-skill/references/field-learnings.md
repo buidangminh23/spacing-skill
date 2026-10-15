@@ -15,7 +15,7 @@
 This loop is optional. Apply the spacing guidance without changing the installed
 plugin, its cache, or the author's repository. Capture lessons only when the
 recipient explicitly requests journaling and chooses a writable file in their
-own project. The source repository's `LEARNINGS.md` is historical author material,
+own project. The source repository's `docs/LEARNINGS.md` is historical author material,
 not a destination for recipients' work and not a runtime dependency.
 
 ### 15.A When it fires
@@ -55,7 +55,7 @@ version bump, source modification, commit, push, or publication.
   rewrite a baseline off a single layout.
 - **§9 accessibility floors outrank every field preference** — a learning may
   tighten a gap only down to the floor, never through it.
-- **Keep the brain lean.** The journal grows in `LEARNINGS.md`; a lesson earns a
+- **Keep the brain lean.** The recipient's chosen journal grows; a lesson earns a
   place in §0–§14 only by generalizing. Restate in place — never append a second
   rule that says the same thing.
 

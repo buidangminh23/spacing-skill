@@ -23,7 +23,7 @@ test('repository versions, release inputs and changelog agree', () => {
 test('validation blocks individual manifest drift and invalid release versions', () => {
   const fixture = fs.mkdtempSync(path.join(os.tmpdir(), 'spacing-release-'));
   try {
-    for (const file of ['plugin.json', 'assets', 'package.json', 'CHANGELOG.md', 'README.md', 'LICENSE', 'LEARNINGS.md', 'gemini-extension.json', '.claude-plugin', '.codex-plugin', '.agents', 'skills']) {
+    for (const file of ['plugin.json', 'assets', 'package.json', 'CHANGELOG.md', 'README.md', 'LICENSE', 'docs', 'gemini-extension.json', '.claude-plugin', '.codex-plugin', '.agents', 'skills']) {
       fs.cpSync(new URL(`../${file}`, import.meta.url), path.join(fixture, file), { recursive: true });
     }
     for (const file of ['plugin.json', '.claude-plugin/plugin.json', '.claude-plugin/marketplace.json', '.codex-plugin/plugin.json', 'gemini-extension.json']) {
@@ -65,13 +65,13 @@ test('plugin archive includes portable inputs and excludes author history and de
   const markdown = fs.readdirSync(directory, { recursive: true }).filter((file) => file.endsWith('.md')).map((file) => `skills/spacing-skill/${file.split(path.sep).join('/')}`).sort();
   assert.deepEqual(resources, markdown);
   for (const file of resources) assert.ok(files.includes(file), `Missing packaged resource: ${file}`);
-  for (const file of ['LEARNINGS.md', 'test/release.test.mjs', '.github/workflows/publish.yml', 'scripts/release.mjs', '.git/config']) assert.ok(!files.includes(file), file);
+  for (const file of ['LEARNINGS.md', 'docs/LEARNINGS.md', '.github/CONTRIBUTING.md', 'test/release.test.mjs', '.github/workflows/publish.yml', 'scripts/release.mjs', '.git/config']) assert.ok(!files.includes(file), file);
 });
 
 test('plugin payload rejects credential files and escaping symlinks', () => {
   const fixture = fs.mkdtempSync(path.join(os.tmpdir(), 'spacing-plugin-'));
   try {
-    for (const file of ['plugin.json', 'assets', 'package.json', 'CHANGELOG.md', 'README.md', 'LICENSE', 'LEARNINGS.md', 'gemini-extension.json', '.claude-plugin', '.codex-plugin', '.agents', 'skills']) fs.cpSync(new URL(`../${file}`, import.meta.url), path.join(fixture, file), { recursive: true });
+    for (const file of ['plugin.json', 'assets', 'package.json', 'CHANGELOG.md', 'README.md', 'LICENSE', 'docs', 'gemini-extension.json', '.claude-plugin', '.codex-plugin', '.agents', 'skills']) fs.cpSync(new URL(`../${file}`, import.meta.url), path.join(fixture, file), { recursive: true });
     const secret = path.join(fixture, 'skills/spacing-skill/.env');
     fs.writeFileSync(secret, 'fixture-only');
     assert.throws(() => pluginArchivePaths(fixture), /Unsafe plugin input/);

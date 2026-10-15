@@ -14,7 +14,7 @@
 
 </div>
 
-[Latest release](https://github.com/buidangminh23/spacing-skill/releases/latest) · [CI checks](https://github.com/buidangminh23/spacing-skill/actions/workflows/ci.yml) · [npm package](https://www.npmjs.com/package/@minhspark/spacing-skill) · [Release policy](CONTRIBUTING.md#releasing)
+[Latest release](https://github.com/buidangminh23/spacing-skill/releases/latest) · [CI checks](https://github.com/buidangminh23/spacing-skill/actions/workflows/ci.yml) · [npm package](https://www.npmjs.com/package/@minhspark/spacing-skill) · [Release policy](https://github.com/buidangminh23/spacing-skill/blob/main/.github/CONTRIBUTING.md#releasing)
 
 ---
 
@@ -58,7 +58,7 @@ directory listing before that review completes.
 
 The plugin applies spacing guidance without writing a learning journal by default.
 Recipients can opt into a journal in their own project. The author's historical
-`LEARNINGS.md` is not needed by the plugin and is excluded from its ZIP and npm
+`docs/LEARNINGS.md` is not needed by the plugin and is excluded from its ZIP and npm
 bundle. Maintaining a fork or contributing upstream is a separate request.
 
 #### GitHub Packages
@@ -228,7 +228,7 @@ in their own project. Record a Space Read, the real numbers, and a `covered` /
 `gap` / `refinement` verdict only when requested. A reusable lesson can become a
 proposed change to a recipient-owned fork or an authorized upstream contribution.
 The installed plugin stays unchanged during ordinary use. The source repository's
-historical `LEARNINGS.md` is author material, not a recipient journal or required
+historical `docs/LEARNINGS.md` is author material, not a recipient journal or required
 plugin resource.
 
 ## Release policy
@@ -236,7 +236,7 @@ plugin resource.
 Releases follow Semantic Versioning: patch for corrections, minor for compatible
 skill additions, major for incompatible installation or behavior changes.
 `package.json` is the version source; the skill and plugin manifests are
-published to npm. See [CONTRIBUTING.md](CONTRIBUTING.md#releasing) for the full procedure.
+published to npm. See [contributor instructions](https://github.com/buidangminh23/spacing-skill/blob/main/.github/CONTRIBUTING.md#releasing) for the full procedure.
 
 A `vX.Y.Z` tag triggers validation on Windows, macOS, and Linux with Node 22 and
 24. Every versioned manifest and the latest changelog entry must match the tag.
