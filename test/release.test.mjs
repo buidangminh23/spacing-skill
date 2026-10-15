@@ -3,7 +3,7 @@ import assert from 'node:assert/strict';
 import fs from 'node:fs';
 import os from 'node:os';
 import path from 'node:path';
-import { releaseNotes, validate, pluginArchivePaths } from '../scripts/release.mjs';
+import { releaseNotes, validate, pluginArchivePaths, skillResources } from '../scripts/release.mjs';
 
 test('notes select exactly one version and exclude adjacent versions', () => {
   const changelog = '# Changelog\r\n\r\n## [2.0.0] - 2026-09-16\r\n\r\n### Added\r\n- New feature.\r\n\r\n## [1.0.0]\r\n\r\n- Initial.\r\n';
@@ -36,6 +36,13 @@ test('validation blocks individual manifest drift and invalid release versions',
       assert.throws(() => validate(fixture), /does not match/);
       fs.writeFileSync(target, original);
     }
+    const reference = path.join(fixture, 'skills/spacing-skill/references/optical-alignment.md');
+    const originalReference = fs.readFileSync(reference, 'utf8');
+    fs.unlinkSync(reference);
+    assert.throws(() => validate(fixture), /Missing skill reference/);
+    fs.writeFileSync(reference, '[Outside](../../../../README.md)');
+    assert.throws(() => validate(fixture), /escapes the skill folder/);
+    fs.writeFileSync(reference, originalReference);
     const pkgPath = path.join(fixture, 'package.json');
     const pkg = JSON.parse(fs.readFileSync(pkgPath, 'utf8'));
     pkg.private = true;
@@ -53,6 +60,11 @@ test('validation blocks individual manifest drift and invalid release versions',
 test('plugin archive includes portable inputs and excludes author history and development files', () => {
   const files = pluginArchivePaths();
   for (const file of ['plugin.json', '.codex-plugin/plugin.json', 'skills/spacing-skill/SKILL.md', 'assets/logo.svg', 'LICENSE']) assert.ok(files.includes(file), file);
+  const resources = skillResources();
+  const directory = new URL('../skills/spacing-skill/', import.meta.url);
+  const markdown = fs.readdirSync(directory, { recursive: true }).filter((file) => file.endsWith('.md')).map((file) => `skills/spacing-skill/${file.split(path.sep).join('/')}`).sort();
+  assert.deepEqual(resources, markdown);
+  for (const file of resources) assert.ok(files.includes(file), `Missing packaged resource: ${file}`);
   for (const file of ['LEARNINGS.md', 'test/release.test.mjs', '.github/workflows/publish.yml', 'scripts/release.mjs', '.git/config']) assert.ok(!files.includes(file), file);
 });
 

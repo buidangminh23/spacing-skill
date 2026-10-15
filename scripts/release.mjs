@@ -31,6 +31,24 @@ export function releaseNotes(changelog, version) {
   return matches[0][2].trim();
 }
 
+export function skillResources(base = root) {
+  const directory = path.resolve(base, 'skills/spacing-skill');
+  const visited = new Set();
+  const visit = (file) => {
+    if (visited.has(file)) return;
+    if (!file.startsWith(`${directory}${path.sep}`)) throw new Error('Skill reference escapes the skill folder');
+    if (!fs.existsSync(file)) throw new Error(`Missing skill reference: ${path.relative(directory, file)}`);
+    visited.add(file);
+    const markdown = fs.readFileSync(file, 'utf8');
+    for (const match of markdown.matchAll(/\[[^\]]+\]\(([^\s)]+\.md)(?:#[^\s)]*)?\)/g)) {
+      if (/^[a-z][a-z\d+.-]*:/i.test(match[1])) continue;
+      visit(path.resolve(path.dirname(file), decodeURIComponent(match[1])));
+    }
+  };
+  visit(path.join(directory, 'SKILL.md'));
+  return [...visited].map((file) => path.relative(base, file).split(path.sep).join('/')).sort();
+}
+
 export function validate(base = root, tag) {
   const pkg = readJson(base, 'package.json');
   if (!/^\d+\.\d+\.\d+$/.test(pkg.version)) throw new Error('Use a stable major.minor.patch version');
@@ -61,6 +79,7 @@ export function validate(base = root, tag) {
   const notes = releaseNotes(changelog, pkg.version);
   const skill = fs.readFileSync(path.join(base, 'skills/spacing-skill/SKILL.md'), 'utf8');
   if (!/^---\r?\nname: design-spacing-rhythm\r?\n/.test(skill)) throw new Error('Skill frontmatter is missing');
+  skillResources(base);
   for (const file of payload) if (!fs.existsSync(path.join(base, file))) throw new Error(`Missing release input: ${file}`);
   const gemini = readJson(base, 'gemini-extension.json');
   if (!fs.existsSync(path.join(base, gemini.contextFileName))) throw new Error('Gemini context file is missing');

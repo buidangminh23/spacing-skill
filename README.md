@@ -150,18 +150,18 @@ The `skills` CLI targets any agent with `-a` and installs to the user directory 
 
 Drop `-g` for a project-local install. Manage with `npx skills list`, `npx skills update`, `npx skills remove`.
 
-**Manual (portable)** — fetch the file once, then place it where your agent looks:
-
-```bash
-curl -fsSL https://raw.githubusercontent.com/buidangminh23/spacing-skill/main/skills/spacing-skill/SKILL.md -o SKILL.md
-```
+**Manual (portable)** — download the `spacing-skill-vX.Y.Z.zip` source bundle
+from the [latest release](https://github.com/buidangminh23/spacing-skill/releases/latest),
+extract it, and copy the complete `skills/spacing-skill/` folder to the destination
+below. Keep `SKILL.md` and its sibling `references/` directory together. Fetching
+only the raw `SKILL.md` omits the on-demand guidance.
 
 | Tool | Where it goes |
 |---|---|
 | Claude Code | `~/.claude/skills/design-spacing-rhythm/SKILL.md` (global) or `.claude/skills/…` (project) |
-| Codex | save in repo, then reference from `AGENTS.md` |
-| Cursor | rename to `.cursor/rules/spacing-skill.mdc` |
-| Cline / opencode / others | drop into the agent's skills/rules folder, or paste `SKILL.md` as context |
+| Codex | `~/.codex/skills/design-spacing-rhythm/`, or save the full folder in the repo and reference it from `AGENTS.md` |
+| Cursor | keep the complete folder in the repo and reference its `SKILL.md` from an existing Cursor rule; preserve the filename so reference backlinks work |
+| Cline / opencode / others | copy the full folder into the agent's skills/rules location; when pasting context, include the relevant reference contents too |
 
 </details>
 
@@ -194,7 +194,11 @@ generous section rhythm."*
 
 ## What's inside the skill
 
-16 sections, all dial-driven and contextual:
+16 sections, all dial-driven and contextual. The core entrypoint contains
+§0–§3, §6, §11, and §13. Its reference map routes to seven focused files for
+layout/type, optical alignment, responsive/accessibility, component recipes,
+stack implementation, documents, and optional field learnings. Agents load only
+the references needed for the task; every installation format includes them.
 
 - **§0 Space Inference** — read signals, emit a one-line "Space Read", anti-default discipline.
 - **§1 The three dials** — inference tables mapping the situation to dial values.
@@ -207,7 +211,7 @@ generous section rhythm."*
 - **§8 Responsive & fluid spacing** — `clamp()`, mobile density step-down, container queries, logical properties, safe-area insets.
 - **§9 Accessibility floors** — verified WCAG numbers (2.5.8 / 2.5.5 / 1.4.12 / 1.4.10), Apple 44pt / Material 48dp.
 - **§10 Component recipes** — buttons, inputs, forms, cards, nav, modals, tables, chips, menus, sections, media.
-- **§11 Anti-pattern catalog** — 14 AI spacing tells, each with the fix.
+- **§11 Anti-pattern catalog** — common AI spacing tells, each with the fix.
 - **§12 Implementation per stack** — Tailwind, plain CSS, MUI/Chakra/Radix/shadcn, design tokens, debugging.
 - **§13 Operating procedure** — 8-step pipeline, conversational override protocol, full pre-flight checklist.
 - **§14 Document & long-form** — Word / Google Docs / PDF / Markdown: page margins, line spacing, the indent-vs-space rule, heading styles, print pagination, and a concept→tool mapping.
@@ -244,8 +248,9 @@ and assets must not be moved or replaced; corrections require a new version.
 ## Common Questions
 
 **Does it work outside Claude Code?**
-Yes. `SKILL.md` is a portable instruction file. Drop it into Codex, Cursor, or
-any agent that can load skill/instruction files, or paste it as context.
+Yes. The skill folder is portable. Keep `SKILL.md` and `references/` together
+in Codex, Cursor, or any agent that can load instruction files. For paste-only
+tools, include the core and the references relevant to the task.
 
 **Tailwind only?**
 No. The default scale matches Tailwind so it drops in cleanly, but §12

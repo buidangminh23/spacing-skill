@@ -4,6 +4,28 @@ All notable changes to this project are documented here. The format is based on
 [Keep a Changelog](https://keepachangelog.com/en/1.1.0/), and this project
 adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0.html).
 
+## [2.16.0] - 2026-10-15
+
+### Added
+- Contact/detail-card and footer social-link recipes, with separate artwork and hit-target dimensions, readable wrapping, accessible names, and scale-based proximity tiers.
+- A complete vanilla CSS example: one documented token convention, semantic aliases, single-owner gaps, shrinkable text tracks, responsive columns, and density overrides.
+- Discoverable guidance for embedded subscription/CTA cards and conditional dark-theme optical adjustments.
+
+### Fixed
+- Explain valid nonzero-origin SVG viewBoxes, aspect-ratio containment, native brand fills, and intentional clipping without hiding keyboard focus.
+- Keep essential emails, URLs, and filenames fully readable: reset nowrap, allow grid/flex shrink, and distinguish `anywhere` from `break-word` without promising punctuation-specific breaks.
+- Repair a malformed CSS fence in the stack/cascade guidance so the print recipe renders as prose and code correctly.
+
+### Changed
+- Split the former monolithic skill into a smaller core and seven on-demand references, preserving section numbers, core accessibility floors, and recipient-owned journaling boundaries.
+- Update manual installation to retain the complete skill folder. Existing npm, plugin ZIP, and native extension distributions include all references; a raw SKILL.md-only copy is incomplete.
+- Validate linked skill resources during release checks and reject missing references or links outside the skill folder.
+
+### Validation
+- Local Node tests, metadata checks, skill validation, and package/archive resource inspection cover the new reference layout.
+- The documented CSS was exercised in 18 synthetic Chrome layouts from 320 to 1024 CSS px, including text-spacing overrides and a narrow/wide/narrow round trip. This validates the recipes, not the reported production website.
+- Resolves the eight skill-guidance items in [issue #1](https://github.com/buidangminh23/spacing-skill/issues/1); no changes to the example website are included.
+
 ## [2.15.2] - 2026-10-03
 
 ### Fixed
