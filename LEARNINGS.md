@@ -424,3 +424,10 @@ one dated entry; lessons that generalize are distilled into the skill (with a
 - Taught: preserve intrinsic widths when labels differ; equal height and baseline group the metrics without stretching the shorter label.
 - Verdict: covered(§9.D + §14)
 - Action: no skill or version change; existing content sizing guidance covers this edit.
+
+### 2026-10-15 — PCC4SH stock voucher sheet / per-line VAT select and a print-only footnote toggle inside a fixed eight-column paper form
+- Space Read: paper-form replica (Mẫu 01-VT/02-VT) · dense · STEP 4 · DENSITY 7 · RIGOR 8 · the printed sheet keeps its eight fixed columns; screen-only controls must not change print geometry
+- Did: put the per-line VAT select inside the existing Thành tiền cell below the computed amount (`min-width: 6.5rem`, hidden in print) instead of adding a ninth column, because every colSpan in the sheet and the A4 column widths were tuned to eight columns. The footnote toggle is a `label` with `inline-flex`, `gap: 0.5rem` and `min-height: 48px`, also hidden in print; the printed footnote is a separate print-only span in the same row. Values are from the CSS, not a browser measurement.
+- Taught: when a screen form mirrors a fixed paper layout, nest screen-only controls inside an existing cell and hide them in print; adding a column re-flows every spanned row and the print widths.
+- Verdict: covered(§9 a11y floor + §4.C)
+- Action: no skill or version change.
