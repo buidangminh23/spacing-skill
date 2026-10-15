@@ -1,6 +1,8 @@
 <div align="center">
 
-# 📐 spacing-skill
+<img src="assets/logo-v2.png" alt="Spacing Skill logo" width="112" height="112">
+
+# spacing-skill
 
 ### The Anti-Cramped Spacing Skill for AI Agents
 

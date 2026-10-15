@@ -4,6 +4,15 @@ All notable changes to this project are documented here. The format is based on
 [Keep a Changelog](https://keepachangelog.com/en/1.1.0/), and this project
 adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0.html).
 
+## [2.16.1] - 2026-10-15
+
+### Changed
+- Introduce a new blue S monogram with opposing forms and deliberate negative space, replacing the ruler emoji in the README header and the previous plugin listing/composer artwork.
+- Bundle the original transparent PNG at assets/logo-v2.png so the new identity is available in npm and both release ZIPs.
+
+### Validation
+- Verify the new artwork is a square RGBA PNG with real transparency, review it at small interface sizes on light and dark backgrounds, and run the existing release checks and CI matrix.
+
 ## [2.16.0] - 2026-10-15
 
 ### Added

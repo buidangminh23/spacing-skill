@@ -1,7 +1,7 @@
 {
   "$schema": "https://agent-plugins.org/schemas/1.0.0/plugin.schema.json",
   "name": "spacing-skill",
-  "version": "2.16.0",
+  "version": "2.16.1",
   "description": "Apply a consistent spacing scale, readable rhythm, and contextual alignment to interfaces and documents.",
   "author": {
     "name": "Bui Dang Minh",
@@ -30,8 +30,8 @@
           "Improve the paragraph and heading rhythm of this document."
         ],
         "brandColor": "#2563EB",
-        "logo": "./assets/logo.svg",
-        "composerIcon": "./assets/logo.svg"
+        "logo": "./assets/logo-v2.png",
+        "composerIcon": "./assets/logo-v2.png"
       }
     }
   }
