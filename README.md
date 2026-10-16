@@ -8,9 +8,16 @@
 
 *One scale. Real rhythm. Optical alignment. UI that breathes instead of looking templated.*
 
-[![License: MIT](https://img.shields.io/badge/License-MIT-0078D4?style=for-the-badge)](LICENSE)
-[![npm downloads](assets/badges/npm-downloads.svg)](https://www.npmjs.com/package/@minhspark/spacing-skill)
-[![npm downloads / 30d](assets/badges/npm-downloads-month.svg)](https://www.npmjs.com/package/@minhspark/spacing-skill)
+<p align="center">
+  <a href="https://www.npmjs.com/package/@minhspark/spacing-skill"><img src="https://img.shields.io/npm/v/@minhspark/spacing-skill?logo=npm&amp;color=CB3837" height="20" alt="npm" /></a>
+  <a href="https://www.npmjs.com/package/@minhspark/spacing-skill"><img src="assets/badges/npm-downloads.svg" height="20" alt="npm downloads" /></a>
+  <a href="https://www.npmcharts.com/compare/%40minhspark%2Fspacing-skill?minimal=true"><img src="assets/badges/npm-downloads-month.svg" height="20" alt="npm downloads / 30d" /></a>
+  <br />
+  <a href="https://github.com/buidangminh23/spacing-skill/network/dependents"><img src="https://img.shields.io/librariesio/dependent-repos/npm/@minhspark/spacing-skill?label=Used%20by&amp;logo=github&amp;color=0969da" height="20" alt="Used by repositories (Libraries.io)" /></a>
+  <a href="https://skills.sh/buidangminh23/spacing-skill"><img src="https://skills.sh/b/buidangminh23/spacing-skill?label=skills.sh" height="20" alt="skills.sh installs" /></a>
+  <a href="https://github.com/buidangminh23/spacing-skill/graphs/traffic"><img src="https://raw.githubusercontent.com/buidangminh23/spacing-skill/badges/github-views.svg" height="20" alt="GitHub views / 14d" /></a>
+  <a href="LICENSE"><img src="https://img.shields.io/npm/l/@minhspark/spacing-skill" height="20" alt="license" /></a>
+</p>
 
 </div>
 

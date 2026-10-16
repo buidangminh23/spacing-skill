@@ -1,0 +1,53 @@
+name: Badges
+on:
+  schedule:
+    - cron: "41 */6 * * *"
+  workflow_dispatch:
+permissions:
+  contents: read
+concurrency:
+  group: badges
+  cancel-in-progress: false
+jobs:
+  refresh:
+    runs-on: ubuntu-latest
+    timeout-minutes: 10
+    permissions:
+      contents: write
+    steps:
+      - uses: actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1 # v7.0.1
+        with:
+          ref: main
+      - uses: actions/setup-node@820762786026740c76f36085b0efc47a31fe5020 # v7.0.0
+        with:
+          node-version: 24
+      - name: Render the GitHub view badge
+        id: render
+        continue-on-error: true
+        env:
+          ANALYTICS_TOKEN: ${{ secrets.ANALYTICS_TOKEN }}
+          BADGE_SOURCES: views
+        run: node scripts/badges.mjs "$RUNNER_TEMP/badges"
+      - name: Publish to the badges branch
+        run: |
+          shopt -s nullglob
+          files=("$RUNNER_TEMP"/badges/*.svg)
+          if [ ${#files[@]} -eq 0 ]; then echo "No badge has data yet."; exit 0; fi
+          git config user.name 'github-actions[bot]'
+          git config user.email '41898282+github-actions[bot]@users.noreply.github.com'
+          tree="$RUNNER_TEMP/branch"
+          if git fetch -q origin badges; then
+            git worktree add -q "$tree" FETCH_HEAD
+          else
+            git worktree add -q --detach "$tree"
+            git -C "$tree" checkout -q --orphan badges
+            git -C "$tree" rm -rfq .
+          fi
+          cp "${files[@]}" "$tree/"
+          git -C "$tree" add -- '*.svg'
+          if git -C "$tree" diff --cached --quiet; then echo "Badges unchanged."; exit 0; fi
+          git -C "$tree" commit -q -m "chore: refresh badges"
+          git -C "$tree" push -q origin HEAD:refs/heads/badges
+      - name: Fail when a source rejected the request
+        if: steps.render.outcome == 'failure'
+        run: exit 1
