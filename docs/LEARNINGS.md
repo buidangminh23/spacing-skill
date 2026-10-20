@@ -16,6 +16,14 @@ one dated entry; lessons that generalize are distilled into the skill (with a
    it into the right section of `SKILL.md`, bump `CHANGELOG.md`, then replace the
    entry here with a one-line pointer: `→ folded into §n @ vX.Y.Z`.
 
+### 2026-10-20 — Application form and shared footer — align paired controls without styling native choice inputs
+
+- Space Read: application form and four-column footer · balanced · STEP 8 · DENSITY 5 · RIGOR 8 · inherited 16 px row gaps and 24 px column gaps; pair controls on a shared top edge.
+- Did: scoped full-width control styling to direct field children so nested radios no longer inherit text-input padding. Reserved a 56 px label region above desktop controls, with an 8 px label gap; removed that reserve when the form stacks below 768 px. Text inputs and select measured 48 px high. First/last name, street/suburb, state/postcode and email/phone pairs measured identical top coordinates at desktop widths. Choice label specificity is reset explicitly at both mobile breakpoints. Footer columns collapse from four to two at 1024 px and one at 480 px; a 240 px-high map sits beside navigation. Connected Chrome checks across four pages and five widths (320, 375, 768, 1024 and 1280 px) measured zero horizontal page overflow in all 20 cases.
+- Taught: align the label region as well as the control box when helper text differs; scope generic input rules so nested radios and checkboxes retain native geometry. Reflow long footer contact content before compressing its essential text.
+- Verdict: covered (§4 alignment, §8 responsive reflow, §9 target sizes).
+- Action: journal only; existing rules cover this case.
+
 ### 2026-10-13 — Repository badges and skill-card artwork — intrinsic SVG sizes survive host CSS
 
 - Space Read: GitHub README badge rows and portfolio skill cards · balanced · STEP 4 · DENSITY 5 · RIGOR 8 · web badges 24 px, wrapping gap 8 px, artwork 144 × 52 px.
