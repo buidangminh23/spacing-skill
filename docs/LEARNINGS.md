@@ -439,3 +439,10 @@ one dated entry; lessons that generalize are distilled into the skill (with a
 - Taught: when a screen form mirrors a fixed paper layout, nest screen-only controls inside an existing cell and hide them in print; adding a column re-flows every spanned row and the print widths.
 - Verdict: covered(§9 a11y floor + §4.C)
 - Action: no skill or version change.
+
+### 2026-10-23 — Four member portraits in a coursework site
+
+- Space Read: member portrait gallery · inherited STEP 16 px gap · DENSITY 4 · RIGOR 8 · preserve each photo and pair the four figures in two rows.
+- Did: changed the desktop grid from three columns to two, retaining a 16 px gap and the existing one-column rule at 600 px. Connected Chrome checks at 320, 375, 600, 601, 768 and 1280 px found no horizontal page overflow; all four images loaded with object-fit contain. Desktop columns measured 382 px each at 1280 px; the single column measured 253.102 px at 320 px.
+- Taught: reuse the existing gap and change the column count to fit the number of complete portrait-caption units; retain full images instead of cropping to equal aspect ratios.
+- Verdict: covered (§0 detect-and-conform, §8.B content-led columns, §9.D reflow).
