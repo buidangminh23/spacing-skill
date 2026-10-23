@@ -453,3 +453,10 @@ one dated entry; lessons that generalize are distilled into the skill (with a
 - Did: scoped text-align center to the photo section and changed the bordered figure margin from 1em 0 to 1em auto. Retained its 820 px maximum width, 16 px grid gap, two desktop columns and one column at 600 px and below. Connected Chrome checks at 320, 375, 600, 601, 768 and 1280 px measured 0 px horizontal center difference between section and figure and no page overflow.
 - Taught: center the bounded block with automatic inline margins and center its heading at the section scope; text alignment alone does not center a block.
 - Verdict: covered (§4 layout alignment, §9.D reflow).
+
+### 2026-10-23 — Keep a single original-photo collage responsive
+
+- Space Read: member portrait collage · inherited STEP 16 px · DENSITY 4 · RIGOR 8 · retain the centered 820 px figure and preserve the supplied image aspect ratio.
+- Did: replaced four nested portrait figures with one 1200 x 1320 image using width 100% and height auto; removed obsolete grid rules and retained a real-text caption with all four full names. Connected Chrome checks at 320, 375, 768 and 1280 px, then back to 320 px, measured 0 px horizontal center difference in all five cases and no horizontal page overflow. At 1280 px the image measured 786.40625 px wide inside the bounded figure.
+- Taught: an intrinsically sized composite can reuse the existing container rhythm; keep names in real text because raster labels shrink with the image. Verify the narrow-wide-narrow transition after removing responsive grid rules.
+- Verdict: covered (§0 detect-and-conform, §9.D reflow).
