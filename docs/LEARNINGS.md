@@ -446,3 +446,10 @@ one dated entry; lessons that generalize are distilled into the skill (with a
 - Did: changed the desktop grid from three columns to two, retaining a 16 px gap and the existing one-column rule at 600 px. Connected Chrome checks at 320, 375, 600, 601, 768 and 1280 px found no horizontal page overflow; all four images loaded with object-fit contain. Desktop columns measured 382 px each at 1280 px; the single column measured 253.102 px at 320 px.
 - Taught: reuse the existing gap and change the column count to fit the number of complete portrait-caption units; retain full images instead of cropping to equal aspect ratios.
 - Verdict: covered (§0 detect-and-conform, §8.B content-led columns, §9.D reflow).
+
+### 2026-10-23 — Center a bounded portrait gallery within its section
+
+- Space Read: portrait gallery · inherited STEP 16 px · DENSITY 4 · RIGOR 8 · center the heading and bounded figure within the main content without changing other section headings.
+- Did: scoped text-align center to the photo section and changed the bordered figure margin from 1em 0 to 1em auto. Retained its 820 px maximum width, 16 px grid gap, two desktop columns and one column at 600 px and below. Connected Chrome checks at 320, 375, 600, 601, 768 and 1280 px measured 0 px horizontal center difference between section and figure and no page overflow.
+- Taught: center the bounded block with automatic inline margins and center its heading at the section scope; text alignment alone does not center a block.
+- Verdict: covered (§4 layout alignment, §9.D reflow).
