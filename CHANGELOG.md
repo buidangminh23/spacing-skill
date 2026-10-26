@@ -8,6 +8,8 @@ adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0.html).
 
 ### Changed
 - Explain how to align text with a chosen visible glyph inside a logo by measuring rendered ink midpoints and verifying the exported artifact.
+- Require the canonical maintainer to record every new, verified alignment method while keeping recipient journaling opt-in.
+- Document transparent raster containment and the full invoice payment-row alignment sequence.
 
 ## [2.16.2] - 2026-10-15
 

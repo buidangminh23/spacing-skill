@@ -37,9 +37,11 @@ Keep this core loaded. Read the applicable references before implementing that p
 | Choosing component dimensions, contact cards, social rows | §10 | [Component recipes](references/component-recipes.md) |
 | Implementing tokens in vanilla CSS or a framework, cascade, print | §12 | [Implementation per stack](references/implementation.md) |
 | Word / Docs / PDF / Markdown layout | §14 | [Documents](references/documents.md) |
-| Recipient explicitly requests journaling or skill maintenance | §15 | [Field-learnings loop](references/field-learnings.md) |
+| Canonical maintainer's verified alignment edits, or recipient opt-in to journaling | §15 | [Field-learnings loop](references/field-learnings.md) |
 
 **Accessibility floors always win:** preserve full essential text and 320 CSS px reflow; survive text-spacing overrides; keep focus visible and unclipped. Targets meet 24×24 CSS px AA or a documented exception, with 44/48 touch guidance (§9). Never trade these away for density. Keep the complete skill folder, including `references/`, when installing; copying this file alone omits the detailed guidance.
+
+**Maintainer standing instruction:** For the owner of `buidangminh23/spacing-skill`, record each new, verified spacing or alignment method from any of their projects in that repository's `docs/LEARNINGS.md` before reporting completion. Use the existing canonical checkout or tracked submodule; distill reusable methods into the relevant reference. This standing opt-in persists across tasks; §15 keeps recipient installations separate.
 
 ---
 

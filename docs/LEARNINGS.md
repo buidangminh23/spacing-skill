@@ -16,6 +16,10 @@ one dated entry; lessons that generalize are distilled into the skill (with a
    it into the right section of `SKILL.md`, bump `CHANGELOG.md`, then replace the
    entry here with a one-line pointer: `→ folded into §n @ vX.Y.Z`.
 
+The owner has standing opt-in to capture every new, verified spacing or alignment
+method from their projects in this repository. See §15 for the maintainer and
+recipient boundaries.
+
 ### 2026-10-26 — Personal-Web / invoice PDF payment row — align the label with the R in VietQR
 
 - Space Read: exported invoice payment row · balanced · STEP 8 · DENSITY 5 · RIGOR 8 · the text's visible midpoint must match the blue R, not the full logo box.
@@ -23,6 +27,30 @@ one dated entry; lessons that generalize are distilled into the skill (with a
 - Taught: centering against a multicolor logo's full image box can leave text visibly high relative to the letter the reader uses as its anchor. Measure the requested glyph's ink bounds on the final output, convert the pixel delta back to document units, and re-render; do not reuse the -7 pt value for other logos or fonts.
 - Verdict: refinement(§7.G).
 - Action: folded into §7.G in this update; the example remains here as measurement evidence.
+
+### 2026-10-26 — Personal-Web / invoice PDF payment row — use a rendered baseline check
+
+- Space Read: payment logo beside bank-transfer text · balanced · STEP 8 · DENSITY 5 · RIGOR 8 · both items must read as one level row in the exported PDF.
+- Did: used one PDF payment row with a logo scaled to fit a 64 × 22 pt box and text starting 78 pt from the left margin. Added a paragraph baseline adjustment, first -3 pt and then -3.5 pt, to bring the text closer to the logo's visible lettering. The whole-mark visual check still left the bank text 14 px above the blue R at a 4× render, leading to the glyph-specific correction recorded above. The shared invoice PDF renderer feeds the actual, downloaded, emailed, and Telegram invoice paths.
+- Taught: a PDF text baseline and an image's bounding box do not express the same visual center. Keep the horizontal row geometry stable, adjust the text baseline from a rendered measurement, and check the real PDF delivered through the shared renderer instead of accepting only a local preview.
+- Verdict: refinement(§7.G).
+- Action: folded into §7.G with the glyph-specific correction above.
+
+### 2026-10-26 — Personal-Web / VietQR invoice logo — transparent containment removes false rules
+
+- Space Read: wide brand mark in a narrow PDF row · balanced · STEP 8 · DENSITY 5 · RIGOR 8 · logo edges must remain clean after raster containment.
+- Did: the contained VietQR PNG showed two dark horizontal bars absent from its source SVG. Regenerated the PNG with an explicit transparent resize background (`alpha: 0`); the top and bottom rows of the result were transparent, and the actual invoice PDF no longer showed the bars.
+- Taught: when a transparent wide logo is fitted inside a raster box, the renderer's default padding color can become visible on an exported document. Inspect the generated image's alpha and the delivered PDF, not only the source SVG.
+- Verdict: gap(§7.G).
+- Action: folded into §7.G in this update.
+
+### 2026-10-26 — Personal-Web / invoice payment brands — one PDF layout for every delivery
+
+- Space Read: branded payment method in a financial document · balanced · STEP 8 · DENSITY 5 · RIGOR 8 · logo and label need one repeatable row across all invoice copies.
+- Did: added bank and card payment logos to the invoice brand mapping and shared PDF renderer. Kept the original method text beside the corresponding logo and checked a real served bank invoice plus its downloaded copy, rather than testing only a constructed invoice object.
+- Taught: when a document has live, download, email, and messaging copies, put the layout in their common renderer and verify a delivered artifact. Otherwise a logo may appear only in one path while the other copies retain the text-only row.
+- Verdict: covered(§4, §14).
+- Action: journal evidence; the shared-renderer lesson is application architecture rather than a new default spacing rule.
 
 ### 2026-10-20 — Application form and shared footer — align paired controls without styling native choice inputs
 

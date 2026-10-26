@@ -12,16 +12,29 @@
 
 ## 15. CONTINUOUS IMPROVEMENT — The Field-Learnings Loop
 
-This loop is optional. Apply the spacing guidance without changing the installed
-plugin, its cache, or the author's repository. Capture lessons only when the
-recipient explicitly requests journaling and chooses a writable file in their
-own project. The source repository's `docs/LEARNINGS.md` is historical author material,
-not a destination for recipients' work and not a runtime dependency.
+For this repository's owner, the standing request makes this loop mandatory
+after each new, verified spacing or alignment adjustment in any of their
+projects. Use the existing canonical checkout or tracked submodule to record
+what changed and how the rendered result was checked in `docs/LEARNINGS.md`
+before declaring that task complete. Distill a generalizable method into the
+relevant reference and record that change in `CHANGELOG.md`.
+Check for an existing entry first so a follow-up correction extends the lesson
+instead of creating duplicate rules. Commit and push through the repository's
+normal Git workflow, and update an embedding project's submodule pointer when
+applicable. This standing request does not authorize edits to another person's
+installation, fork, or plugin cache.
+
+For recipients of the distributed skill, this loop remains optional. Apply the
+spacing guidance without changing the installed plugin, its cache, or the
+author's repository. Capture lessons only when a recipient opts in and chooses
+a writable file in their own project. The source repository's
+`docs/LEARNINGS.md` is maintainer material, not a destination for recipients'
+work or a runtime dependency.
 
 ### 15.A When it fires
 
-After the recipient opts in, an edit that creates or changes spacing/alignment
-on a real artifact can provide a lesson — a `gap`,
+After the owner's standing request or a recipient opt-in, an edit that creates
+or changes spacing/alignment on a real artifact can provide a lesson — a `gap`,
 padding, inset, grid/flex alignment, vertical rhythm, an optical nudge, or a
 document's margins / leading / indents. Skip pure reading, restating a value that
 is already on-scale, or a throwaway sketch.
