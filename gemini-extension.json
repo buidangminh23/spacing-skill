@@ -1,6 +1,6 @@
 {
   "name": "spacing-skill",
-  "version": "2.16.2",
+  "version": "2.17.0",
   "description": "Anti-cramped spacing skill for AI-generated UI — one spacing scale, vertical rhythm, optical alignment, and density discipline.",
   "contextFileName": "skills/spacing-skill/SKILL.md"
 }
