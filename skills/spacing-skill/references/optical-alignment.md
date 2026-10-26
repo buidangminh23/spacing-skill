@@ -67,6 +67,8 @@ A nonzero SVG `viewBox` origin is valid, not proof of overflow: `viewBox="52 31 
 
 Give the tile a stable size from the existing ramp (e.g. 40 or 48), prevent shrink, and size the artwork inside it. For inline SVG use `preserveAspectRatio="xMidYMid meet"`; for an `<img>` use `object-fit:contain`. `display:block` removes the inline-image baseline gap. Different artwork padding can still need an optical pass (§7.A), even when the element boxes match.
 
+When a label must align with a **specific part** of a multicolor logo, use that part as the anchor rather than the image box or the whole mark. Render the finished surface at a known scale, isolate the visible pixels of the named letter or symbol and the adjacent text, and compare their vertical ink midpoints: `center = (top + bottom) / 2`. Adjust the text baseline by the measured difference divided by the render scale, then render again. Ignore transparent image padding and unrelated strokes when measuring the anchor. Keep the normal spacing scale for layout; this measured baseline correction belongs to the artwork/text pair. Verify the final exported or served artifact, since font metrics and image placement can differ from a local preview.
+
 ```css
 .brand-tile {
   inline-size: 2.5rem;

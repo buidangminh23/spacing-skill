@@ -16,6 +16,14 @@ one dated entry; lessons that generalize are distilled into the skill (with a
    it into the right section of `SKILL.md`, bump `CHANGELOG.md`, then replace the
    entry here with a one-line pointer: `→ folded into §n @ vX.Y.Z`.
 
+### 2026-10-26 — Personal-Web / invoice PDF payment row — align the label with the R in VietQR
+
+- Space Read: exported invoice payment row · balanced · STEP 8 · DENSITY 5 · RIGOR 8 · the text's visible midpoint must match the blue R, not the full logo box.
+- Did: rendered the PDF at 4× and isolated the blue R and payment-label ink. Their midpoints were 237 and 223 px before correction. Changed the bank label's PDF `baselineOffset` from -3.5 to -7 pt; both midpoints became 237 px in the local render. The served invoice independently measured both midpoints at 405 px in a 4× render.
+- Taught: centering against a multicolor logo's full image box can leave text visibly high relative to the letter the reader uses as its anchor. Measure the requested glyph's ink bounds on the final output, convert the pixel delta back to document units, and re-render; do not reuse the -7 pt value for other logos or fonts.
+- Verdict: refinement(§7.G).
+- Action: folded into §7.G in this update; the example remains here as measurement evidence.
+
 ### 2026-10-20 — Application form and shared footer — align paired controls without styling native choice inputs
 
 - Space Read: application form and four-column footer · balanced · STEP 8 · DENSITY 5 · RIGOR 8 · inherited 16 px row gaps and 24 px column gaps; pair controls on a shared top edge.
