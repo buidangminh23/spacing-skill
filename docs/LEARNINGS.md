@@ -528,3 +528,11 @@ recipient boundaries.
 - Taught: a nowrap label inside an auto grid track widens the track, not the label; cap the track with minmax(0, 1fr). When one-line chips get narrower than "time + a few letters", drop the secondary field with a container query on the column, not a viewport breakpoint, because column width depends on how many days are shown.
 - Verdict: refinement (§4 grid/flex min-width; §8 long values)
 - Action: no version change yet; candidate for §8 "secondary field yields by container width".
+
+### 2026-10-31 — Minh Spark Company · mascot and quota cards in a fixed-height HUD strip
+
+- Space Read: HUD summary cards · packed · STEP 4 · DENSITY 7 · RIGOR 8 · card height is fixed at 108px, so everything must fit the ~55px content band; intra 4px < inter 12px.
+- Did: (1) the agent card shows three mascot cells. With the name beside the count, "Antigravity" clipped at 1600px (57px of text in a 38px slot). Moving the name to its own grid row (`grid-template-areas: "img count" "name name"`, image 36px) made each cell 61px wide at 1280px and 86px at 1600px with no clipped text. (2) The quota card shows six accounts as a 3 x 2 grid: 14px logo, then one line per window (label left, value right, 0.68rem at line-height 1.2), gaps 4px row / 12px column. Two rows plus the gap measured 56px in a 56px band at 1600px. The strip columns moved from 1 / 1.4 / 1 / 1.05 to 1.05 / 1.2 / 1.35 / 0.9 so the denser card gets the width. Checked 1000, 1280, 1600 and 1920px: no card content past its padding box, 0 clipped labels.
+- Taught: in a fixed-height card, when a label clips beside a big number, give the label its own row under both instead of shrinking the number; the cell then needs only max(image + number, label) of width. When the band is fixed, rebalance the strip's fr weights toward the card with the most cells before shrinking type.
+- Verdict: covered (§4.C who yields in a flex row; §8.B reflow by content demand)
+- Action: no skill or version change.
