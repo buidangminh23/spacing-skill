@@ -496,3 +496,11 @@ recipient boundaries.
 - Did: replaced four nested portrait figures with one 1200 x 1320 image using width 100% and height auto; removed obsolete grid rules and retained a real-text caption with all four full names. Connected Chrome checks at 320, 375, 768 and 1280 px, then back to 320 px, measured 0 px horizontal center difference in all five cases and no horizontal page overflow. At 1280 px the image measured 786.40625 px wide inside the bounded figure.
 - Taught: an intrinsically sized composite can reuse the existing container rhythm; keep names in real text because raster labels shrink with the image. Verify the narrow-wide-narrow transition after removing responsive grid rules.
 - Verdict: covered (§0 detect-and-conform, §9.D reflow).
+
+### 2026-10-31 — Office HUD panels over a full-viewport 3D map
+
+- Space Read: HUD overlay on a map · packed · STEP 4 · DENSITY 7 · RIGOR 9 · one 12 px gutter between every floating panel, a 16 px screen edge, and the map framed only in the area the panels leave free.
+- Did: measured at 1920 x 900 in the browser. Brand to rail was 17 px, brand to strip 12 px, card to card 9.6 px, and the collapse button hung 13 px over the last card. The orthographic map filled 0,0 to 1920,900 under the rail (right edge 232) and the strip (bottom 124). Put the edge, gutter, brand height and card height into tokens; derived the rail top from brand height plus gutter; moved the collapse button into its own grid column. Fitted the scene to the free rectangle and shifted it with `setViewOffset`; re-measured with a `ResizeObserver`. After: every gap 12 px, map at 244,136. At 1100 px the brand bar is wider than the narrow rail, so its bottom also counts as a top inset.
+- Taught: a canvas behind floating panels needs its scene framed into the free area, with the offset in screen pixels so zoom stays centred there; padding the canvas would also shrink its background.
+- Verdict: refinement(§8.E)
+- Action: added the canvas framing method to §8.E in references/responsive-accessibility.md; version 2.18.0.

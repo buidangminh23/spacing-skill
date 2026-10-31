@@ -4,6 +4,11 @@ All notable changes to this project are documented here. The format is based on
 [Keep a Changelog](https://keepachangelog.com/en/1.1.0/), and this project
 adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0.html).
 
+## [2.18.0] - 2026-10-31
+
+### Changed
+- Explain how to keep a full-bleed canvas (map, 3D scene, chart) clear of floating panels: fit the scene to the free area, offset the projection in screen pixels, and re-measure when the panels resize.
+
 ## [2.17.0] - 2026-10-26
 
 ### Changed
