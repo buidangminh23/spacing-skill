@@ -536,3 +536,11 @@ recipient boundaries.
 - Taught: in a fixed-height card, when a label clips beside a big number, give the label its own row under both instead of shrinking the number; the cell then needs only max(image + number, label) of width. When the band is fixed, rebalance the strip's fr weights toward the card with the most cells before shrinking type.
 - Verdict: covered (§4.C who yields in a flex row; §8.B reflow by content demand)
 - Action: no skill or version change.
+
+### 2026-11-01 — Minh Spark Company · account names in the fixed-height quota card
+
+- Space Read: HUD summary cards · packed · STEP 4 · DENSITY 7 · RIGOR 8 · the card height stays 108px, so adding the account name must not add a line per window.
+- Did: each account cell became two lines: logo + name (local part of the email, ellipsis, full address in the tooltip), then all windows inline ("5h 100%  Tuần 50%", 4px label↔value, 8px window↔window). Measured needs: up to 120px per cell for the long labels. Cells measured 95px at 1440, 110px at 1600 and 141px at 1920, so a container query on the cell (`container-type: inline-size`, `@container (max-width: 7.5rem)`) swaps "Tuần/Fable" for "T/F". The four-card row went from 4 columns at ≥1280 to ≥1440 (below that, 2 x 2), and the fr weights became 1 / 1.3 / 1.3 / 0.9 because "Nghiệm thu" needed 56px per stage. Result at 1280, 1440, 1600, 1920: 0 window rows overflowing, 0 clipped stage/check labels; only the long account names truncate.
+- Taught: when a fixed-height cell gains a line, put the variable-count items on one inline row and let a container query on the cell, not a viewport breakpoint, shorten their labels; measure the widest real combination before picking the threshold.
+- Verdict: covered (§9.D worst combination; §8 container queries)
+- Action: no skill or version change.
