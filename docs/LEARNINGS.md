@@ -520,3 +520,11 @@ recipient boundaries.
 - Taught: an empty strip beside a fixed-aspect canvas is filled by stretching the adjacent panel, not by sliding the canvas under it.
 - Verdict: covered (§6.F whitespace before boxes; §8.E reserve the band)
 - Action: no skill or version change.
+
+## 2026-10-31 · Minh Spark Company · calendar sidebar and short events
+
+- Space Read: Google Calendar style week grid · balanced · STEP 4 · DENSITY 6 · RIGOR 8 · labels and chips must stay inside their column.
+- Did: (1) the sidebar list item "Lịch chung 3/3" ran to x=508 inside a 460px aside, over the week grid starting at 476. The `ul` was a grid whose implicit track grew to the nowrap label. `grid-template-columns: minmax(0, 1fr)` plus `min-width: 0` on the aside brought the right edge back to 460. (2) 22px-tall events stacked title and "08:00 – 08:30" vertically, so the time (71px) overflowed a 56px chip. Short events now render one line: start time (`flex: none`) then title (`flex: 1 1 auto; min-width: 0`, ellipsis). Day columns are size containers, and below 6rem the time hides. Measured: 1024px viewport, column 61px, title width 9px → 44px, no horizontal overflow; 1600px, column 107px, time shown and inside the chip, title 55px.
+- Taught: a nowrap label inside an auto grid track widens the track, not the label; cap the track with minmax(0, 1fr). When one-line chips get narrower than "time + a few letters", drop the secondary field with a container query on the column, not a viewport breakpoint, because column width depends on how many days are shown.
+- Verdict: refinement (§4 grid/flex min-width; §8 long values)
+- Action: no version change yet; candidate for §8 "secondary field yields by container width".
