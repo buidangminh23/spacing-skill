@@ -512,3 +512,11 @@ recipient boundaries.
 - Taught: when a layout must not collapse, reflow the repeated units into more rows and derive dependent offsets from one token for the stack height.
 - Verdict: covered (§8.B reflow, do not shrink; §3 single owner via tokens)
 - Action: no skill or version change.
+
+### 2026-10-31 — Fill the empty column with the rail, not the canvas
+
+- Space Read: HUD overlay on a map · packed · STEP 4 · DENSITY 7 · RIGOR 9 · no floating panel may cover the map.
+- Did: the previous entry let the map run under the rail to fill the empty L-shaped area, and the owner reported that the left rooms were hidden again. Anchoring the rail to both the top (below the brand) and the bottom edge (bottom: 16px) filled the column. The map went back to the area right of the rail. Measured at 1920 x 900: rail 16,80 to 232,884; strip bottom 124; nothing drawn under either.
+- Taught: an empty strip beside a fixed-aspect canvas is filled by stretching the adjacent panel, not by sliding the canvas under it.
+- Verdict: covered (§6.F whitespace before boxes; §8.E reserve the band)
+- Action: no skill or version change.
