@@ -504,3 +504,11 @@ recipient boundaries.
 - Taught: a canvas behind floating panels needs its scene framed into the free area, with the offset in screen pixels so zoom stays centred there; padding the canvas would also shrink its background.
 - Verdict: refinement(§8.E)
 - Action: added the canvas framing method to §8.E in references/responsive-accessibility.md; version 2.18.0.
+
+### 2026-10-31 — Keep a HUD rail and metric strip whole on medium screens
+
+- Space Read: HUD overlay on a map · packed · STEP 4 · DENSITY 7 · RIGOR 9 · the owner asked that the rail and the cards never collapse, so the cards must reflow, not be hidden.
+- Did: removed the 1180px breakpoint that shrank the rail to icons and hid the strip, and the 1280px rule that hid the fourth card. Below 1280px the four cards now form a 2 x 2 grid with the same 12px gutter. The selected-agent card is positioned using a --hud-strip-h token that grows with the second row. The map now spans the full width below the strip; the owner chose to let the rail float over its top-left corner. At 1100 x 800 the cards measured 414px wide with 0 clipped text nodes; the rail kept full labels at 216px.
+- Taught: when a layout must not collapse, reflow the repeated units into more rows and derive dependent offsets from one token for the stack height.
+- Verdict: covered (§8.B reflow, do not shrink; §3 single owner via tokens)
+- Action: no skill or version change.
