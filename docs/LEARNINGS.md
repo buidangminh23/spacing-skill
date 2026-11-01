@@ -544,3 +544,11 @@ recipient boundaries.
 - Taught: when a fixed-height cell gains a line, put the variable-count items on one inline row and let a container query on the cell, not a viewport breakpoint, shorten their labels; measure the widest real combination before picking the threshold.
 - Verdict: covered (§9.D worst combination; §8 container queries)
 - Action: no skill or version change.
+
+### 2026-11-01 — Minh Spark Company · side column left empty after hiding its only content per tab
+
+- Space Read: dashboard shell · balanced · STEP 8 (inherited) · DENSITY 6 · RIGOR 8 · when a tab hides a region, the remaining regions keep their edges and no dead column stays behind.
+- Did: the operations dashboard shows the machine/website status block only on the overview tab. In HUD mode the side column holds nothing else (brand and nav already live in the HUD rail), so on the other 8 tabs a 248px column stayed blank except a duplicate "live" status line at its foot (the HUD brand already shows live state). The layout now carries `data-side="system|none"` set together with the block's `hidden`, and a HUD rule at ≥761px drops the grid to `minmax(0, 1fr)` and hides the side. Measured at 1680×830: on all 8 tabs the main area went 1172 → 1420px wide and the title sits 24px from the shell edge, equal to the content inset; overview unchanged (side 248px). At 375px the bottom tab bar (side reused as nav) stays 359px wide, no horizontal scroll.
+- Taught: hiding content per state is a layout change, not a visibility change. Check whether the container still has a job; if not, collapse its track from the same state flag instead of leaving an empty column. Scope the collapse to the layouts where the container held only that content, not to breakpoints where it doubles as navigation.
+- Verdict: refinement (§6.F reach for whitespace before boxes; §8 reflow)
+- Action: no version change; candidate for §8 "collapse a track whose only content is hidden".
