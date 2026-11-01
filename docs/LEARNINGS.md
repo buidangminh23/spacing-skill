@@ -633,3 +633,11 @@ recipient boundaries.
 - Taught: `min-width:0` on a grid item does not cap that item's own inner grid; a nested `display:grid` needs its own `minmax(0,1fr)` track, otherwise one long unbroken string widens the row past its card even when every outer track is capped.
 - Verdict: covered (§4.A `minmax(0, 1fr)`), applied one level deeper
 - Action: no change.
+
+### 2026-11-01 — Minh Spark Company · GitHub list grouped by repo
+
+- Space Read: split list · balanced · STEP 4 · DENSITY 6 · RIGOR 8 · repo heading shares the row's left edge; badges share the row's right edge; heading sits 4px above its first row and groups are split by a hairline.
+- Did: grouped GitHub items per repo. The heading reuses the group heading's 0.65rem side padding, so the repo name starts at x=287.4, exactly the LED column of the rows below; the kind badges are pushed right with `margin-left: auto` and end at 639.6 inside the 650 row edge (the row's own padding). Heading → first row 4px, groups separated by a 1px line plus 4px, so the eye reads repo blocks before rows. At 375px the heading wraps to two lines (38px) when name + commit count + badges do not fit, and the list has no horizontal overflow.
+- Taught: when a flat list becomes grouped, keep group headings on the same left column as the row markers and let the summary badges take the row's right edge; a hairline plus a small gap separates groups without adding a second indent level.
+- Verdict: covered (§4 shared edges, §6 proximity)
+- Action: no change.
