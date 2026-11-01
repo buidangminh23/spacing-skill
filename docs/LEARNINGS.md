@@ -560,3 +560,11 @@ recipient boundaries.
 - Taught: a view that holds its own scroller (iframe, time grid, month grid) should fill its parent from the same height chain instead of carrying a min-height or a viewport calc, so exactly one element scrolls. Controls meant to line up need the same box model, not just the same `height`. Items that must stay adjacent when a toolbar wraps belong in one flex group.
 - Verdict: refinement (§3.A one owner, applied to scroll; §4.C row alignment; §8 reflow)
 - Action: no version change; candidate for §8 "one scroll owner per view".
+
+### 2026-11-01 — Minh Spark Company · mail rows collapsed to centered text after becoming buttons
+
+- Space Read: Gmail-style message list · balanced · STEP 4 · DENSITY 6 · RIGOR 9 · dot / sender / subject / date must stay on shared column tracks.
+- Did: rows changed from `<a>` to `<button>` so a click opens the message in place. The dashboard's generic `.ops-shell button` rule (0,1,1: `display: inline-flex; justify-content: center; padding; gap`) outranked the row's `.gm-row` grid (0,1,0), so every row became a centered inline run of text. One `.gm .gm-row` rule (0,2,0) now owns display grid, tracks, padding and font; the duplicate low-specificity rules were deleted. Measured at 1680/1100: dot 572, sender 603, subject 827 on every row, dates right-aligned at the same edge (row right − 16px); at 375 the two-line area layout returns, no horizontal scroll. The account column became `fit-content(22rem)` with a 15rem floor, so the longest address (24 chars) shows in full: column 267px, 0 of 4 names clipped.
+- Taught: when an element changes tag, re-check which generic element rules now reach it; a component's layout rule must outrank the app's element-level defaults or it silently loses its display/justify. Size a label column with `fit-content(cap)` plus a floor instead of a fixed width when the labels are data.
+- Verdict: refinement (§4 grid ownership; §9.D data-driven labels)
+- Action: no version change.
