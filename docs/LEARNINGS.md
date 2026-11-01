@@ -673,3 +673,11 @@ recipient boundaries.
 - Taught: when a fixed-width app view is reused in a wide host, key the reflow on the view's own container, not a viewport media query or a host-side flag, so the native window cannot cross the threshold and stays untouched. Measuring trap: a 14px horizontal overflow came from an enter animation frozen at frame 0 (`translateX(14px)`, `currentTime 0`) in a test pane whose animation clock had stopped; finish the element's animations (`getAnimations().forEach(a => a.finish())`) before reading layout, or a transient transform reads as a layout bug.
 - Verdict: covered (§8.C container queries, §8.I round trip)
 - Action: no change.
+
+### 2026-11-01 — Minh Spark Company · full add-task form in a kanban column
+
+- Space Read: form · balanced · STEP 4 (ops rem scale) · DENSITY 5 · RIGOR 8 · label ↔ input 4, field ↔ field 12, card inset 12, form card ↔ task list 12 (separated by the card's own surface).
+- Did: replaced a one-line quick-add with a labelled form (title, note, due date, priority, project) inside a 396px column. Measured: label → input 4px, every field gap 12px, inset 12px, no horizontal overflow at 1600, 1200 and 375px. First pass put date/priority/project in `repeat(auto-fit, minmax(6.5rem, 1fr))`: three tracks of 118px fit, but the empty native date input painted `mm/dd/yyy` and clipped the last character under its calendar icon (value dates like `11/06/2026` fitted, so the bug only showed while empty). Second pass: `display:flex; flex-wrap:wrap; gap:12px 8px` with `flex:1 1 8rem` on each field. At 370px inner width date and priority sit at 181px each and project wraps to a full 370px row; the wrapped row keeps the same 12px gap as the field stack, so the ladder holds.
+- Taught: size a native date or time input from its empty placeholder plus the picker icon, not from a filled value. When the last item of a field row may wrap, use flex-wrap with a basis instead of an auto-fit grid, so the orphan spans the full row rather than sitting in half a track, and set row-gap equal to the form's field gap.
+- Verdict: covered (§8 reflow, §6 proximity ladder)
+- Action: no change.
