@@ -601,3 +601,11 @@ recipient boundaries.
 - Taught: when a list mixes several marker types (glyph, dot, tag), give each the same box width rather than matching visual sizes, so their centres and the names after them share one column; nest by whole spacing steps.
 - Verdict: covered (§4 shared edges, §6 proximity)
 - Action: no change.
+
+### 2026-11-01 — Minh Spark Company · agent tags flickering when collision avoidance flips each frame
+
+- Space Read: floating labels over a 3D office · packed · STEP 4 · DENSITY 8 · RIGOR 6 · a tag keeps its slot until another box takes it; showing or hiding never happens within one frame.
+- Did: tags such as "AI Engineer · Rảnh · codex-mcp-bridge" blinked because `layoutLabels` decided visibility fresh every frame: when two walking agents brushed past each other the search alternated between "slot found" and "no slot", toggling `offview` dozens of times a second. Added hysteresis: a tag hides only after 900 ms without a slot and reappears only after 350 ms with one; while a hide is pending it stays at its last slot and still reserves that box, and tags already shown are placed before hidden ones so a newcomer cannot evict them. Markup is rewritten only when the text actually changes. Simulated 240 frames of jittered movement: from many flips per tag to one.
+- Taught: label placement over moving objects needs temporal stability as well as spatial separation. Give visibility changes asymmetric delays, let shown labels keep priority and their slot, and never decide show/hide from a single frame.
+- Verdict: refinement (§8.E floating labels)
+- Action: no version change.
