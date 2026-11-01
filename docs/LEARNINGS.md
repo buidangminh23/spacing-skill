@@ -641,3 +641,11 @@ recipient boundaries.
 - Taught: when a flat list becomes grouped, keep group headings on the same left column as the row markers and let the summary badges take the row's right edge; a hairline plus a small gap separates groups without adding a second indent level.
 - Verdict: covered (§4 shared edges, §6 proximity)
 - Action: no change.
+
+### 2026-11-01 — Minh Spark Company · minhspark.com admin tab and chart kit
+
+- Space Read: dashboard · packed · STEP 4 (existing ops rem scale) · DENSITY 7 · RIGOR 8 · chart cards share the 12px grid gap, form rows 12px, subheading above 24 / below 12.
+- Did: added a tenth dashboard tab and three measured fixes. (1) Mobile bottom tab bar at 375px: buttons were `flex:1` with nowrap labels, so each kept its min-content width and the tenth tab pushed the bar to 408px in 359px, hiding the last tab. `flex:1 1 0; min-width:0`, `white-space:normal; text-wrap:balance` and a short label ("Web") for the one long name fit all ten (scrollWidth 359 = clientWidth), every label inside its button, 1–2 lines each. (2) A form card measured 29.6px between title and description: h3 margin 4.8 + grid gap 12 + p margin 12.8, three owners. Zeroing children's margins (selector raised to `.ops-shell .pw-form > *` because `.ops-card h3` outranked the plain reset) left 11.8px owned by the gap; the select rendered 45px against a 36px input until both got `box-sizing:border-box; height:2.25rem`. (3) Stat values in two-up tiles overflowed by 28px at 375px ("37.643.000₫" in 134px); `container-type:inline-size` on the tile plus `font-size:clamp(1rem,12cqi,1.6rem)` fit all values, and an essential name ("@minhspark_bot") moved from the value slot into the label instead of being ellipsized.
+- Taught: adding one item to an equal-share flex bar breaks it when items keep `min-width:auto`; give them `flex-basis:0` + `min-width:0` and let labels wrap to two balanced lines before reaching for horizontal scroll. Re-measure a reset that should own spacing: a component's own `h3` rule can outrank it and keep a second owner alive.
+- Verdict: covered (§3.A single owner, §11 #26 yielding, §9.D worst-case slot), applied to a mobile tab bar and stat tiles
+- Action: no change.
