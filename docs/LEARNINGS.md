@@ -585,3 +585,11 @@ recipient boundaries.
 - Verdict: gap (no section covered labels from two systems over one scene)
 - Action: distilled into §8.E of `references/responsive-accessibility.md`; 2.19.0.
 
+
+### 2026-11-01 — Minh Spark Company · event form edges vs a scrolling field area
+
+- Space Read: modal form · balanced · STEP 4 · DENSITY 5 · RIGOR 8 · label↔input 4px < field↔field 16px; inputs and footer actions share one right edge.
+- Did: the create/edit dialog capped at 36rem made its field area scroll at 830px tall, and the scrollbar took 15px, so the fields ended at x=1168 while the Save button ended at 1183. `scrollbar-gutter: stable` would make the mismatch permanent (gutter reserved even with no overflow), so instead the form's cap became `calc(100dvh − 4rem)`: no overflow at 830px, fields and Save both end at 1183; at 375px the dialog sits 19px from both edges with fields and Save on one edge (333).
+- Taught: a scroll container's scrollbar shifts its content edge off the edge of siblings outside it (footer, header). Prefer giving the container room so it does not scroll at common heights; reserve a gutter only when the siblings reserve the same gutter.
+- Verdict: refinement (§4 shared edges; §8 one scroll owner)
+- Action: no version change.
