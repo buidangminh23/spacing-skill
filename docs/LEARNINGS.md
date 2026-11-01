@@ -609,3 +609,11 @@ recipient boundaries.
 - Taught: label placement over moving objects needs temporal stability as well as spatial separation. Give visibility changes asymmetric delays, let shown labels keep priority and their slot, and never decide show/hide from a single frame.
 - Verdict: refinement (§8.E floating labels)
 - Action: no version change.
+
+### 2026-11-01 — Minh Spark Company · GitHub tab KPI strip and sync line
+
+- Space Read: dashboard tab · balanced · STEP 4 · DENSITY 6 · RIGOR 8 · the sync caption sits 8px under the KPI strip and 16px above the split view; five KPI cells share the split's left and right edges.
+- Did: the GitHub tab shows five counters (CI, PR, issue, security, unread notifications). The project's base `.ops-kpis` rule loads after the tab's stylesheet and reset it to four columns, so the fifth cell wrapped; the selector became `.ops-kpis.gh-kpis` (two classes) so the tab wins without `!important`. At 1440px the cells are 5 × 223px, the strip ends at x=1392 like the split, caption 8px below and split 16px below that. On the narrow pane (392px) the grid drops to two columns and the odd fifth cell spans `1 / -1`, so it runs 15 → 366, matching the strip, instead of leaving half a row empty; scrollWidth equals the viewport.
+- Taught: with an odd number of cells in a two-column fallback, make the last cell span the row so the strip keeps one right edge. A caption that belongs to the strip sits at half the gap that separates the strip from the next block.
+- Verdict: covered (§4 shared edges, §6 proximity)
+- Action: no change.
