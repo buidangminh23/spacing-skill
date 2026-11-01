@@ -593,3 +593,11 @@ recipient boundaries.
 - Taught: a scroll container's scrollbar shifts its content edge off the edge of siblings outside it (footer, header). Prefer giving the container room so it does not scroll at common heights; reserve a gutter only when the siblings reserve the same gutter.
 - Verdict: refinement (§4 shared edges; §8 one scroll owner)
 - Action: no version change.
+
+### 2026-11-01 — Minh Spark Company · Gmail labels in the mail sidebar and label chips in rows
+
+- Space Read: mail sidebar + list · balanced · STEP 4 · DENSITY 6 · RIGOR 8 · every folder kind (inbox icon, account dot, label tag) shares one 20px icon column; nested labels step in by one 16px rung; chips sit 8px before the subject.
+- Did: added a "Nhãn" section that mirrors Gmail labels. The tag icon got the same 1.25rem box as the inbox glyph and the account dot (10px + 5px side margins), so all three centres sit at x=42; a child label (`swinburne/Rewards`) is indented `calc(1rem + depth × 1rem)` and its icon lands at x=48 (+16). Label chips (20px tall, 6px side padding, 4px apart) live inside the subject cell as a `flex: none` group with the subject text as the only shrinking child, so long subjects still ellipsize: at 1280px the clipped subject ends at 1198 and the time starts at 1214 (the row's 16px column gap). At 375px no row, chip or folder crosses the 16px gutter and the page has no horizontal scroll (scrollWidth 375).
+- Taught: when a list mixes several marker types (glyph, dot, tag), give each the same box width rather than matching visual sizes, so their centres and the names after them share one column; nest by whole spacing steps.
+- Verdict: covered (§4 shared edges, §6 proximity)
+- Action: no change.
