@@ -576,3 +576,12 @@ recipient boundaries.
 - Taught: same lesson as the mail rows: converting display elements to buttons inside an app with element-level button styles needs a component rule that resets min-height and justification, or chips grow to 36px and center their text.
 - Verdict: covered (previous entry, §4 grid ownership)
 - Action: no change.
+
+### 2026-11-01 — Minh Spark Company · speech bubble and agent tags covering each other in the meeting room
+
+- Space Read: floating labels over a 3D office · packed · STEP 4 · DENSITY 8 · RIGOR 6 · every bubble at least 8px from the next; the manager's speech bubble keeps its place and agent tags move around it.
+- Did: the meeting animation added a CSS2D speech bubble above the seated manager. Agent tags already avoided each other in `layoutLabels`, but the bubble belonged to another object, so the tag of the agent seated next to the manager sat on top of it. Measured at the same frame by toggling the reservation: 6,919 px² overlap ("Sếp × AI Engineer"). The bubble's box is now reserved first in the same pass (clamped inside the viewport with the 8px edge gap), and the vertical-only dodge capped at 96px became a four-direction search (above, below, left, right of each hit) within 128px that hides a tag when nothing fits. After: 0 px² overlap, closest pair 8px apart, and in a second run 17px. At 392px wide the bubble had run past the right edge and shrunk to 145px; with the clamp and `width: 14rem; max-width: calc(100vw - 2rem)` its right edge sits 8px inside the viewport.
+- Taught: collision avoidance must include every floating box over the scene, not only the ones one module owns. Reserve the foreign box first, search in four directions, and prefer hiding to overlapping. Absolutely positioned bubbles need a fixed width or they shrink near the edge.
+- Verdict: gap (no section covered labels from two systems over one scene)
+- Action: distilled into §8.E of `references/responsive-accessibility.md`; 2.19.0.
+
