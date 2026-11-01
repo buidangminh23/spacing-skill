@@ -665,3 +665,11 @@ recipient boundaries.
 - Taught: a group heading styled by tag inside a container that also holds cards with the same heading tag must use a child combinator. A selected state on a card that already encodes status in one border side must recolour only the other sides, or selection hides the status.
 - Verdict: covered (§6 proximity, §11 #7 over-boxing avoided by one panel)
 - Action: no change.
+
+### 2026-11-01 — Minh Spark Company · Quota Control popup filling the quota tab
+
+- Space Read: dashboard embed · balanced · STEP inherited (popup tokens: section gap 14px, side pad 14px) · DENSITY 6 · RIGOR 8 · account cards in an auto-fill grid once the popup's own scroll container passes 46rem; column and row gutter 28px (2× the section gap).
+- Did: the hub showed the Quota Control popup in an iframe capped at `min(100%, 25rem)`, centred in a 705–1351px tab, so the tab was mostly empty. Stretching the iframe alone would have turned each card into a 1,300px-wide single column. Instead the iframe takes the full tab (`flex:1; width:100%`) and the popup answers its own width: `container: uc-scroll / inline-size` on the scroll area and `@container uc-scroll (min-width: 46rem)` turns only the limits stack into `grid-template-columns: repeat(auto-fill, minmax(22rem, 1fr))`, with non-card children (hints, sign-in progress) spanning all columns. Measured: 1680px viewport → frame 1351px, 4 columns of 313px, side padding 14/14, no horizontal overflow, no clipped button; 1024px → 2 columns; the frame squeezed to the real popup width (400px) → `display:flex`, 1 column, identical to the app window; narrow → wide → narrow returned the same columns.
+- Taught: when a fixed-width app view is reused in a wide host, key the reflow on the view's own container, not a viewport media query or a host-side flag, so the native window cannot cross the threshold and stays untouched. Measuring trap: a 14px horizontal overflow came from an enter animation frozen at frame 0 (`translateX(14px)`, `currentTime 0`) in a test pane whose animation clock had stopped; finish the element's animations (`getAnimations().forEach(a => a.finish())`) before reading layout, or a transient transform reads as a layout bug.
+- Verdict: covered (§8.C container queries, §8.I round trip)
+- Action: no change.
