@@ -649,3 +649,11 @@ recipient boundaries.
 - Taught: adding one item to an equal-share flex bar breaks it when items keep `min-width:auto`; give them `flex-basis:0` + `min-width:0` and let labels wrap to two balanced lines before reaching for horizontal scroll. Re-measure a reset that should own spacing: a component's own `h3` rule can outrank it and keep a second owner alive.
 - Verdict: covered (§3.A single owner, §11 #26 yielding, §9.D worst-case slot), applied to a mobile tab bar and stat tiles
 - Action: no change.
+
+### 2026-11-01 — Minh Spark Company · buyer tab, order progress and customer messages
+
+- Space Read: dashboard · packed · STEP 4 (ops rem scale) · DENSITY 7 · RIGOR 8 · filter row → segment 16, segment → stat tiles 16, step dot ↔ label 8, steps 8/12, chat bubbles 8.
+- Did: three measured fixes. (1) The HUD side rail is a `display:grid` column with `overflow-y:auto`. One more tab made it 843px tall in a 794px box; the thin scrollbar took 8px, but the buttons kept their 201px min-content width, so `scrollWidth` went to 214 against `clientWidth` 206 and a horizontal scrollbar appeared. `grid-template-columns:minmax(0,1fr)` on the rail let the buttons shrink to 193px; 206 = 206 after reload. (2) A filter segment sat flush on the stat tiles (0px measured), while the search row above it had 16px; giving the segment `margin:0 0 1rem` restored the 16/16 rhythm. (3) A chat thread and the reply form below it both owned the gap (thread `margin-bottom` 16 + form `margin-top` 16 = 32); zeroing the thread margin left the form's 16px as the only owner.
+- Taught: a scroll container whose items have intrinsic width will overflow sideways the moment its vertical scrollbar appears; cap the grid track (`minmax(0,1fr)`) so adding content never produces a second scrollbar. When a section gains a new control row (segment, filter), measure its distance to the next block; new rows often arrive with no outer spacing at all.
+- Verdict: covered (§4.A `minmax(0, 1fr)`, §3.A single owner)
+- Action: no change.
