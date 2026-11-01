@@ -617,3 +617,11 @@ recipient boundaries.
 - Taught: with an odd number of cells in a two-column fallback, make the last cell span the row so the strip keeps one right edge. A caption that belongs to the strip sits at half the gap that separates the strip from the next block.
 - Verdict: covered (§4 shared edges, §6 proximity)
 - Action: no change.
+
+### 2026-11-01 — Minh Spark Company · personal to-do board with three columns
+
+- Space Read: personal board · balanced · STEP 4 · DENSITY 6 · RIGOR 8 · chip 4px < card 8px < column inset 12px < column gap 16px; the round check sits on the title's first line, not the card's middle.
+- Did: replaced the agent board with a three-column to-do board (Cần làm, Đang làm, Xong). Measured at 1280px: column gap 16/16, all three column tops at y=179, card-to-card 8, column head → add form 12, hint → list 12, row icons 32px. The 22px check first sat 2.3px below the centre of the title's first line (1.19rem line box); `margin-top: -0.1rem` brought it to −0.25px. At 375px the columns stack at 341px each, icons grow to 44px, the check to 28px with `margin-top: -0.28rem` (offset −0.13px), inputs use 16px text, and the page has no horizontal scroll. A drop indicator is a 2px bar placed half a card gap above the target card (`top: calc(-0.25rem - 1px)`), so it sits in the gap instead of on the card border.
+- Taught: a leading control in a multi-line card aligns to the first line's centre (line-height × font-size ÷ 2), not to the card; recompute the nudge whenever the control grows for touch. Put drag-and-drop insertion bars at the midpoint of the gap they will open.
+- Verdict: covered (§7 optical alignment, §6 proximity)
+- Action: no change.
