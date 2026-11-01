@@ -625,3 +625,11 @@ recipient boundaries.
 - Taught: a leading control in a multi-line card aligns to the first line's centre (line-height × font-size ÷ 2), not to the card; recompute the nudge whenever the control grows for touch. Put drag-and-drop insertion bars at the midpoint of the gap they will open.
 - Verdict: covered (§7 optical alignment, §6 proximity)
 - Action: no change.
+
+### 2026-11-01 — Minh Spark Company · traffic and automation tabs
+
+- Space Read: dashboard tab · balanced-dense · STEP 8 (existing ops rem scale) · DENSITY 7 · RIGOR 8 · label↔share bar 4px, row↔row 8px, card↔card 16px, section↔section ~32px.
+- Did: built a traffic tab (KPI strip, day/hour bar chart, six breakdown cards) and an automation tab (five-cell KPI strip, attention list, job cards per machine). Measured at 1440px: in "Trang xem nhiều" the card's `scrollWidth − clientWidth` was 451px and 11 of 21 counts sat outside the card, although each row already had `min-width:0` and the label had `flex:0 1 auto; min-width:0` with an ellipsis. Each row `li` was itself `display:grid` with no template, so its implicit `auto` track grew to the max-content of the nowrap path. Adding `grid-template-columns:minmax(0,1fr)` to the list and to every row brought all six cards to 0px overflow and every count inside its card; 375px showed no page overflow. Bar values were also moved from the chart's top row to `bottom: calc(var(--h) + 0.25rem)` so each number sits on its own bar.
+- Taught: `min-width:0` on a grid item does not cap that item's own inner grid; a nested `display:grid` needs its own `minmax(0,1fr)` track, otherwise one long unbroken string widens the row past its card even when every outer track is capped.
+- Verdict: covered (§4.A `minmax(0, 1fr)`), applied one level deeper
+- Action: no change.
