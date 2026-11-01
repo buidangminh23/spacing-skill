@@ -657,3 +657,11 @@ recipient boundaries.
 - Taught: a scroll container whose items have intrinsic width will overflow sideways the moment its vertical scrollbar appears; cap the grid track (`minmax(0,1fr)`) so adding content never produces a second scrollbar. When a section gains a new control row (segment, filter), measure its distance to the next block; new rows often arrive with no outer spacing at all.
 - Verdict: covered (§4.A `minmax(0, 1fr)`, §3.A single owner)
 - Action: no change.
+
+### 2026-11-01 — Minh Spark Company · automation tab split by machine
+
+- Space Read: dashboard tab · balanced · STEP 8 (ops rem scale) · DENSITY 6 · RIGOR 8 · machine cards 12px apart, card row → machine panel 24px, group heading above 24 / below 8.
+- Did: replaced three stacked machine sections with a row of three machine cards (one pressed) and one panel grouped by job type. Measured at 1440px: cards 361px wide at x 276/649/1021 (12px gaps), card row → panel 24px, no card overflows (`scrollWidth ≤ clientWidth`); at 375px the cards stack at 346×82 and the content has no horizontal overflow. Two fixes found by measuring: (1) the group heading rule `.au-group h3` also restyled every job card title nested in the group (14.4px titles turned into 12.8px group labels); the child combinator `.au-group > h3` scoped it. (2) The pressed state set `border-color`, which replaced the card's 3px left status stripe with the accent colour; setting only the top/right/bottom border colours kept the red/amber/green stripe (left border computed rgb(240,68,56) while pressed).
+- Taught: a group heading styled by tag inside a container that also holds cards with the same heading tag must use a child combinator. A selected state on a card that already encodes status in one border side must recolour only the other sides, or selection hides the status.
+- Verdict: covered (§6 proximity, §11 #7 over-boxing avoided by one panel)
+- Action: no change.
