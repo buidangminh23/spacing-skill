@@ -568,3 +568,11 @@ recipient boundaries.
 - Taught: when an element changes tag, re-check which generic element rules now reach it; a component's layout rule must outrank the app's element-level defaults or it silently loses its display/justify. Size a label column with `fit-content(cap)` plus a floor instead of a fixed width when the labels are data.
 - Verdict: refinement (§4 grid ownership; §9.D data-driven labels)
 - Action: no version change.
+
+### 2026-11-01 — Minh Spark Company · calendar sidebar removed, events became buttons
+
+- Space Read: calendar panel · balanced · STEP 4 · DENSITY 6 · RIGOR 8 · grid spans the tab; clickable chips keep their chip geometry.
+- Did: dropped the 12rem "Lịch của tôi" column; `.gc-body` is one `minmax(0, 1fr)` track, so the week grid now starts at the toolbar's left edge (278) and matches its width (1351px at 1680). Events, all-day chips and month chips became `<button>`s to open a detail dialog; each got a `.gc .x` rule resetting the dashboard's generic button defaults (min-height, centering, border, padding). Measured: month chips 184px in 193px cells, all-day chip inset 4px, 0 vertical scroll; dialog `min(32rem, 100vw − 2rem)` sits 19px from both edges at 375px.
+- Taught: same lesson as the mail rows: converting display elements to buttons inside an app with element-level button styles needs a component rule that resets min-height and justification, or chips grow to 36px and center their text.
+- Verdict: covered (previous entry, §4 grid ownership)
+- Action: no change.
