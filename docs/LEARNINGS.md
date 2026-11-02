@@ -720,3 +720,19 @@ recipient boundaries.
 - Taught: an apparent misaligned object may be two independently placed objects occupying the same volume. Measure their complete footprints, including stands, before changing the silhouette; use the shelf top as one vertical anchor and derive tilted-panel bottoms from their rotated extent.
 - Verdict: covered (§4 shared anchors and §6 proximity), applied to 3D equipment footprints.
 - Action: no skill rule change.
+
+### 2026-11-02 — Desktop controls need physical surface anchors and preserved moving geometry
+
+- Space Read: 3D agent workstation · packed · STEP inherited from model proportions · DENSITY 7 · RIGOR 9 · keep controls on the desktop and move the seat into fixed-length arm reach.
+- Did: moved the shared seat offset from 0.95 to 0.58 scene units instead of lowering the keyboard and mouse trays toward distant actors. Controls stay at tray y=0.76 on a 1.78 by 0.82 desk; mouse body height changed from 0.045 to 0.035 relative to the tray to meet its surface. Keyboard contact now uses a real keycap top, including its 0.003 press travel, and the pressed key is under the hand. The full office static merge initially consumed the moving meshes and reduced instanced keycaps to static geometry; preserving only the animated descendants retained all 56 keys on each of 60 workstations. Chromium checks found no missing controls after the real full-office build; real keyboard/mouse contact error across the three full-size models was below 2.3e-16 scene units. A regression test also checks full and small models against the real moving key surfaces after static meshes are removed.
+- Taught: an isolated prop preview does not prove that its moving geometry survives the application's scene optimization. Verify the final scene graph and actual rendered contact surfaces; preserve dynamic descendants while leaving fixed furniture eligible for global batching. Resolve unreachable interaction by moving the seat and its actor together, keeping equipment on its intended surface.
+- Verdict: covered (§6 shared anchors and §8.H motion preserves the scale), verified through full-scene batching and real key geometry.
+- Action: no skill rule change.
+
+### 2026-11-02 — Machine status popup as one responsive canvas surface
+
+- Space Read: machine monitoring popup · packed · STEP 4 inherited from dashboard · DENSITY 8 · RIGOR 9 · one canvas owns the visible surface, with no duplicate profile or footer wrapper.
+- Did: machine operation popups now contain only the existing status canvas, using zero wrapper padding and a width capped at 30rem. All three machines measured 480px wide on desktop with no profile, facts or footer. At a 375px viewport the popup measured 343px wide with its right edge at 351px and no horizontal overflow. Escape closes the popup; selecting a normal agent restores the normal agent card. Browser checks reported no page errors.
+- Taught: a reusable card can switch to a canvas-only surface without shrinking the canvas through inherited card padding. Scope the variant to the selected content and verify the round trip back to the normal card, not only the compact state.
+- Verdict: covered (§8 reflow and round trip, §6 proximity).
+- Action: no skill rule change.
