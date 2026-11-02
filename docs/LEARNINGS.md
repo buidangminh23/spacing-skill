@@ -712,3 +712,11 @@ recipient boundaries.
 - Taught: fixing one owner of an interaction misses the other participant. Audit every caller of a shared reach routine and every independent rig; check actual geometry and joints, not just a scale property. Reposition the actor or the service mechanism for distant targets rather than increasing the allowed arm length. For a route over steps, verify the foot height against the solid tread at intermediate frames, not only the destination.
 - Verdict: covered (§6 proximity and §8.H motion preserves the scale), extended verification to all participants and solid route geometry.
 - Action: corrected the earlier partial visual acceptance; no new skill rule.
+
+### 2026-11-02 — PS5 and speaker must occupy separate shelf footprints
+
+- Space Read: 3D TV equipment group · packed · STEP inherited from scene proportions · DENSITY 6 · RIGOR 9 · separate console and speaker volumes and anchor all equipment to the same shelf top.
+- Did: the right speaker overlapped the PS5's conservative footprint by 0.155 × 0.300 × 0.065 scene units. Moved the PS5 centre from (1.02,-0.78) to (1.08,-0.80), moved both speakers symmetrically from x=±0.95 to ±0.80, and seated equipment at shelf y=0.43. The console stand now starts exactly at 0.43, body and tilted panels rest at its 0.022 top, and the cable follows the new rear connector. Final bounds: speaker-to-stand gap 0.055, stand-to-right shelf edge 0.055, no volume intersection. Inspected a close Chromium render and the fresh local build; build and 6 existing game checks passed.
+- Taught: an apparent misaligned object may be two independently placed objects occupying the same volume. Measure their complete footprints, including stands, before changing the silhouette; use the shelf top as one vertical anchor and derive tilted-panel bottoms from their rotated extent.
+- Verdict: covered (§4 shared anchors and §6 proximity), applied to 3D equipment footprints.
+- Action: no skill rule change.
