@@ -696,3 +696,11 @@ recipient boundaries.
 - Taught: furniture belongs to its service surface through proximity and a shared radial anchor; compacting the visual arrangement also requires moving the actor and collision anchors so the freed space remains usable.
 - Verdict: covered (§6 proximity and §8.H motion preserves the scale), applied to scene units and shared furniture anchors.
 - Action: no skill rule change.
+
+### 2026-11-02 — A stocked circular beverage station with reachable tool groups
+
+- Space Read: 3D service counter · packed · STEP inherited from scene proportions · DENSITY 7 · RIGOR 8 · group tools by task on the existing 0.72–1.35 annulus, while the front pickup and return trays remain open.
+- Did: stocked 22 named equipment groups without enlarging the counter. Coffee works at the rear, matcha on the left and cold drinks on the right. Measured conservative world-space bounding-box corners for every equipment group: the bean jar initially reached radius 1.36061 beyond the 1.35 edge; moving its centre from (-1.06,-0.65) to (-1.04,-0.64) brought the maximum equipment radius to 1.33838. Tools used by the worker sit within two fixed 0.44 arm segments rather than stretching the old 0.14 limb as far as 1.594. Pickup, turning, pouring and release use separate eased phases; the matcha whisk stays inside the bowl during the full 15-second M stroke. Chromium renders of sifting, water, whisking, pouring and milk were inspected, and the full project suite passed 360 checks with 9 focused drink-bar checks.
+- Taught: compact grouping needs both a surface budget and a reachable working anchor. A tool can fit the countertop while its handle remains out of reach; measure the handle that the animation actually grips, then preserve that anchor through turning and release. Check the final prop bounds, including handles and lids, against the surface edge.
+- Verdict: covered (§6 proximity, §8.H motion preserves the scale), applied to equipment and animated hand anchors in scene units.
+- Action: no skill rule change.
