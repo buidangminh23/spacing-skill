@@ -688,3 +688,11 @@ recipient boundaries.
 - Taught: size a native date or time input from its empty placeholder plus the picker icon, not from a filled value. When the last item of a field row may wrap, use flex-wrap with a basis instead of an auto-fit grid, so the orphan spans the full row rather than sitting in half a track, and set row-gap equal to the form's field gap.
 - Verdict: covered (§8 reflow, §6 proximity ladder)
 - Action: no change.
+
+### 2026-11-02 — Circular 3D cafe seating within one compact group
+
+- Space Read: 3D cafe furniture group · packed · STEP inherited from scene proportions · DENSITY 7 · RIGOR 8 · four inward-facing stools share radius 1.85 around a counter of outer radius 1.35, preserving a central pickup lane.
+- Did: removed two detached tables and moved four stools from two rows at z=2.22/3.85 to angles ±60°/±120° on the counter's radius. Cushion radius 0.24 leaves a 0.26 gap to the counter edge; seat top rises from 0.47 to 0.65. Reserved depth shrank from 5.7 to 3.7 scene units (35%). Updated actor seats, inward yaw, cup rest points on the counter at radius 1.12 and height 0.98, and furniture collision regions from the same seat coordinates. Verified the built local app visually in Chromium; 23 focused animation/navigation checks passed, including clear former table locations at office widths 30/42/60 and continuous cup ownership over both guests' cycles.
+- Taught: furniture belongs to its service surface through proximity and a shared radial anchor; compacting the visual arrangement also requires moving the actor and collision anchors so the freed space remains usable.
+- Verdict: covered (§6 proximity and §8.H motion preserves the scale), applied to scene units and shared furniture anchors.
+- Action: no skill rule change.
