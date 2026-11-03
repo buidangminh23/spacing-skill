@@ -748,3 +748,11 @@ recipient boundaries.
 - Taught: when adding a layout rule beside an existing component, give it at least the specificity of the rule it must replace (same selector shape), and measure the computed `display` rather than trusting the class. Any reset applied to a button that becomes a grid container must also reset `justify-content`. Set container-query breakpoints from the measured container width, not the viewport.
 - Verdict: refinement (§4 alignment ownership and §12 cascade), the cascade check generalises.
 - Action: logged; no rule text change yet (fits existing §12 cascade guidance).
+
+### 2026-11-03 — Nested form popup anchored to its drawer, not the viewport
+
+- Space Read: modal form inside a right-hand detail drawer · balanced · STEP 8 inherited · DENSITY 5 · RIGOR 8 · four fields two-up, header 16/16/0/24, body 4/24/24, footer 12/24, matching the existing task popup.
+- Did: replaced the always-visible "Thêm đơn thủ công" block at the bottom of the Minh Spark Company customer drawer with a "Thêm đơn" button beside the "Đơn của khách" heading that opens a popup. The first version used `position:fixed` centred on the viewport. At 1440px it looked right, but at 800px the fixed app sidebar (a separate stacking context) painted over the left third of the popup. The popup now sits in an absolute layer that has the same box as the drawer (`top/right/bottom:0; width:min(42rem,100%)`, grid `place-items:center`, 16px padding), and the popup is capped at `min(34rem,100%)`. Measured centring at 1440px: drawer 751–1424, popup 816–1360 (left 65, right 64). At 800px: drawer 243–784, popup 260–768, with 16px inset on both sides and body scrollWidth ≤ clientWidth. The focus trap had to keep the popup's backdrop interactive; the backdrop class was added to its inert exclusion list.
+- Taught: a dialog opened from inside a panel should be anchored to that panel's box, not the viewport, when any fixed chrome can overlap the viewport centre. Verify at the narrowest width where that chrome overlaps the content, not only at desktop width.
+- Verdict: covered (§8 reflow, §9 focus), logged as a placement check.
+- Action: no skill rule change.
