@@ -772,3 +772,11 @@ recipient boundaries.
 - Taught: an auto-fill grid's column count is decided by its container, not the viewport. Compute the two-column threshold (2 × min + gap) and compare it with the measured container before blaming the grid. For a data-entry form inside a narrow detail pane, give the editor the pane's sibling space while editing, and choose the column minimum so the field count fills whole rows at the expected width.
 - Verdict: refinement (§4 grid sizing, §8 container-driven reflow).
 - Action: logged; no rule text change.
+
+### 2026-11-03 — A taller sibling cell pushed the neighbouring inputs down (grid `align-content` default)
+
+- Space Read: admin order form, 3-column field grid · balanced · STEP 4 · DENSITY 5 · RIGOR 8 · inputs in one row share one top edge; label→input 4 < field row gap 12.
+- Did: added a purchase-date field with a row of quick-pick chips ("Hôm nay", "Hôm qua") under its input in the Minh Spark Company order editor. The chip row made that cell 83px tall instead of 55px; the grid stretched the two neighbouring cells to 83px, and because each `.pw-field` is itself `display:grid` with the default `align-content: normal` (stretch for auto rows), the extra 28px went into the label row. Measured before: purchase input top 86px, expiry and reference inputs 100px (14px off). Fix: `.pw-field { align-content: start }`. After: all three input tops 86px, label→input gap 4px in every cell, next row at 162px (83 + 12 + 67).
+- Taught: when a field wrapper is a grid or column flex and the parent grid stretches rows, pack the wrapper's own rows to the start (`align-content:start`, or `justify-content:flex-start` for flex). Otherwise any helper text or chips added under one input silently shift the label/input pair in every sibling cell. Measure input tops across the row, not cell tops — the cells were all aligned while the inputs were not.
+- Verdict: refinement (§4 alignment ownership, §6.C label↔input unit).
+- Action: logged; no rule text change.
