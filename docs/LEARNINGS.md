@@ -756,3 +756,11 @@ recipient boundaries.
 - Taught: a dialog opened from inside a panel should be anchored to that panel's box, not the viewport, when any fixed chrome can overlap the viewport centre. Verify at the narrowest width where that chrome overlaps the content, not only at desktop width.
 - Verdict: covered (§8 reflow, §9 focus), logged as a placement check.
 - Action: no skill rule change.
+
+### 2026-11-03 — Visually hidden caption escaped its scroller and shifted the whole panel
+
+- Space Read: admin detail pane with inline edit form · balanced · STEP 8 inherited · DENSITY 5 · RIGOR 8 · action row Xác nhận/Huỷ at the top of the pane, fields two-up, order blocks with 12/16/16 inset.
+- Did: replaced the Minh Spark Company customer/order popups with in-place editing. While the popup existed, its layer made `.ops-main` `position: relative`. A chart's visually hidden `<figcaption class="pw-sr">` (`position:absolute`, no `top`/`left`) then took `.ops-main` as its containing block but kept its static position deep inside the scrolling `.ops-content`, 1133px down a 736px shell. The `overflow:hidden` shell gained scrollable overflow and focusing the form scrolled it by 382px, leaving the lower half of the screen blank. Measured with a scan for elements whose bottom exceeded the shell, then fixed with `top:0; left:0` on `.pw-sr`; shell scrollHeight went from 1133 to 736 and scrollTop stayed 0.
+- Taught: give every visually hidden absolute element explicit `top/left` (or `inset:0` + clip). Without them it sits at its static position, which can land outside a scroll container whose ancestor becomes the containing block, and an `overflow:hidden` ancestor will still scroll programmatically on focus.
+- Verdict: gap (§12 cascade / implementation, sr-only pattern).
+- Action: logged; candidate for the sr-only snippet in references/implementation.md.
