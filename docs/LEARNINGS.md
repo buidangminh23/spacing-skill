@@ -764,3 +764,11 @@ recipient boundaries.
 - Taught: give every visually hidden absolute element explicit `top/left` (or `inset:0` + clip). Without them it sits at its static position, which can land outside a scroll container whose ancestor becomes the containing block, and an `overflow:hidden` ancestor will still scroll programmatically on focus.
 - Verdict: gap (§12 cascade / implementation, sr-only pattern).
 - Action: logged; candidate for the sr-only snippet in references/implementation.md.
+
+### 2026-11-03 — Inline editor stacked into one column because the detail pane was too narrow
+
+- Space Read: admin list + detail split with an inline edit form · balanced · STEP 4 · DENSITY 5 · RIGOR 8 · six customer fields in full rows, label↔input 8 < field gap 12.
+- Did: the Minh Spark Company customer editor rendered inside the detail pane of a 22rem list + pane split. The field grid used `repeat(auto-fill, minmax(min(100%,12rem),1fr))`, which needs ≥ 396px for two columns; the pane gave the form 286px, so every field stacked vertically and the owner asked why. While editing, the split now drops the list (`[data-editing] { grid-template-columns: minmax(0,1fr) }`, list `display:none`), caps the form at 60rem, and the editor grid uses a 15rem minimum. Measured at 1280×800: form grid 832px, three columns of 269px with 12px gaps, six fields in two full rows (top 0 and 67); previously one column of 286px with six rows.
+- Taught: an auto-fill grid's column count is decided by its container, not the viewport. Compute the two-column threshold (2 × min + gap) and compare it with the measured container before blaming the grid. For a data-entry form inside a narrow detail pane, give the editor the pane's sibling space while editing, and choose the column minimum so the field count fills whole rows at the expected width.
+- Verdict: refinement (§4 grid sizing, §8 container-driven reflow).
+- Action: logged; no rule text change.
