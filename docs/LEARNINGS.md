@@ -780,3 +780,12 @@ recipient boundaries.
 - Taught: when a field wrapper is a grid or column flex and the parent grid stretches rows, pack the wrapper's own rows to the start (`align-content:start`, or `justify-content:flex-start` for flex). Otherwise any helper text or chips added under one input silently shift the label/input pair in every sibling cell. Measure input tops across the row, not cell tops — the cells were all aligned while the inputs were not.
 - Verdict: refinement (§4 alignment ownership, §6.C label↔input unit).
 - Action: logged; no rule text change.
+
+### 2026-11-03 — Text date field plus calendar button kept on the same input line as its neighbours
+
+- Space Read: admin order form, 3-column field grid · balanced · STEP 4 · DENSITY 5 · RIGOR 8 · input + 36px icon button inline (gap 4), calendar popover 17rem anchored under the field.
+- Did: replaced a native date input (its display follows the browser locale, so dd/mm/yyyy could not be forced) with a text input and a square calendar toggle in a flex row (`gap:0.25rem`, input `flex:1; min-width:0`, toggle `flex:none` 36×36 to match the 36px input height), quick-pick chips below, and an absolutely positioned calendar (`top: calc(100% + 0.25rem)`) so opening it never moves the grid. Measured at 1280px: the three row inputs and the toggle all start at 86px and are 36px tall; day cells 32px tall (≥ 24px target).
+- Taught: when an inline control joins an input inside a grid cell, size it to the input's computed height and keep the popover out of flow; then re-measure input tops across the row, not only inside the edited cell.
+- Verdict: covered (§4 alignment, §9 targets).
+- Action: logged; no rule text change.
+
