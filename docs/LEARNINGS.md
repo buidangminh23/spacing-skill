@@ -821,3 +821,11 @@ recipient boundaries.
 - Taught: to frame a tilted surface, measure its height along the camera's up vector, not its own height, and centre it on the free area that the view offset already describes; then verify the element's bounding box against the free area, not the window.
 - Verdict: gap (camera framing of overlays is not covered).
 - Action: logged; no rule text change.
+
+### 2026-11-04 — Rebuilding YouTube desktop at 1.5x inside a 2400×1350 in-scene screen
+
+- Space Read: YouTube desktop on a 2400×1350 TV · balanced · STEP 6 (YouTube's own ramp × 1.5) · DENSITY 5 · RIGOR 8 · masthead 84, guide 360, grid 3 columns gap 24 / rows 60, avatar↔text 18, thumbnail↔details 18.
+- Did: the Minh Spark Company CEO screen was raised to 16:9 and its YouTube app redrawn to match the owner's screenshot of real YouTube Premium. Every size is YouTube's 1x value times 1.5 (the screen is 1.5 × a 1600 CSS px desktop): masthead 56→84, guide 240→360 (mini 72→108), guide row 40→60 with radius 10→15, search 640×40→960×60, chip 32→48, avatar 36→54, title 16/22→24/33, meta 14/20→21/30. Measured in the DOM: column gap 24, row gap 60, avatar→text 18, thumbnail→details 18, masthead 84, guide 360, three 639px tracks. The 4K player is a separate 3840×2160 box scaled by min(W/3840, H/2160) and, in the miniplayer, by 600/3840 with its corner radius divided by the same factor (18 / 0.156 ≈ 115).
+- Taught: when cloning a known product UI at a non-1x canvas, take the product's 1x spacing ramp and multiply it by one factor instead of inventing a new ramp; any element drawn in a different scaled coordinate space (here the player box) needs its radii and insets divided by that space's scale. Third-party iframe chrome cannot be resized, so rendering it at 3840 px for 4K makes its controls ~1/3 size; flag that trade-off instead of hiding it.
+- Verdict: refinement (§10 recipes assume native scale; scaled clones need the single-factor rule).
+- Action: logged; no rule text change.
