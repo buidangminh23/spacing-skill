@@ -813,3 +813,11 @@ recipient boundaries.
 - Taught: CSS3DRenderer already folds the camera's view offset into its CSS camera transform, so do not shift its layer again. Set the HTML element's aspect ratio from the mesh's own width/height instead of a fixed design height, and verify by comparing the element's bounding box with the visible mesh edges at two zoom levels.
 - Verdict: gap (overlay alignment for 3D scenes is not covered).
 - Action: logged; no rule text change.
+
+### 2026-11-04 — Framing a tilted in-scene screen: fit by its projected height, centre in the free area
+
+- Space Read: in-scene YouTube app on a tilted 3D screen · balanced · STEP 8 · DENSITY 5 · RIGOR 8 · the screen must fill the free viewport (right of a 244px sidebar, below a 136px HUD) at 94% without touching either.
+- Did: added a "fit screen" button to the Minh Spark Company YouTube TV. Zoom = min(freeWidth / meshWidth, freeHeight / projectedHeight) × 0.94, where projectedHeight = |(top − bottom of the mesh in world space) · camera up|, so the screen's tilt toward the camera is counted instead of its raw height; the camera target is the ground point on the view ray through the mesh centre. Measured at 1600×950: screen box 1275 px wide = 94% of the 1356 px free width, vertical centre 543 = centre of the free band (136–950). Before, manual zooming left the search bar of the screen under the HUD.
+- Taught: to frame a tilted surface, measure its height along the camera's up vector, not its own height, and centre it on the free area that the view offset already describes; then verify the element's bounding box against the free area, not the window.
+- Verdict: gap (camera framing of overlays is not covered).
+- Action: logged; no rule text change.
