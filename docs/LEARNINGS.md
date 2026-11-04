@@ -829,3 +829,11 @@ recipient boundaries.
 - Taught: when cloning a known product UI at a non-1x canvas, take the product's 1x spacing ramp and multiply it by one factor instead of inventing a new ramp; any element drawn in a different scaled coordinate space (here the player box) needs its radii and insets divided by that space's scale. Third-party iframe chrome cannot be resized, so rendering it at 3840 px for 4K makes its controls ~1/3 size; flag that trade-off instead of hiding it.
 - Verdict: refinement (§10 recipes assume native scale; scaled clones need the single-factor rule).
 - Action: logged; no rule text change.
+
+### 2026-11-04 — Office tool UI on a localhost page: inline table links fell under the 24px target
+
+- Space Read: office forms + result tables (Recipt Tools web UI) · balanced · STEP 8 · DENSITY 5 · RIGOR 8 · label↔input 8 < field↔field 16 < group 24, card inset 24.
+- Did: built a 5-tab localhost UI (statements, contracts, customer editor, invoice drop zone) on one 8px ramp: `.field` gap 8, `.grid` gap 16, `.stack` gap 24, card padding 24, controls min-height 40. Measured at 320 px on every tab: `scrollWidth` = 320, no horizontal scroll. The audit of targets under 24×24 found the inline "open folder / download" text links in result tables at under 24 px tall (plain inline text at 15px / 1.5). Fix: `.link, td a { display: inline-flex; align-items: center; min-height: 24px; min-width: 24px }`; re-measured 0 of 8 links under 24 px, layout unchanged.
+- Taught: text links that act as row actions inside a table are interactive targets too; an inline run of text is only as tall as its line box, so give them an inline-flex box with a 24px floor instead of padding that would change the row rhythm. Audit with a DOM pass over every visible `button, a` in each tab, not only the primary buttons.
+- Verdict: covered (§9 target floor); this records the table-link case and the cheap fix.
+- Action: logged; no rule text change.
