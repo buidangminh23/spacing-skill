@@ -789,3 +789,11 @@ recipient boundaries.
 - Verdict: covered (§4 alignment, §9 targets).
 - Action: logged; no rule text change.
 
+
+### 2026-11-04 — A `flex:none` action bar never wrapped, so the header clipped its last buttons
+
+- Space Read: admin detail pane header (title block + action bar) · balanced · STEP 8 inherited · DENSITY 5 · RIGOR 7 · buttons keep their size; the bar wraps inside the pane instead of overflowing.
+- Did: the Minh Spark Company customer profile header grew from two to four actions ("Thêm đơn", "Thêm email khác", "Sửa thông tin", "Xoá khách"). The header is `display:flex; flex-wrap:wrap`, the bar inside it was `.pw-pane-head > .pw-action-bar { flex:none }` with its own `flex-wrap:wrap`. Because the bar itself could not shrink, its width stayed max-content (538px) inside a 285px header, its own wrap never triggered, and the last two buttons were painted 225px past the pane edge (pane scrollWidth 566 vs clientWidth 341 at an 800px viewport). Fix: `flex:0 1 auto; min-width:0` on the bar, buttons stay `flex:none`. After: pane scrollWidth 341 = clientWidth, buttons in two rows (tops 144 and 188, 8px row gap), none with scrollWidth > clientWidth.
+- Taught: `flex-wrap` on a container only fires when that container is given less than its max-content width. A wrapping group nested as a flex item must be allowed to shrink (`flex-shrink:1; min-width:0`); keep `flex:none` on the leaves (buttons, badges), not on the group that holds them. Re-measure whenever an action set grows.
+- Verdict: refinement (§4.C which item yields, §8 reflow).
+- Action: logged; no rule text change.
