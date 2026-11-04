@@ -805,3 +805,11 @@ recipient boundaries.
 - Taught: when one instance of a shared row component gets an extra cell, key the track count on the cell count (a data attribute from the renderer) and give it its own container breakpoints; repeat the attribute selector inside the narrower existing breakpoints, or the more specific base rule silently wins over them.
 - Verdict: covered (§8.B columns from content demand, §11 #17 layout stays in CSS).
 - Action: logged; no rule text change.
+
+### 2026-11-04 — An HTML panel laid over a 3D screen mesh with CSS3DRenderer: no manual view-offset shift
+
+- Space Read: in-scene TV screen (HTML over a WebGL plane) · balanced · STEP 8 · DENSITY 5 · RIGOR 7 · the HTML box must cover the mesh edge-to-edge at every zoom; header↔body 24, columns 32, items 16, label↔value 8.
+- Did: replaced the canvas-textured LED wall in the Minh Spark Company 3D office with a YouTube TV built as HTML (2400 design px wide, height = 2400 × meshHeight / meshWidth) and placed with three.js `CSS3DRenderer`: copy the mesh's `matrixWorld` into the `CSS3DObject`, then scale by `meshWidth / 2400`. The orthographic camera uses `setViewOffset` to keep the room clear of a left sidebar and a top HUD. A first version also translated the CSS3D layer by that offset (`shiftX, shiftY`); measured result: the HTML box sat at 777,230 while the mesh's black area started at 655,162, exactly the 122 / 68 px offset too far. Removing the manual translate: box 655,162 · 534×134 at home zoom, 290,70 · 1264×318 after zooming in, edges on the mesh border both times.
+- Taught: CSS3DRenderer already folds the camera's view offset into its CSS camera transform, so do not shift its layer again. Set the HTML element's aspect ratio from the mesh's own width/height instead of a fixed design height, and verify by comparing the element's bounding box with the visible mesh edges at two zoom levels.
+- Verdict: gap (overlay alignment for 3D scenes is not covered).
+- Action: logged; no rule text change.
