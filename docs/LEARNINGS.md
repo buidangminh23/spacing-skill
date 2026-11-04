@@ -797,3 +797,11 @@ recipient boundaries.
 - Taught: `flex-wrap` on a container only fires when that container is given less than its max-content width. A wrapping group nested as a flex item must be allowed to shrink (`flex-shrink:1; min-width:0`); keep `flex:none` on the leaves (buttons, badges), not on the group that holds them. Re-measure whenever an action set grows.
 - Verdict: refinement (§4.C which item yields, §8 reflow).
 - Action: logged; no rule text change.
+
+### 2026-11-04 — A fifth KPI card: column count keyed to the card count, not a blanket repeat(4)
+
+- Space Read: dashboard KPI row · balanced · STEP 4 inherited (gap 12px) · DENSITY 6 · RIGOR 8 · five equal tracks share one 12px gutter; the longest value ("4.852.000₫") must never truncate.
+- Did: added a "Lợi nhuận" card to the Minh Spark Company minhspark.com overview, making five KPI cards in a row built for four (`repeat(4, minmax(0,1fr))`). Rather than change every KPI row, the renderer now writes `data-count="${cards.length}"` and the CSS adds `.kpi-cards[data-count="5"] { repeat(5, …) }`, with container steps 3 columns at ≤ 68rem and 2 at ≤ 48rem; the existing 48rem/20rem rules list `[data-count="5"]` too so the higher-specificity selector cannot override them. 68rem = 5 × 13rem minimum card + 4 × 0.75rem gaps. Measured: 1600px viewport 5 × 243px with 12px gaps; 1200px 3 + 2 × 286px; 900px and 400px 2 columns; every `.kpi-value` scrollWidth ≤ clientWidth; narrow → wide round trip back to 5 columns.
+- Taught: when one instance of a shared row component gets an extra cell, key the track count on the cell count (a data attribute from the renderer) and give it its own container breakpoints; repeat the attribute selector inside the narrower existing breakpoints, or the more specific base rule silently wins over them.
+- Verdict: covered (§8.B columns from content demand, §11 #17 layout stays in CSS).
+- Action: logged; no rule text change.
