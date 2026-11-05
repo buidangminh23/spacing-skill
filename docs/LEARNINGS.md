@@ -20,6 +20,14 @@ The owner has standing opt-in to capture every new, verified spacing or alignmen
 method from their projects in this repository. See §15 for the maintainer and
 recipient boundaries.
 
+### 2026-11-05 — Gemera dashboard / review queue — size columns by content, not by equal share
+
+- Space Read: review queue on a 3180 px screen · packed · STEP 4 · DENSITY 8 · RIGOR 8 · 94 of 97 posts sit in one of six buckets, so equal columns leave most of the width blank
+- Did: three equal channel columns, each with two equal buckets, gave the busiest bucket about 1/6 of the width. Changed to a stack: a group with content takes the full row and flows cards in `repeat(auto-fill,minmax(min(100%,360px),1fr))`, and an empty group keeps its required toolbar in a shared row. Groups sort by item count so short groups never sit below a long list. Measured on the mock at 3175 px: 7 card columns, fill 1.0, first card 453 px below the queue top; no overflow at 7 widths from 320 to 3175 in 3 scenarios.
+- Taught: a toolbar laid out for a narrow column turns into a tall block with very wide buttons when its column becomes full width. A container query on the column switches it from 2×2 to 4 across, independent of the viewport. Sorting by count needs a mobile exception, because stacked empty toolbars would otherwise push the first card down by more than one screen.
+- Verdict: refinement(§3, §8).
+- Action: logged here as measurement evidence; not yet folded into the skill.
+
 ### 2026-10-26 — Personal-Web / invoice PDF payment row — align the label with the R in VietQR
 
 - Space Read: exported invoice payment row · balanced · STEP 8 · DENSITY 5 · RIGOR 8 · the text's visible midpoint must match the blue R, not the full logo box.
