@@ -917,3 +917,11 @@ recipient boundaries.
 - Taught: in Chrome, the children of `<details>` after the summary sit in the `::details-content` slot, so the details element's own flex `gap` only spaces the summary from that slot, not the blocks inside it. Measure each gap between the children instead of trusting the card's gap value.
 - Verdict: refinement (§4.C covers bottom-aligned rows; the `<details>` gap boundary was not written down).
 - Action: logged; no rule text change.
+
+### 2026-11-05 — Filter bar with the submit button stacked inside the last field
+
+- Space Read: document search filter · balanced · STEP 8 · DENSITY 5 · RIGOR 8 · every control on one bottom edge, 16px between tracks, 40px controls.
+- Did: the third field held both a checkbox and the submit button in its column, so in an `auto-fit` grid the row ended at 761px while the inputs ended at 635px (1024px viewport). Moved the button into its own track, set `align-items: end` on the form grid, gave the checkbox label `min-height: 40px` to match the inputs, and used `minmax(0, 2fr) minmax(176px, 1fr) max-content max-content` with two columns at ≤1100px and one at ≤640px. Measured at 1560: all four controls end at 590px with 16px gaps; at 1101 the select keeps 176px; at 1024 and 800 two rows share their bottoms; at 320 one column, no horizontal overflow; 1560 → 1024 → 1560 returns the same geometry.
+- Taught: a first pass with `minmax(0, 1fr)` for the select squeezed it to 116px at 1024, too narrow for its longest option, while the `max-content` tracks kept their width. Give a select a floor sized to its longest option, and move the breakpoint up rather than letting it shrink. Parsing the markup also found a malformed closing tag that hid one option.
+- Verdict: covered (§4.C bottom-aligned rows, §8.I round trip).
+- Action: logged; no rule text change.
