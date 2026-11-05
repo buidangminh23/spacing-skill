@@ -861,3 +861,11 @@ recipient boundaries.
 - Taught: a spreadsheet cannot be judged from file properties. openpyxl reported Calibri while the theme rendered Arial, so measure with the font Excel reports. Calibrate an estimated row height by comparing it with AutoFit on all real rows, and choose the padding so an error can only make a row taller, never clip it. Put a total label next to its value; a label across empty numeric columns detaches it from the number it names.
 - Verdict: gap (§14 covers documents, not spreadsheet row and column calibration).
 - Action: logged; no rule text change.
+
+### 2026-11-05 — Answer form trapped in a capped pane: move the action up, not the scrollbar
+
+- Space Read: agent question form inside an ops overview · balanced · STEP 8 · DENSITY 5 · RIGOR 8 · label↔description 0, option↔option 8, block↔block 12–16, row min-height 44.
+- Did: the form sat in a detail pane capped at clamp(400px, 55dvh, 640px), below KPI cards, with a second scrollbar on the page. Measured 1280×900: pane 480px tall holding 1337px of content, form 792px. Moved the pending question into a full-width band directly under the page heading, turned options into `repeat(auto-fit, minmax(min(100%, 16rem), 1fr))` and fields into `minmax(min(100%, 20rem), 1fr)`, set the free-text row on one line. Result: form 390px at 1280×900 and 403px at 1024×768, both fully inside the viewport with no scroll; a real mouse run confirmed selection and send.
+- Taught: when the primary action of a screen needs scrolling inside a nested scroller, measure `scrollHeight` against `clientHeight` for every ancestor, then relocate the action to where the width is, because tightening gaps alone would not close a 2.8× overflow. Separately, count how often a live view replaces its DOM: at one swap per 3 s, a press spanning a swap lands on a new node and the click is lost, so hold the swap from pointerdown to pointerup.
+- Verdict: refinement (§8 covers reflow; nested-scroller height budgeting for a primary action was not written down).
+- Action: logged; no rule text change.
