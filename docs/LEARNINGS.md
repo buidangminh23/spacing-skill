@@ -877,3 +877,11 @@ recipient boundaries.
 - Taught: raising the popup's z-index would only swap which element is hidden. When fixed chrome sits at both ends, compute the popup's height budget from those elements and verify with `elementFromPoint` on the title, not only with rectangles.
 - Verdict: refinement (§8 covers reflow; the height budget between fixed chrome on phones was not written down).
 - Action: logged; no rule text change.
+
+### 2026-11-05 — Spreadsheet preview with many columns: allot widths from measured words, not character counts
+
+- Space Read: source spreadsheet viewer · packed · STEP 4 · DENSITY 8 · RIGOR 9 · 15 columns must fit a 901px panel with no scrollbar inside the table.
+- Did: the table used `width: max-content` with a 100px minimum per cell and a 580px inner scroller: 1909px wide in an 886px panel. Switched to `table-layout: fixed` and computed each `col` from canvas `measureText`: the longest word sets the minimum, the longest line sets the wish, spare width fills wishes. Removed the inner height so the header sticks under the page's own jump bar. Measured 9 sheets at 1280 and 1500: `scrollWidth` equals `clientWidth`, 0 clipped cells, only tokens without spaces wrap.
+- Taught: a first pass sized by character count broke "NGÀY" mid-word because Vietnamese capitals run wider than digits, so measure with the real font. When word minimums exceed the panel, lower a cap on long tokens step by step before allowing a scrollbar, and enable horizontal scrolling only for the sheet that still cannot fit, because a blanket media query would keep sticky headers off everywhere.
+- Verdict: refinement (§8 covers overflow; measured column allotment for dense tables was not written down).
+- Action: logged; no rule text change.
