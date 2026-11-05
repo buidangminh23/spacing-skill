@@ -853,3 +853,11 @@ recipient boundaries.
 - Taught: derive the owner's viewport from a known fixed-width element in their screenshot before judging a layout, because a capped layout looks fine at every width the agent normally tests. A breakpoint ladder that ends in `max-width` is a decision about the widest screen, so check it against the widest screen actually in use. When a row holds one short card beside full-span siblings, pair it with another short card instead of stretching it.
 - Verdict: refinement (§8 and §9.D cover reflow and the `min-width: 0` leak; reading the real viewport from a screenshot was not written down).
 - Action: logged; no rule text change.
+
+### 2026-11-05 — Excel statement: compute wrapped row heights, then calibrate against AutoFit in real Excel
+
+- Space Read: A4 billing table in Excel (Receipt Tools) · packed · STEP 4 · DENSITY 8 · RIGOR 9 · description column wraps, numbers share one right edge, total label sits next to the amount.
+- Did: 127/336 descriptions were cut at column width 29.43. Widened to 40, wrapped, set explicit row heights from Pillow text measurement, right-aligned every numeric column with one number format, merged the total label A:H right-aligned against the amount column, removed stray formulas below the table, and set A4 fit-to-one-page-wide with a repeating header. The first estimate made rows of one line as tall as two. Real Excel gave column px = width x 8 for Arial 11, line height 14.25pt, and a wrap boundary at about 319-323 measured px. After calibration, AutoFit across 20 files and 336 rows: 0 rows too short, 3 slightly tall, 0 `###` cells.
+- Taught: a spreadsheet cannot be judged from file properties. openpyxl reported Calibri while the theme rendered Arial, so measure with the font Excel reports. Calibrate an estimated row height by comparing it with AutoFit on all real rows, and choose the padding so an error can only make a row taller, never clip it. Put a total label next to its value; a label across empty numeric columns detaches it from the number it names.
+- Verdict: gap (§14 covers documents, not spreadsheet row and column calibration).
+- Action: logged; no rule text change.
