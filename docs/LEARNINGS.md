@@ -837,3 +837,11 @@ recipient boundaries.
 - Taught: text links that act as row actions inside a table are interactive targets too; an inline run of text is only as tall as its line box, so give them an inline-flex box with a 24px floor instead of padding that would change the row rhythm. Audit with a DOM pass over every visible `button, a` in each tab, not only the primary buttons.
 - Verdict: covered (§9 target floor); this records the table-link case and the cheap fix.
 - Action: logged; no rule text change.
+
+### 2026-11-05 — A fixed sidebar ate the width of the densest editor; collapse it to icons while that editor is open
+
+- Space Read: office app shell (Receipt Tools, desktop only) · balanced · STEP 8 · DENSITY 5 · RIGOR 8 · sidebar 248, page padding 32, card↔card 24, label↔input 8 < field↔field 16.
+- Did: moved the top tab bar into a 248px left sidebar with grouped, icon-led items. Measured at 1366 px: the slip editor's line-item table (min content 1162 px) now had a 493 px viewport and scrolled sideways, worse than before the sidebar. Fix with CSS only: `.app:has(#slip-editor:not([hidden])) { --sidebar: 72px }`, nav labels visually hidden (accessible name and `title` kept), and when the editor has no file preview (`.slip-editor:has(#slip-preview > p.hint:only-child)`) the two-column grid becomes one column. Re-measured: sidebar 72 px, table viewport 1113 px; no page-level horizontal scroll on any of 8 tabs at 1366 and 1024 px.
+- Taught: adding persistent chrome is a width budget decision for the densest workflow, not only for the landing page. Measure the widest working surface (here a data-entry table's scrollWidth vs clientWidth) before and after; when it regresses, shrink the chrome contextually with `:has()` on the open editor instead of shrinking the table's columns. An empty side panel should release its column.
+- Verdict: gap (§8 covers viewport reflow, not chrome competing with an in-page dense editor).
+- Action: logged; no rule text change.
