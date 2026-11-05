@@ -925,3 +925,12 @@ recipient boundaries.
 - Taught: a first pass with `minmax(0, 1fr)` for the select squeezed it to 116px at 1024, too narrow for its longest option, while the `max-content` tracks kept their width. Give a select a floor sized to its longest option, and move the breakpoint up rather than letting it shrink. Parsing the markup also found a malformed closing tag that hid one option.
 - Verdict: covered (§4.C bottom-aligned rows, §8.I round trip).
 - Action: logged; no rule text change.
+
+
+### 2026-11-05 — Generated contract: a template's hard page breaks left most of a page empty
+
+- Space Read: Word contract filled from a template · airy · STEP 6pt · DENSITY 3 · RIGOR 6 · each article follows the previous one at the template's own article spacing, page count matches the count the contract states.
+- Did: the template had `<w:br w:type="page"/>` at the start of the "Điều 4" heading and a second one in the empty paragraph after the signature block. Exported via Word to PDF and measured text bounds: before, 5 pages, page 3 ended 131.9/841.9pt (710pt blank) and page 5 was fully blank. The export step now removes hard page breaks from article headings and trailing empty paragraphs, and sets keep-with-next on every article heading; the template file stays untouched. After: 3 pages, matching the contract's "gồm 03 trang"; space above Điều 4 is 12.5pt against 12.7pt above Điều 3 and 11.1pt above Điều 5–6.
+- Taught: §14.G covers using a real page break and not faking one with Enter, but not the reverse case: a hard break inherited from a template goes stale once filled-in data changes the length of earlier sections. In generated documents, replace hard breaks before headings with keep-with-next, and check the trailing empty paragraphs for a break that adds a blank last page. Measure in Word's own PDF export (text bottom per page) rather than reading the XML.
+- Verdict: refinement (§14.G).
+- Action: logged; no rule text change.
