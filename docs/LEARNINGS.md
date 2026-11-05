@@ -909,3 +909,11 @@ recipient boundaries.
 - Taught: an attribute selector silently misses a control that relies on the default type, so the form looks broken only at render time. Measure control heights against a sibling form rather than reading the markup.
 - Verdict: covered (§9 targets, §3 gap owner).
 - Action: logged; no rule text change.
+
+### 2026-11-05 — Inline form row and a collapsible card: buttons above the inputs, filters flush with the table
+
+- Space Read: price ledger edit row and unmatched-rows panel · balanced · STEP 8 · DENSITY 5 · RIGOR 8 · buttons share the input row's edges, 16px between every block in the panel.
+- Did: the actions cell in a four-column form grid stretched to label plus input height and centered its buttons, so they sat 14.5px above the inputs. Added `align-self: end` to that cell: 0px offset at the top and bottom at 1500px, 16px under the last field once it wraps at 375px. In a `<details class="card">` styled as a flex column with a 16px gap, the summary also had a 12px margin (28px to the hint), while the filter grid touched the table (0px). Removed the summary margin and gave the table a 16px top margin: 16/16/16. Set `white-space: nowrap` on table headers: header 56px to 36px, no horizontal scroll at 1500px.
+- Taught: in Chrome, the children of `<details>` after the summary sit in the `::details-content` slot, so the details element's own flex `gap` only spaces the summary from that slot, not the blocks inside it. Measure each gap between the children instead of trusting the card's gap value.
+- Verdict: refinement (§4.C covers bottom-aligned rows; the `<details>` gap boundary was not written down).
+- Action: logged; no rule text change.
