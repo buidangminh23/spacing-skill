@@ -885,3 +885,11 @@ recipient boundaries.
 - Taught: a first pass sized by character count broke "NGÀY" mid-word because Vietnamese capitals run wider than digits, so measure with the real font. When word minimums exceed the panel, lower a cap on long tokens step by step before allowing a scrollbar, and enable horizontal scrolling only for the sheet that still cannot fit, because a blanket media query would keep sticky headers off everywhere.
 - Verdict: refinement (§8 covers overflow; measured column allotment for dense tables was not written down).
 - Action: logged; no rule text change.
+
+### 2026-11-05 — Link beside a button in a form footer: one action group, one owner of the gap
+
+- Space Read: agent answer form footer · balanced · STEP 8 · DENSITY 5 · RIGOR 8 · note text left, actions right, 8px between actions, 40px control height.
+- Did: added an anchor next to the send button. Grouped both in one actions wrapper that owns the auto margin and the 8px gap, and removed the auto margin from the buttons inside it. Measured: link and button 40px tall with an 8px gap at 1024px, and 44px with the same gap on a touch width of 320px, where the group wraps under the note with no overflow.
+- Taught: a button-only selector leaves an anchor styled as a button at a different height. Extend every state selector (base, hover, focus, coarse pointer) to the anchor, then compare measured heights.
+- Verdict: covered (§3 single-owner gap, §9 targets).
+- Action: logged; no rule text change.
