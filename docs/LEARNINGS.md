@@ -869,3 +869,11 @@ recipient boundaries.
 - Taught: when the primary action of a screen needs scrolling inside a nested scroller, measure `scrollHeight` against `clientHeight` for every ancestor, then relocate the action to where the width is, because tightening gaps alone would not close a 2.8× overflow. Separately, count how often a live view replaces its DOM: at one swap per 3 s, a press spanning a swap lands on a new node and the click is lost, so hold the swap from pointerdown to pointerup.
 - Verdict: refinement (§8 covers reflow; nested-scroller height budgeting for a primary action was not written down).
 - Action: logged; no rule text change.
+
+### 2026-11-05 — Phone popup under a fixed logo: size the popup to the free band, not to the viewport
+
+- Space Read: floating agent popup on a phone HUD · balanced · STEP 4 · DENSITY 5 · RIGOR 8 · popup must sit between the fixed logo pill and the bottom-right buttons with one 12px gap each side.
+- Did: at 375×812 the popup ran top 40 to bottom 740 while the logo pill (higher z-index) ended at 68, so the logo hid the popup title by 28px and the buttons covered its footer by 40px. Anchored it at `bottom: 7.75rem` and set `max-height: calc(100dvh - 7.75rem - edge - logo height - gap)`. Measured gaps afterwards: 12px top and 12px bottom at 375×812 and 320×568, no horizontal scroll, `elementFromPoint` on the title returns the popup. Content still scrolls inside the popup (738px in 608px).
+- Taught: raising the popup's z-index would only swap which element is hidden. When fixed chrome sits at both ends, compute the popup's height budget from those elements and verify with `elementFromPoint` on the title, not only with rectangles.
+- Verdict: refinement (§8 covers reflow; the height budget between fixed chrome on phones was not written down).
+- Action: logged; no rule text change.
