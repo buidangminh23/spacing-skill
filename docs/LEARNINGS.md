@@ -901,3 +901,11 @@ recipient boundaries.
 - Taught: a button-only selector leaves an anchor styled as a button at a different height. Extend every state selector (base, hover, focus, coarse pointer) to the anchor, then compare measured heights.
 - Verdict: covered (§3 single-owner gap, §9 targets).
 - Action: logged; no rule text change.
+
+### 2026-11-05 — Inputs without a type attribute skipped the form styling
+
+- Space Read: settings form in a price card · balanced · STEP 8 · DENSITY 5 · RIGOR 8 · three fields in one row, 16px field to actions, 41px controls.
+- Did: added an edit form for prices using the page's field class. Measured the inputs at 21px tall while sibling forms had 41px, because the stylesheet targets `input[type=text]`. Added the attribute: inputs 41px, buttons 41px, 16px to the actions row, no page overflow at 1280px.
+- Taught: an attribute selector silently misses a control that relies on the default type, so the form looks broken only at render time. Measure control heights against a sibling form rather than reading the markup.
+- Verdict: covered (§9 targets, §3 gap owner).
+- Action: logged; no rule text change.
