@@ -981,3 +981,11 @@ recipient boundaries.
 - Taught: when a label turns into a control inside a row of larger targets, extend the hit area with a pseudo-element instead of growing the pill, so the row's visual rhythm stays and the target matches its neighbours. Verify with `elementFromPoint` outside the painted box, not by reading the CSS.
 - Verdict: covered (§6.B ladder, §6.C parent owns the gap, §9 targets).
 - Action: logged; no rule text change.
+
+### 2026-11-06 — Thumbnail action buttons and queue rows in a scaled player menu
+
+- Space Read: video card + player menu · balanced · STEP 6 on cards, STEP 8 in 4K player px · DENSITY 5 · RIGOR 8 · a new corner action reuses the inset of the corner action beside it; a three-button row keeps the menu's row height.
+- Did: the add-to-queue button sits top-left of the thumbnail at 12/12, size 54, the same inset and size as the dismiss button top-right (measured 12, 12, 54×54 in 2400 design px). Queue rows keep the menu's 144 min-height with three 112 buttons, gap 8; the long title takes `flex: 1 1 auto; min-width: 0` with ellipsis, so buttons never shrink (title scrollWidth 696 = clientWidth 696 in a 576 CSS px row).
+- Taught: nothing new; the title yields and the buttons hold, per the flex-yield rule. Hidden-until-hover actions need a `hover: none` fallback so touch screens still see them.
+- Verdict: covered (§4.C flex yield, §9 targets).
+- Action: logged; no rule text change.
