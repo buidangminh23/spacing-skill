@@ -973,3 +973,11 @@ recipient boundaries.
 - Taught: inside a box that is scaled for a quality or layout reason, size controls in the box own unit and verify the rendered `getBoundingClientRect` size, since the CSS number is multiplied by every ancestor scale. For seek or scrub positions under transforms, use `offsetX` on the captured target instead of `clientX - rect.left`, which breaks under 3D transforms. In fullscreen the UA stylesheet resets `transform` to none, so the overlay needs its own `zoom` to keep the same proportion.
 - Verdict: refinement (§9 targets measured after transforms; §8.E overlay bands).
 - Action: logged; no rule text change.
+
+### 2026-11-06 — A resume row above a video grid, and a status pill that became a button
+
+- Space Read: video browse grid + player control row · balanced · STEP 6 (inherited 18/24/36/60 from a 1.5× layout) · DENSITY 5 · RIGOR 8 · the new row must share the grid's columns, and a short pill must keep a full-height target in a row of 160px buttons.
+- Did: added a "continue watching" row above the existing three-column grid by reusing the same grid class. Measured in 2400 design px: chips → heading 36, heading → grid 18 (2:1), row → main grid 60 (the grid's own row gap), first thumbnails share the left edge and width. A 54px dismiss button sits 12/12 inside the thumbnail corner, on the same inset as the duration badge. A 6px progress bar sits flush at the thumbnail's bottom edge, below the badge's 12px inset, so they never touch. In the 160px control row the live label became a real button; its 80px pill height stayed, and `::after { inset: -40px 0 }` extended the hit area to the row height without moving anything (`elementFromPoint` 4px above the pill still returned the button).
+- Taught: when a label turns into a control inside a row of larger targets, extend the hit area with a pseudo-element instead of growing the pill, so the row's visual rhythm stays and the target matches its neighbours. Verify with `elementFromPoint` outside the painted box, not by reading the CSS.
+- Verdict: covered (§6.B ladder, §6.C parent owns the gap, §9 targets).
+- Action: logged; no rule text change.
