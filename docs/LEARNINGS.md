@@ -942,3 +942,11 @@ recipient boundaries.
 - Taught: a native picker (datalist, select popup, date picker) takes its theme from `color-scheme`, not from page CSS, so a light-only page must declare `color-scheme: light` or its popups follow the OS dark mode. In an auto-layout table, preferred widths on narrow columns hand all slack to the free column at wide viewports but starve it at narrow ones; pair them with a floor on the free column and measure at the narrowest common laptop width, not only the wide one.
 - Verdict: refinement (§4.C rows, §8.I round trip; the `color-scheme` / native-popup link was not written down).
 - Action: logged; no rule text change.
+
+### 2026-11-06 — Printed form with dotted fill-in lines at two paper sizes
+
+- Space Read: printed sales receipt · balanced · STEP 2mm · DENSITY 6 · RIGOR 9 · labels and values share one baseline, fill-in lines end on one right edge, one sheet in A5 and in A4.
+- Did: built the sheet in mm for A5 (136mm content, 6mm page margin) and scaled it for A4 with `zoom: 1.414` and an 8.5mm margin. With `align-items: flex-end` the label sat about 2px below its value, because the value box carries min-height, padding and a dotted border; `align-items: baseline` put them on one line. "SỐ LƯỢNG" wrapped in a 16mm column at 2.8mm type; 18mm with `white-space: nowrap` fixed it. Chrome print-to-PDF measured: A5 148×210mm, 1 page; A4 210×297mm, 1 page; 24 item rows flow to 2 pages with the table header repeated.
+- Taught: for a label beside a ruled fill-in value, align by baseline, not by box bottom, since the ruled box is taller than the text. Scaling one mm layout with `zoom` keeps every ratio across paper sizes; verify each size through print-to-PDF page size and page count, not the on-screen view.
+- Verdict: refinement (§4.C shared baselines, §12 print).
+- Action: logged; no rule text change.
