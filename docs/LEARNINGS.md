@@ -965,3 +965,11 @@ recipient boundaries.
 - Taught: splitting rare columns out is a layout decision the reader may not accept when their habit is to scan by column position; ask before regrouping a matrix someone already reads every day. When every column must stay, budget the width: at a fixed column count the floor is the sum of the widest value per column plus padding, so padding (×2 per column) and one font step are the levers, and header text should wrap only at word boundaries so the header never sets the column's minimum width. A hyphen is a line-break opportunity, so codes like `A3->A4` need a no-wrap span.
 - Verdict: refinement (§8.B column demand, §9.D no-wrap labels).
 - Action: logged; no rule text change.
+
+### 2026-11-06 — Custom video controls drawn inside a 4K player that is scaled down
+
+- Space Read: video player overlay · balanced · STEP 8 (in 3840-wide player px) · DENSITY 4 · RIGOR 7 · control size is set in the frame that gets scaled, so the on-screen size is size × scale, not the CSS number.
+- Did: the YouTube iframe is built at 3840×2160 so it streams 4K, then scaled 0.625 into a 2400px TV that is itself scaled again by the 3D scene; the native control bar ended at about 13 CSS px per button. Hid it (`controls: 0`) and drew our own bar inside the same scaled box: buttons 160, icons 96, seek track 16 (24 on hover) in an 80 hit band, knob 48, time 64px tabular, title 80/104, gaps 16/24, insets 64/40, menu rows 144. Measured at a 1024px viewport: buttons 42.7 CSS px (about 3.3× native). Seek uses `event.offsetX / clientWidth` on the track, which Chrome maps through the CSS transforms, so the click landed at 321 s of 634 s for a click at the middle.
+- Taught: inside a box that is scaled for a quality or layout reason, size controls in the box own unit and verify the rendered `getBoundingClientRect` size, since the CSS number is multiplied by every ancestor scale. For seek or scrub positions under transforms, use `offsetX` on the captured target instead of `clientX - rect.left`, which breaks under 3D transforms. In fullscreen the UA stylesheet resets `transform` to none, so the overlay needs its own `zoom` to keep the same proportion.
+- Verdict: refinement (§9 targets measured after transforms; §8.E overlay bands).
+- Action: logged; no rule text change.
