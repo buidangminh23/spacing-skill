@@ -957,3 +957,11 @@ recipient boundaries.
 - Taught: when a matrix is sparse, the fix for sideways scroll is not smaller type; split dense columns from rare ones and let rare values carry their own label in a wrapping cell. Prove nothing was lost by counting priced cells before and after. Rows holding actions must not rely on an overflow scroller at phone width, since the action column is the part that disappears. A short varying-width badge before a text column needs a min-width, or the text column jitters between rows.
 - Verdict: refinement (§8.B column demand, §9.D no-wrap labels, §4.C flex yield).
 - Action: logged; no rule text change.
+
+### 2026-11-06 — The same sparse price grid, back to one column per size, fitted instead of split
+
+- Space Read: price grid inside a card · packed · STEP 4 · DENSITY 9 · RIGOR 9 · every paper size keeps its own column, all 20 columns visible without a sideways scroll at 1280px and wider.
+- Did: the owner rejected the "Khổ khác" grouping from the entry above and wanted each size back in its own column. Restored 19 paper columns plus the service column, then fitted them: cell padding 8 → 4px (service column left edge 8px), grid text 15 → 13px, and 12px at 1360px and below; paper headers wrap only at spaces (each word in a `white-space: nowrap` span, so `A3->A4` no longer broke at the hyphen); headers right-aligned over their numbers; service names may wrap. Measured table vs wrapper: 1440px viewport 1064/1064, 1280px 916/916 (932/916 before the 12px step), 0 cells with `scrollWidth > clientWidth`. Below about 1250px the table still scrolls inside its own wrapper; the page does not.
+- Taught: splitting rare columns out is a layout decision the reader may not accept when their habit is to scan by column position; ask before regrouping a matrix someone already reads every day. When every column must stay, budget the width: at a fixed column count the floor is the sum of the widest value per column plus padding, so padding (×2 per column) and one font step are the levers, and header text should wrap only at word boundaries so the header never sets the column's minimum width. A hyphen is a line-break opportunity, so codes like `A3->A4` need a no-wrap span.
+- Verdict: refinement (§8.B column demand, §9.D no-wrap labels).
+- Action: logged; no rule text change.
