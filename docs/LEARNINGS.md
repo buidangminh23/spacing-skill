@@ -1020,3 +1020,11 @@ recipient boundaries.
 - Taught: a decorative gap between pages belongs in one variable, so export can collapse it instead of recomputing offsets. When rendering a clone of a measured layout, hide with `visibility` and keep the box. Also, a rule filter that matches descendants with `querySelector` misses the root element, so rules on the root (here the cell padding variables) silently vanish; wrap the root in a holder before filtering. The symptom was shorter table rows in the PDF than on screen.
 - Verdict: refinement (§12 implementation, print).
 - Action: logged; no rule text change.
+
+### 2026-11-07 — Side panel header: title wrapped beside its summary
+
+- Space Read: doc-editor side panel · packed · STEP 4 · DENSITY 8 · RIGOR 9 · a panel title stays on one line, its summary sits under it on the same left edge, and the close button keeps the right edge.
+- Did: the review pane header put the title ("Khung xem lại · 2 mục") and a summary line as two flex siblings in one row beside the close button. In a 319px pane the title wrapped onto two lines while the summary took the right half. Grouping both in one column (`display: flex; flex-direction: column; gap: 4px; flex: 1; min-width: 0`) and `white-space: nowrap` on the title fixed the wrap, but the group inherited centring from the header and the title sat 27px right of the summary (title x 1245, summary x 1218). Adding `align-items: flex-start; text-align: left` to the group put both at x 1193, exactly the header's 12px padding, with the title one line (19px) and 4px to the summary.
+- Taught: when two siblings fight for one row in a narrow panel, stack them in their own column instead of shrinking type, and set the column's cross-axis alignment explicitly, because a header that centres its children will centre the new group's lines too. Verify with the left x of each line, not a screenshot glance.
+- Verdict: covered (§6 proximity, §3 gap ownership).
+- Action: logged; no rule text change.
