@@ -1036,3 +1036,11 @@ recipient boundaries.
 - Taught: a grid item's percentage `max-width` is relative to its track, and an auto track grows to the item, so a centring grid needs `minmax(0, 1fr)` before `max-width: 100%` means "the screen". Measure left and right offsets, not just width. When a container takes over gap ownership from child margins, every nested wrapper needs its own `gap` too.
 - Verdict: refinement (§8 reflow, §3.A gap ownership).
 - Action: logged; no rule text change.
+
+### 2026-11-07 — Template thumbnails in a fixed-height flex column lost their titles
+
+- Space Read: app dashboard · balanced · STEP 8 · DENSITY 5 · RIGOR 8 · thumbnail pages share one height so the template row aligns, and each page shows its title in full above the mock content.
+- Did: Minh Spark Office home template cards draw a mock page (`.tt-page { height: 152px; display: flex; flex-direction: column; gap: 8px }`) holding a title, a few 4px lines and a small chart or table. Two of four pages hid their titles: the column overflowed (`scrollHeight` 160 and 187 against `clientHeight` 150), and flex shrank the title row first, so it painted over the next row instead of pushing the content down. `.tt-page > * { flex-shrink: 0 }` stopped the squeeze but left the overflow; raising the page to 168px (21 × 8), dropping a 4px top margin, tightening bullet rows to 8px with a 6px gap and the bar chart to 48px brought all four to `scrollHeight == clientHeight` (166 = 166).
+- Taught: in a fixed-height flex column, children shrink silently instead of overflowing, and the first casualty is often the title. Set `flex-shrink: 0` on the rows that carry meaning, then measure `scrollHeight` against `clientHeight` for every card, not one screenshot.
+- Verdict: refinement (§4.C flex rows, applied to the column axis).
+- Action: logged; no rule text change.
