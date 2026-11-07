@@ -1044,3 +1044,11 @@ recipient boundaries.
 - Taught: in a fixed-height flex column, children shrink silently instead of overflowing, and the first casualty is often the title. Set `flex-shrink: 0` on the rows that carry meaning, then measure `scrollHeight` against `clientHeight` for every card, not one screenshot.
 - Verdict: refinement (§4.C flex rows, applied to the column axis).
 - Action: logged; no rule text change.
+
+### 2026-11-07 — Fixed update pill grew past the status bar's reserved band; ring tile corners cut the stroke
+
+- Space Read: app status bar + update dialog · balanced · STEP 8 · DENSITY 6 · RIGOR 8 · reserved right band = pill right offset + widest pill + the bar's own item gap; the logo tile stays inside the progress ring's inner edge.
+- Did: Minh Spark Office's fixed update pill (`right: 16px`) gained a 16px progress ring/check and longer labels. Measuring every label the state machine can show, the widest ("Cài bản mới 10.12.10" + check) was 177px, so the status bar's `padding-right: 176px` left the pill overlapping its last items. Reservation = 16 + 177 + 12 (the bar's inter-item gap) = 205 → snapped to 208px; worst-case clearance 15px. In the update dialog an 84px tile with 24px corners sat inside a 104px ring (r 50, stroke 4, inner edge 48px): the rounded corners reach 18√2 + 24 ≈ 49.5px from the centre, so the later-painted tile covered ~1.5px of the stroke at the four diagonals. An 80px tile reaches 16√2 + 24 ≈ 46.6px, inside 48, leaving an 8px ring-to-tile gap.
+- Taught: a space reservation for a fixed overlay must be computed from the overlay's widest reachable state (enumerate every label and icon combination), not from the state on screen. For a rounded square nested in a ring, check the corner distance `(w/2 − r)·√2 + r` against the stroke's inner radius, not the tile's half-width.
+- Verdict: refinement (§8.E overlay reservation, §7 optical/geometry check).
+- Action: logged; no rule text change.
