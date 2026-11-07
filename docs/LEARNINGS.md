@@ -989,3 +989,11 @@ recipient boundaries.
 - Taught: nothing new; the title yields and the buttons hold, per the flex-yield rule. Hidden-until-hover actions need a `hover: none` fallback so touch screens still see them.
 - Verdict: covered (§4.C flex yield, §9 targets).
 - Action: logged; no rule text change.
+
+### 2026-11-07 — Ribbon dropdowns clipped by a scrollable toolbar
+
+- Space Read: office-ribbon editor chrome · packed · STEP 4 · DENSITY 8 · RIGOR 9 · a menu opened from a toolbar must escape the toolbar's box, not grow it.
+- Did: in a Word-style editor every ribbon dropdown (font list, colour grid, margins) was `position: absolute` inside `.ribbon-body`, which has `overflow-x: auto` so the ribbon can scroll sideways on narrow screens. Setting one axis to `auto` makes the other compute to `auto` too, so the 572px font menu was cut at the ribbon's bottom edge (ribbon 122px tall, only the search box showed). Fixed in the shared popover hook, not per menu: on open, a layout effect sets the menu to `position: fixed`, `left = clamp(8, anchor.left, innerWidth − menuWidth − 8)`, `top = anchor.bottom + 4`, `max-height = innerHeight − top − 8`, and repeats on `resize` and on `scroll` in capture phase so it follows the ribbon when it scrolls. Measured at 1440×900: menu 132→703 (572px) against ribbon bottom 204, `position: fixed`, `elementFromPoint` 20px above the menu's bottom edge returns a node inside the menu.
+- Taught: `overflow-x: auto` alone still clips vertical overflow, because `visible` cannot pair with a non-visible value on the other axis. A horizontally scrollable toolbar therefore needs its popovers anchored with fixed (or portalled) positioning; fix it once where the popover is opened so every menu inherits it, then verify with the rendered rect and a hit test below the toolbar.
+- Verdict: refinement (§8.E overlays and stacking).
+- Action: logged; no rule text change.
