@@ -1028,3 +1028,11 @@ recipient boundaries.
 - Taught: when two siblings fight for one row in a narrow panel, stack them in their own column instead of shrinking type, and set the column's cross-axis alignment explicitly, because a header that centres its children will centre the new group's lines too. Verify with the left x of each line, not a screenshot glance.
 - Verdict: covered (§6 proximity, §3 gap ownership).
 - Action: logged; no rule text change.
+
+### 2026-11-07 — Centred modal overflowed a phone because the backdrop grid track grew to the dialog
+
+- Space Read: spreadsheet editor dialogs · balanced · STEP 4 · DENSITY 6 · RIGOR 8 · label↔input 6 < field↔field 12, and every dialog fits a 375px screen with an equal side margin.
+- Did: dialogs sit in `.dialog-backdrop { display: grid; place-items: center; padding: 20px }` with an inline `width` (460–760px) and `max-width: 100%`. At 375px a 700px dialog still measured 700px wide. The implicit grid column sizes to the item's content, so `100%` resolved against a 700px track and clamped nothing. Clamping the dialog alone (`max-width: min(100%, calc(100vw - 32px))`) shrank it to 343px but left it at x 149–199, centred in the still-700px track. Adding `grid-template-columns: minmax(0, 1fr)` to the backdrop gave every dialog 335px with 20px on both sides and `documentElement.scrollWidth − innerWidth = 0`, including the older Goal Seek dialog. In the same pass, zeroing `.field` margins inside the new dialog body (the body owns a 12px `gap`) left fields in nested columns touching (0px); giving the column wrappers their own flex `gap: 12px` and removing the leftover `margin-bottom: 12px` on two blocks restored a single owner per gap (measured 12,12,12,12,12; label→input 6).
+- Taught: a grid item's percentage `max-width` is relative to its track, and an auto track grows to the item, so a centring grid needs `minmax(0, 1fr)` before `max-width: 100%` means "the screen". Measure left and right offsets, not just width. When a container takes over gap ownership from child margins, every nested wrapper needs its own `gap` too.
+- Verdict: refinement (§8 reflow, §3.A gap ownership).
+- Action: logged; no rule text change.
