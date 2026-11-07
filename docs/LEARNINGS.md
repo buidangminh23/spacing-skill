@@ -1004,3 +1004,11 @@ recipient boundaries.
 - Taught: `overflow-x: auto` alone still clips vertical overflow, because `visible` cannot pair with a non-visible value on the other axis. A horizontally scrollable toolbar therefore needs its popovers anchored with fixed (or portalled) positioning; fix it once where the popover is opened so every menu inherits it, then verify with the rendered rect and a hit test below the toolbar.
 - Verdict: refinement (§8.E overlays and stacking).
 - Action: logged; no rule text change.
+
+### 2026-11-07 — Visually hidden labels widened the whole page from inside a scroller
+
+- Space Read: admin data table · packed · STEP 4 · DENSITY 8 · RIGOR 9 · a wide table scrolls inside its own wrapper, and nothing inside it may widen the page.
+- Did: a 12-column applications table sat in `.table-wrapper { overflow-x: auto }`, with one `position: absolute` visually hidden `<label>` per row. At 768px the document measured 1121px wide (`scrollWidth`), although the wrapper itself reported 301px at 320px and clipped the table correctly. No positioned ancestor existed between the labels and the page, so the labels used the page as their containing block and escaped the wrapper's clip. Adding `position: relative` to the wrapper brought the document to 753px at 768px and 320px at 320px, with the wrapper still scrolling (client 301, scroll 1250).
+- Taught: `overflow` only clips absolutely positioned descendants when the scroller, or something inside it, is their containing block. Any scroller that holds visually hidden or absolute children needs `position: relative`. To find the culprit, measure `documentElement.scrollWidth` first, because the table and the wrapper both look correct.
+- Verdict: refinement (§8 reflow).
+- Action: logged; no rule text change.
