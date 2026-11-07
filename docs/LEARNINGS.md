@@ -1012,3 +1012,11 @@ recipient boundaries.
 - Taught: `overflow` only clips absolutely positioned descendants when the scroller, or something inside it, is their containing block. Any scroller that holds visually hidden or absolute children needs `position: relative`. To find the culprit, measure `documentElement.scrollWidth` first, because the table and the wrapper both look correct.
 - Verdict: refinement (§8 reflow).
 - Action: logged; no rule text change.
+
+### 2026-11-07 — Paged document editor: gaps that exist on screen must collapse for export
+
+- Space Read: doc-editor · packed ribbon + airy paper · STEP 4 · DENSITY 8 · RIGOR 9 · a 24px gap between pages on screen, with headers and footers aligned to the page margins and every chrome gap taken from one scale.
+- Did: pages are absolute sheets behind one continuous editor, with widget spacers pushing content past each page's margins and `--page-gap: 24px` on the paper. Print and raster export set `--page-gap: 0`, so the layout height becomes an exact multiple of the page height and each page can be cut by offset; a 4-page A4 export measured 595.5×842.25 pt per page in the PDF. Layers that must not appear in the output were hidden with `visibility: hidden` instead of being removed, because removal changes the geometry that pagination already measured. Icons in export tiles shrank in a flex row until they got `flex: none`.
+- Taught: a decorative gap between pages belongs in one variable, so export can collapse it instead of recomputing offsets. When rendering a clone of a measured layout, hide with `visibility` and keep the box. Also, a rule filter that matches descendants with `querySelector` misses the root element, so rules on the root (here the cell padding variables) silently vanish; wrap the root in a holder before filtering. The symptom was shorter table rows in the PDF than on screen.
+- Verdict: refinement (§12 implementation, print).
+- Action: logged; no rule text change.
