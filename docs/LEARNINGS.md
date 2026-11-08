@@ -1092,3 +1092,11 @@ recipient boundaries.
 - Taught: before adding a control to a fixed-height card, count its rows. If a third flex child does not fit, place the control in an existing row's spare width with a grid cell, and let the tail-tolerant text (a live status) take the ellipsis, not the title.
 - Verdict: covered (§4.C yield rules, §9.A target size).
 - Action: logged; no rule text change.
+
+### 2026-11-08 — Centering a GitHub README title: `align="center"`, not CSS
+
+- Space Read: markdown-readme-header · balanced · STEP 8 · DENSITY 4 · RIGOR 5 · only the title line centred, body left-aligned.
+- Did: the AI Agent Company README opened with a left-aligned `# AI Agent Company` and a language-switch line under the screenshot. The title became `<h1 align="center">AI Agent Company</h1>` and the language line was removed from both README.md and README.vi.md. GitHub's markdown API (`gh api markdown`, gfm mode) returned `<h1 align="center" dir="auto">`, so the sanitiser keeps the attribute; a `style="text-align:center"` would be stripped. The heading keeps its GitHub h1 rule and anchor because it is still an `h1` element.
+- Taught: in GitHub-rendered Markdown, layout comes only from attributes the sanitiser allows. Centre a block with `align="center"` on the HTML element itself and confirm the output through the `/markdown` API before pushing; keep the body left-aligned.
+- Verdict: gap (§14 Markdown says rhythm comes from the renderer, but not which alignment controls survive GitHub's sanitiser).
+- Action: logged; no rule text change.
