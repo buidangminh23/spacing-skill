@@ -1068,3 +1068,11 @@ recipient boundaries.
 - Taught: for on-object chrome, separate the drawn handle from its hit box and centre the hit box on the outline. Keep handle centres ≥24px apart by pushing them outward on small objects (WCAG 2.5.8 spacing exception) instead of shrinking the hit area, and drop the mid-edge handles once the side is under twice the hit size. Measure handle centres against the object's own box, after removing any margin or inline baseline gap the wrapper adds.
 - Verdict: refinement (§9.A target size and spacing exception, applied to resize handles).
 - Action: logged; no rule text change.
+
+### 2026-11-08 — Scaled slide previews: size text in container units, not a guessed divisor
+
+- Space Read: editor side pane (design suggestions) · balanced · STEP 4 (inherited from sibling panes) · DENSITY 6 · RIGOR 8 · title↔description 4 < card parts 8 < card↔card 12, pane inset 16.
+- Did: Minh Slides' Designer pane rendered a 16:9 mini preview of each layout with `font-size: max(3px, fontSize / 7)`, a fixed guess that matched no real width. The stage is 960px wide; the preview measured 254px (252 inside its border). With `container-type: inline-size` on the preview and every slide length (font size, padding, corner radius) converted as `px / 960 * 100cqw`, a 32px title measured 8.4px, the exact 252/960 ratio, and it keeps that ratio if the pane width changes. Pane 320px, list padding 16px, card gap 12px, horizontal overflow 0.
+- Taught: when a thumbnail re-renders a fixed-size canvas, express every canvas length in container query units relative to the canvas's design width instead of a hand-tuned divisor. The preview stays proportional at any width, and the only number to keep correct is the canvas width.
+- Verdict: refinement (§12 implementation, scaled previews).
+- Action: logged; no rule text change.
