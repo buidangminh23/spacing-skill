@@ -1076,3 +1076,11 @@ recipient boundaries.
 - Taught: when a thumbnail re-renders a fixed-size canvas, express every canvas length in container query units relative to the canvas's design width instead of a hand-tuned divisor. The preview stays proportional at any width, and the only number to keep correct is the canvas width.
 - Verdict: refinement (§12 implementation, scaled previews).
 - Action: logged; no rule text change.
+
+### 2026-11-08 — Same ribbon clipping in the Slides editor; effect icon tiles on the 4px scale
+
+- Space Read: Slides ribbon galleries + dropdowns · balanced · STEP 4 · DENSITY 6 · RIGOR 8 · gallery card 58×52 holds a 24px tile + 10px label; full gallery tiles 28px; menu rows tile 24px.
+- Did: Minh Slides repeated the Docs bug: `.ppt-ribbon-body { overflow-x: auto; overflow-y: hidden }` clipped every dropdown, so the full transition gallery opened at y 250 while the ribbon ended at 176 and `elementFromPoint` inside the menu returned the canvas. One layout-effect hook on the ribbon body now fixes all three dropdown classes with `position: fixed` at anchor bottom + 4, clamped 8px from the viewport, `max-height = innerHeight − top − 8`. Measured: gallery 157→756 visible, add-animation menu 154→892 visible, both hit-tests inside the menu. Emoji gallery glyphs became lucide icons in tinted tiles (24/28/36px, radius 6/8/10, glyph 14/16/20 at stroke 1.75); every off-scale icon size (11/13/15/18/22) snapped to 12/14/16/24, and the 5 ribbon gallery cards measured 0 clipped labels.
+- Taught: nothing new; the 2026-11-07 rule applied unchanged to a second editor.
+- Verdict: covered (§8 overflow, §2 scale).
+- Action: logged; no rule text change.
