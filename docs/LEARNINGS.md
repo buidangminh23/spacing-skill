@@ -1084,3 +1084,11 @@ recipient boundaries.
 - Taught: nothing new; the 2026-11-07 rule applied unchanged to a second editor.
 - Verdict: covered (§8 overflow, §2 scale).
 - Action: logged; no rule text change.
+
+### 2026-11-08 — A control added to a fixed-height brand card: give it a grid cell, not a flex slot
+
+- Space Read: HUD brand card (title + live status) · balanced · STEP 4 · DENSITY 7 · RIGOR 8 · title one line, status + control share row 2, card height fixed at 52px.
+- Did: a language toggle was appended to the AI Agent Company brand header, which in HUD mode is a fixed-height (52px) flex column. The column had no room for a third child, so flex shrink squeezed the status line to 3px tall and the toggle overflowed into it. A first fix (two-column grid, toggle spanning both rows) cost the title 44px of width: it measured 145px against the 170px it needs and wrapped to two lines. Final layout: title spans both columns with `white-space: nowrap` (189px, one line), row 2 holds the status (`minmax(0, 1fr)`, ellipsis) and the toggle (`auto`, 32×24). Content measured y 21→63 inside the 16→68 card, 5px clear top and bottom; toggle meets the 24×24 AA target.
+- Taught: before adding a control to a fixed-height card, count its rows. If a third flex child does not fit, place the control in an existing row's spare width with a grid cell, and let the tail-tolerant text (a live status) take the ellipsis, not the title.
+- Verdict: covered (§4.C yield rules, §9.A target size).
+- Action: logged; no rule text change.
