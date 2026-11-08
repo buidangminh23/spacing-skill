@@ -1108,3 +1108,11 @@ recipient boundaries.
 - Taught: nothing new; the 2026-11-07 overflow rule and §9 target sizes applied unchanged to a shared component.
 - Verdict: covered (§8 overflow, §9.A targets, §6.B ladder).
 - Action: logged; no rule text change.
+
+### 2026-11-08 — Editable price column inside a read-only price table: match the numeric edge, not the input's own box
+
+- Space Read: price-table editor (app UI) · balanced · STEP 8 (inherited `--space-*`) · DENSITY 6 · RIGOR 8 · input right edge on the same line as the read-only number columns, input height equal to the slip-row inputs.
+- Did: Receipt Tools' "Bảng giá riêng theo khách" card puts one text input per row in a `.price-table` whose other numeric columns are plain right-aligned text. The input reuses the slip-table inset (`--space-half` × `--space-1`, `min-height: 36px`), gets `text-align: right` and a fixed `9rem` width so every row's input shares one column. Group rows (one contract service spanning several codes) get a 2px top rule instead of an extra card. Measured: input 135×36, its right edge 12px from the cell edge, the read-only "Khách đã trả" text also 12px from its cell edge, so digits line up across columns; at 320px the page is 320/320 wide, the table scrolls inside `.table-wrap` (808/645), no button clips.
+- Taught: nothing new; the cell's padding owns the edge for both the input and the text, so right-aligned digits line up without per-column nudges.
+- Verdict: covered (§4 numeric alignment, §8 isolated scroll container, §9.A targets).
+- Action: logged; no rule text change.
