@@ -1100,3 +1100,11 @@ recipient boundaries.
 - Taught: in GitHub-rendered Markdown, layout comes only from attributes the sanitiser allows. Centre a block with `align="center"` on the HTML element itself and confirm the output through the `/markdown` API before pushing; keep the body left-aligned.
 - Verdict: gap (§14 Markdown says rhythm comes from the renderer, but not which alignment controls survive GitHub's sanitiser).
 - Action: logged; no rule text change.
+
+### 2026-11-08 — One "Tính năng" dropdown shared by three ribbons: portal it, size rows to the 44px target
+
+- Space Read: ribbon dropdown list · packed · STEP 4 · DENSITY 7 · RIGOR 8 · icon↔text 12 < item inset 8 · group gap 12 above a heading that sits 4 above its rows.
+- Did: Minh Office's own features (Minh PDF tab, VietQR, signatures, accounting macros, SQL, live market data, polls, brand palette…) were pulled out of the Docs, Sheets and Slides ribbons into one searchable list behind a "Tính năng" button beside Minh AI / Add-in. One component serves three ribbons with different button classes, so the panel renders through a portal to `document.body` with `position: fixed` at anchor bottom + 4, left clamped 8px from the viewport, `max-height = innerHeight − top − 8`; this sidesteps both ribbon bodies' `overflow` clipping without per-editor fixes. Rows are 44px minimum (28px icon tile, title 1.35 + description 1.4 line-height). Measured in Slides at 1440×900: panel 340×596 at (1092, 154), `elementFromPoint` inside the panel returns the panel's own search box; Sheets list of 22 items scrolls inside the panel, page does not scroll.
+- Taught: nothing new; the 2026-11-07 overflow rule and §9 target sizes applied unchanged to a shared component.
+- Verdict: covered (§8 overflow, §9.A targets, §6.B ladder).
+- Action: logged; no rule text change.
