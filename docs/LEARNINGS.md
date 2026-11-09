@@ -1132,3 +1132,11 @@ recipient boundaries.
 - Taught: (1) a container-query block must come after the base rules it overrides; `@container` adds no specificity, so the base `.ws-app` padding that appeared later in the file won. (2) A scrolling strip of labels needs nowrap children, or the row shrinks them before it scrolls.
 - Verdict: covered (anti-pattern #17, §8.B small cells two-up, §4.C yield rules); the cascade-order note is a refinement of §12.
 - Action: logged; no rule text change.
+
+### 2026-11-09 · Minh Spark Office download page (public/tai-ung-dung.html)
+
+- Space Read: marketing download page · airy · STEP 8 · DENSITY 3 · RIGOR 6 · section gap 96 (64 under 760px), card inset 32 (24 under 480px), two platform cards equal height with specs pinned to the card foot.
+- Did: a one-line copy-to-clipboard command (`curl -fsSL <url> | bash`, 63 monospace chars) beside a 96px button overflowed a 326px code box at 1440 (scrollWidth 485) and showed a horizontal scrollbar. Letting it wrap broke `install-macos.sh` at the hyphen, because a hyphen is a soft-wrap opportunity. Fix: stack the command (code full width, button below, right-aligned; full width under 480px) and wrap only the URL in a `white-space: nowrap` span, released to `normal` under 480px so 320px still reflows. Copy reads `textContent`, so the span does not change what is copied. Checked: no element wider than the viewport at 1440, 375 and 320; buttons 48px, copy button 40px, FAQ rows 56px+.
+- Taught: wrapping a command or URL needs an explicit "unbreakable" span; `overflow-wrap: anywhere` plus a hyphen breaks inside the filename first.
+- Verdict: refinement (§9.D long values).
+- Action: logged; no rule text change.
