@@ -1116,3 +1116,11 @@ recipient boundaries.
 - Taught: nothing new; the cell's padding owns the edge for both the input and the text, so right-aligned digits line up without per-column nudges.
 - Verdict: covered (§4 numeric alignment, §8 isolated scroll container, §9.A targets).
 - Action: logged; no rule text change.
+
+### 2026-11-09 — Ultrawide dashboard: drop the content cap, let the content box pick the columns
+
+- Space Read: workspace dashboard (app UI) · balanced · STEP 8 (inherited) · DENSITY 5 · RIGOR 8 · section gap 40 held at every width; only column counts change.
+- Did: Minh Spark Office's home page capped `.ws-content` at `max-width: 1440px`, so on a 3440×1440 monitor (sidebar 248) about 1750px of the 3192px content box stayed blank on the right. The cap was removed and `.ws-content` became a size container (`container: ws-content / inline-size`). App cards step 1 → 2 → 3 → 5 columns at content 560 / 880 / 1440px; from 1800px "recent files" and "templates" sit side by side (`1.6fr | 1fr`), templates 2-up in the side column and 4-up from 2900px; the gutter rises 32 → 48px from a 2200px viewport. Templates moved from `auto-fill` to `auto-fit`: with 4 featured items at 1920px, auto-fill left two empty 0px tracks and the cards covered two thirds of the row, auto-fit gives 4 × 386px. Measured at 375 / 768 / 1280 / 1920 / 2560 / 3440: apps 1 / 2 / 3 / 5 / 5 / 5 columns, no horizontal scroll at any width, the two columns at 3440 end at 316 / 319px tall, and 3440 → 1280 returns to 3 columns in one flex column.
+- Taught: before turning a wrapper into a size container, list the `position: fixed` descendants; `container-type: inline-size` adds layout containment, which makes the wrapper their containing block (checked here: the drop overlay and dialogs render outside `.ws-content`). For a short fixed list in a fluid grid, `auto-fit` fills the row; `auto-fill` keeps empty tracks.
+- Verdict: refinement (§8.C container queries; the containing-block side effect is not written down).
+- Action: logged; no rule text change.
