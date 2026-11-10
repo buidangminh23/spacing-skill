@@ -1196,3 +1196,11 @@ recipient boundaries.
 - Taught: (1) a sidebar of fixed-height items is a vertical-reflow problem: shrink spacing in steps keyed to `max-height`, smallest losses first (outer padding, then item height, then decorative text), instead of letting a scrollbar appear for a few pixels. (2) Measure the content need as the sum of the children; a grid-item sidebar set to `height:auto` stretches to the page and reports a meaningless height.
 - Verdict: gap (§8 covers width breakpoints; it has no rule for height-driven compaction of fixed navigation).
 - Action: logged; no rule text change.
+
+### 2026-11-10 — Receipt Tools company pages: a day-picker strip of 44px targets and a two-column record row that stacks under 640px
+
+- Space Read: business dashboard card (light theme) · balanced · STEP 8 (existing `--space-*` tokens) · DENSITY 6 · RIGOR 7 · one day's slips or service reports listed under a month strip of day buttons, with total, unpriced-line tag and actions on the right.
+- Did: the month strip is a wrapping flex row of buttons with `min-width/min-height:44px` and a 4px (`--space-half`) gap; each button stacks the day number over its record count in 12px muted text, disabled for days without records. Each record is a `minmax(0,1fr) auto` grid (8px row / 16px column gap, 16px block padding, hairline separators, first item without top padding), the left column holding customer, title, item list and people, the right column right-aligned total, tag and actions. Under 640px the grid becomes one column and the right block left-aligns. Measured in Chromium at 375px: document scrollWidth 375 = viewport, card scrollWidth 349 = clientWidth, 7 records with no overflow; at 800px the strip wraps to three rows of up to 13 buttons.
+- Taught: nothing new; tabular-nums on both the strip and the totals keeps the day counts and money aligned without fixed widths.
+- Verdict: covered (§9 target size, §8 reflow, §4 two-column item rows).
+- Action: logged; no rule text change.
