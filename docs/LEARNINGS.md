@@ -1180,3 +1180,11 @@ recipient boundaries.
 - Taught: (1) a leading label in only one of two stacked button rows silently shifts that row's columns; give the label its own column spanning both rows so the button grids share tracks. (2) A flex heading turns every text run into a flex item, so punctuation around an inline count gets the heading's gap; wrap the count with its brackets.
 - Verdict: refinement (§4.C/§4.D cover shared spines and subgrid for cards, not a label that exists in only one row of a stacked toolbar).
 - Action: logged; no rule text change.
+
+### 2026-11-10 — Quota Control / scoped quota titles: wrap the countdown before hiding the window name
+
+- Space Read: tray quota card · packed · STEP 4 (inherited) · DENSITY 9 · RIGOR 9 · keep the complete model group and limit window readable inside the existing card gutter.
+- Did: Antigravity gained distinct Gemini, Claude/GPT and Argon weekly/five-hour labels. In the real React metric row at a 284px card width (256px content), the Vietnamese Argon title required 139px but received only 110px beside a 140px reset countdown; Claude/GPT needed 118px and received 110px. At a 256px card width (228px content), the title slot shrank to 82px. Scoped the change to Antigravity cards: the label flex row wraps, its row gap inherits --uc-row-gap (4px normal / 3px compact), and the title keeps its intrinsic width up to the content width with normal wrapping. The countdown retains its right alignment and moves to its own line when needed. Chromium measurements of all five real metric components in Vietnamese/English at 284px and Vietnamese at 256px then showed full title widths (139/118px), no clipped titles, zero title/countdown overlap, and no row overflow.
+- Taught: a group name and its trailing weekly/five-hour qualifier form one meaningful label. When a fixed countdown consumes its space, let the sibling move to another flex line instead of ellipsizing away the qualifier. Keep the rule scoped to the provider whose longer labels need it.
+- Verdict: covered (§8.C component width, §9.D dynamic text at its widest value).
+- Action: logged; no rule text change.
