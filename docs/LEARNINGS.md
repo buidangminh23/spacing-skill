@@ -1204,3 +1204,11 @@ recipient boundaries.
 - Taught: nothing new; tabular-nums on both the strip and the totals keeps the day counts and money aligned without fixed widths.
 - Verdict: covered (§9 target size, §8 reflow, §4 two-column item rows).
 - Action: logged; no rule text change.
+
+### 2026-11-11 — Receipt Tools receipt editor: move the status slot to the top of a gap stack and hide it while empty
+
+- Space Read: invoice form (light theme) · balanced · STEP 8 (existing `--space-*` tokens) · DENSITY 5 · RIGOR 8 · the reading/saving status belongs to the invoice, so it sits above the paper at the stack's 24px gap and shares the paper's edges.
+- Did: the owner could not see "Đang lưu file và đọc phiếu…" because the status `div` was the last child of the form, below the details panel and buttons. Moved it to be the first child of the `.stack` (flex column, `gap: 24px`). An empty first child of a gap stack still takes one gap slot, which would push the invoice down 24px whenever no message is shown, so added `#slip-msg:empty { display: none; }`. The helper writes `innerHTML = ""` for no message, so `:empty` matches. Measured in Chromium: empty → paper top − form top = 0px; with a message → message at 0px, message→paper gap 24px, left edges 37/37 and widths 654/654 (the existing `max-width: 860px; margin-inline: auto` rule still applies because the slot stays a direct child). Because save results now land at the top while the save button is at the bottom, the save handler scrolls the slot into view with `block: "nearest"` once a message exists.
+- Taught: a message slot placed inside a `gap` stack must collapse when empty (`:empty { display: none }`, and the writer must clear to an empty string, not whitespace); otherwise it adds a phantom gap. Moving feedback away from the control that triggers it needs a scroll-into-view so the result stays visible.
+- Verdict: refinement (§3.A single-owner gap: an empty child still owns a gap slot in a flex stack).
+- Action: logged; no rule text change.
