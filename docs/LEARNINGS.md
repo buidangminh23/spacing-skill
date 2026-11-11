@@ -1212,3 +1212,11 @@ recipient boundaries.
 - Taught: a message slot placed inside a `gap` stack must collapse when empty (`:empty { display: none }`, and the writer must clear to an empty string, not whitespace); otherwise it adds a phantom gap. Moving feedback away from the control that triggers it needs a scroll-into-view so the result stays visible.
 - Verdict: refinement (§3.A single-owner gap: an empty child still owns a gap slot in a flex stack).
 - Action: logged; no rule text change.
+
+### 2026-11-11 — Receipt Tools receipt editor: an ordered batch list above the form in the right column
+
+- Space Read: invoice editor with a batch of read slips · balanced · STEP 8 (existing `--space-*` tokens) · DENSITY 6 · RIGOR 8 · list rows scan like a table (number, file, unit, date, status) yet stay one tap target each, and the list must not push the invoice off screen.
+- Did: wrapped the form in a `.slip-side` flex column (gap 16) so the list and the form share the right grid column and its left edge (both 749px at a 1280px viewport). Rows are full-width buttons with a `3ch | minmax(0,1.3fr) | minmax(0,1fr) | auto | 11ch` grid, min-height 36px, file and unit truncating with ellipsis, date and number in tabular figures, status as a fixed-width pill so live "Đang đọc 6s" updates do not shift other columns. The list caps at 264px and scrolls. Under 640px, rows become two lines (unit and date on the second). Measured: 10 rows, row height 36px desktop / 47px at 375px, 0 rows with `scrollWidth > clientWidth`, no page overflow at 375px, list→form gap 16px, message→paper gap 24px.
+- Taught: a status cell that changes every second needs a fixed track, or the neighbouring truncating columns reflow on each tick.
+- Verdict: covered (§4.C truncation roles, §8 reflow, §9 targets).
+- Action: logged; no rule text change.
