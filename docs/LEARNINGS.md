@@ -1220,3 +1220,11 @@ recipient boundaries.
 - Taught: a status cell that changes every second needs a fixed track, or the neighbouring truncating columns reflow on each tick.
 - Verdict: covered (§4.C truncation roles, §8 reflow, §9 targets).
 - Action: logged; no rule text change.
+
+### 2026-11-11 — Minh Spark Office: a conversion menu that floats beside a fixed, scrolling sidebar
+
+- Space Read: floating menu off a dark 248px sidebar (light menu) · balanced · STEP 4 · DENSITY 6 · RIGOR 7 · the menu must clear the sidebar edge, not the button edge, and 40 rows must fit any viewport.
+- Did: the sidebar is `position:fixed; overflow-y:auto`, so an absolutely positioned popover inside it is clipped; rendered the menu through a portal with `position:fixed`. The first placement used the button's right edge (232px) + 8, which put the menu 8px over the sidebar (menu left 240 vs sidebar right 248); now it uses `anchor.closest('aside').right` + 8 → gap 8px. Top is clamped to [16, viewport − menu − 16] and the menu caps at `calc(100dvh − 32px)` with its own scroll. Rows: pair of 26px logos with a 4px internal gap, 12px to the text, min-height 48px, two columns at 640px wide, one column under 620px. At 600px "PowerPoint sang Markdown" truncated; 640px left 0 truncated labels. Measured 1440×900: left 256, top 16, height 868; 390×844: left 16, width 358, document scrollWidth 375 (no overflow). Initial off-screen state uses `left:-9999` instead of `visibility:hidden`, because focusing the first item while hidden silently fails.
+- Taught: a menu anchored to an item inside a fixed sidebar measures its gap from the sidebar's edge, not the item's; and a hidden-while-measuring popover must stay focusable (park it off-screen) so focus can move into it.
+- Verdict: refinement (§8 overlay placement next to fixed chrome).
+- Action: logged; no rule text change.
