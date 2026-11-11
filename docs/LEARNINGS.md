@@ -1228,3 +1228,11 @@ recipient boundaries.
 - Taught: a menu anchored to an item inside a fixed sidebar measures its gap from the sidebar's edge, not the item's; and a hidden-while-measuring popover must stay focusable (park it off-screen) so focus can move into it.
 - Verdict: refinement (§8 overlay placement next to fixed chrome).
 - Action: logged; no rule text change.
+
+### 2026-11-11 — Minh Spark Office CSV → Excel: column separation in a generated table
+
+- Space Read: data table in an .xlsx (Excel table style) · packed · DENSITY 8 · RIGOR 9 · columns must read as separate even when banded rows are the only cue.
+- Did: the owner said "chia cột rõ ràng hơn" on a TableStyleMedium2 table that only had row bands. Added a thin border (#B4C0D3 body, #8EA9CC header) on every cell, `indent: 1` on left- and right-aligned cells so text no longer touches the column line, header centred at 24pt, body rows 20pt (rows with a wrapping cell keep auto height). Column width = longest line + 5 (was + 3) to pay for the two indents. Verified in Microsoft Excel 16 export: widths 11.4–33.4, 1 ListObject, no clipped text.
+- Taught: row banding alone separates rows, not columns; a generated sheet needs vertical hairlines plus an inset (Excel `indent`) on both alignments, and the width formula must include that inset.
+- Verdict: covered (§6.F hairline before card, §14 tables).
+- Action: logged; no rule text change.
