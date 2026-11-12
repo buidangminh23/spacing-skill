@@ -1307,3 +1307,11 @@ recipient boundaries.
 - Taught: a trailing affordance (caret, badge) must not add a row to one control in a row of fixed-height controls, or that control's content recenters and its icon and label drop off the shared lines. Put the affordance on an existing row.
 - Verdict: refinement (§4 shared row lines; extends the 2026-11-12 ribbon note that fixed height + top alignment protects the icon line).
 - Action: logged; no rule text change.
+
+### 2026-11-13 — Orbit Book product page: laptop pinned under a fixed nav, zooming into its screen, caption pill over the zoomed screen
+
+- Space Read: scroll scene · airy · STEP 8 · DENSITY 2 · RIGOR 5 · sticky stage = 100svh − 64px nav; caption pill 32px above the stage bottom, 24px side gutters like the page, padding 8/16.
+- Did: (1) The nav height, `main` top padding and the scene's sticky offset all read one `--nav-height` token (64px). Measured: sticky child 836 + 64 = 900 at 1440×900, 780 + 64 = 844 at 390×844, held at top 64 for the whole 180vh travel. (2) The stage contains only the image, so the image center is the stage center. `transform-origin` sits on the screen's center (0.5, 0.46 of the image) and `translate((0.5 − center) × 100% × t)` moves that center onto the image center while `scale` grows to max(stage W / screen W, stage H / screen H) × 1.02. Measured on a fixture with a known screen box: the screen covers the stage from progress 0.75 at 1440×900 (zoom 2.15), 390×844 (4.54) and 320×640 (4.08); the screen's center dot ends at y 483 against a stage center of 482; same result after resizing 1440 → 390 → 1680 → 390 mid-scene. (3) Pinned caption: `position: absolute; left: 24px; right: 24px; width: fit-content; margin: 0 auto`, measured 216×34px, 32px above the stage bottom, no horizontal scroll at 320px. In the static layout it stays in flow under the laptop.
+- Taught: to bring a sub-region of an element (a device's screen) to the center of its container while zooming, put `transform-origin` on the sub-region's center and translate by `(0.5 − center) × 100%`; translate percentages refer to the element's own box, so the CSS needs no measured pixels.
+- Verdict: covered (§8.H transform-only motion, §8.E overlay over composited content, §9.D 320px reflow).
+- Action: logged; no rule text change.
