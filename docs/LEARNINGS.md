@@ -1260,3 +1260,11 @@ recipient boundaries.
 - Taught: adding chrome above a page means auditing every `position: fixed; inset: 0 …` descendant, because it measures from the viewport, not from the content box under the new bar; and keeping hidden panes laid out (visibility, not display) avoids zero-size reflow in canvas-based editors.
 - Verdict: refinement (§8 fixed chrome offsets, §4.C truncation roles).
 - Action: logged; no rule text change.
+
+### 2026-11-12 — Minh Spark Office: team tab cards, member stack and a two-column publish dialog
+
+- Space Read: card grid + dialog-form · balanced · STEP 8 · DENSITY 5 · RIGOR 8 · repeated cards share one row line for description, footer and button; two dialog columns share a label row and a bottom edge.
+- Did: (1) card titles of one and two lines pushed descriptions to different heights (two rows 22px apart); the title row now reserves two lines (`min-height: 44px`, `align-items: flex-start`, 2-line clamp) and every description starts at 616px. (2) A long category chip plus author wrapped the card footer to two lines in one card only; the footer is `flex-wrap: nowrap`, the chip `flex: 0 0 auto`, the author truncates, and all footers sit at 666px, all buttons at 706px. (3) Overlapping 24px initials avatars with an 8px overlap cut two-letter initials ("NH" read "NI"); overlap reduced to 4px. (4) In the publish dialog the left column started with the search box while the right started with a label, so the search sat 29px above the "Tên mẫu" input; a label row "Tài liệu của bạn" was added with an 8px column gap, giving labels at 242, search and first input both 271–315, and both columns ending at 612.
+- Taught: in a two-column form, both columns need the same first row type (label row) or their controls drift by one label height; in a card grid, a variable-height title must reserve its maximum lines or every row below misaligns.
+- Verdict: covered (§4 shared row lines, §11 alignment spine).
+- Action: logged; no rule text change.
