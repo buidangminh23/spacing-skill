@@ -1284,3 +1284,10 @@ recipient boundaries.
 - Taught: to make one control fill a toolbar row, keep its previous width as the flex basis and grow from there (`flex: 1 0 <old width>`), and let the repeated children grow too (`flex: 1 0 <tile>`), otherwise the container grows but its content sits left with an empty tail. Using the old width as the basis keeps every narrower layout identical to before.
 - Verdict: refinement (§3.A gap ownership unchanged, §8.I round trip measured).
 - Action: logged; no rule text change.
+
+## 2026-11-12 — Minh Spark Office: invite row with an inline add button
+
+- **Space Read:** form · balanced · STEP 4 · DENSITY 5 · RIGOR 8 · one 44px control row (email input, role select, submit) with the "+" inside the input.
+- **Change:** the multi-line email textarea became a single input with an absolutely positioned "+" button inset 4px; queued addresses render as chips below; one submit sends the whole batch.
+- **Measured:** input, select and submit all span y 402–446 (44px, same top and bottom); the submit had `margin-top: 29px` to clear the label row above the other two controls, so its box lines up with the inputs, not with the labels.
+- **Verdict:** covered (§4 shared row alignment, §9 44px targets). Lesson already in the skill: align a label-less button to the controls, not to the label row, by offsetting it by the label's height plus the label→control gap.
