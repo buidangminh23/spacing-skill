@@ -1252,3 +1252,11 @@ recipient boundaries.
 - Taught: in a grouped settings nav the group label belongs in the nav and, at most once, above the page title; repeating it as a caption when it equals the page name adds a line without information.
 - Verdict: covered (§6.B proximity ladder, §3.A single owner, §11 alignment spine).
 - Action: logged; no rule text change.
+
+### 2026-11-12 — Minh Spark Office: a document tab strip above a page whose sidebar is `position: fixed`
+
+- Space Read: app-chrome tab strip · balanced · STEP 4 (matches the 48px editor top bar) · DENSITY 7 · RIGOR 9 · tab 32 inside a 40px strip, tab↔tab 4, icon↔name 8, name↔close 4; names truncate, close and "+" keep their size.
+- Did: added a 40px strip above the workspace (Home + one tab per open document, each document in its own same-origin iframe). Tabs are `flex: 0 1 220px; min-width: 120px` with the name as the only shrinking child (`min-width: 0` + ellipsis), the close button `flex: none` 24×24, the strip `overflow-x: auto` so many tabs scroll inside the strip instead of the page. The active tab is 1px taller with `margin-bottom: -1px` so it covers the strip's bottom hairline and joins the page below. The Home sidebar is `position: fixed; inset: 0 auto 0 0`, so it would have painted over the first 248px of the strip; with tabs present it gets `top: var(--doc-tabs-height)`. Hidden layers (Home or inactive frames) use `visibility: hidden` + `inert`, not `display: none`, so editors keep their measured size and a spreadsheet canvas does not re-layout from 0×0 on every switch. Measured in Chrome at 1920px with 5 tabs: strip 40, tabs 32 (active 33), all gaps 4 except "+" 8, icon→name 8, close 24×24, strip scrollWidth = clientWidth, sidebar top 40.
+- Taught: adding chrome above a page means auditing every `position: fixed; inset: 0 …` descendant, because it measures from the viewport, not from the content box under the new bar; and keeping hidden panes laid out (visibility, not display) avoids zero-size reflow in canvas-based editors.
+- Verdict: refinement (§8 fixed chrome offsets, §4.C truncation roles).
+- Action: logged; no rule text change.
