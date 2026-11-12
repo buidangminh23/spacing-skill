@@ -1299,3 +1299,11 @@ recipient boundaries.
 - Taught: to draw a separator that a child must be able to cover, inside a scroller, use an inset shadow on the container, not a border; and scale a preview with one length unit so every dimension stays proportional.
 - Verdict: covered (§6.F separator ladder, §11 #13 inset scales with surface).
 - Action: logged; no rule text change.
+
+### 2026-11-12 — Minh Spark Office: large dropdown buttons beside plain large buttons, and a tips side pane
+
+- Space Read: ribbon toolbar · packed · STEP 4 · DENSITY 7 · RIGOR 9 · every large control in a group puts its icon at the same y and its label at the same y; tips pane · balanced · STEP 4 · inside one tip 4, tip↔tip 12, section↔section 16, inset 12.
+- Did: (1) Docs large dropdowns (`Chuyển cửa sổ`, `Macro` and 53 others) stacked icon, label and a 10px caret in one flex column of a 64px button. Centering three rows lifted icon and label 6px above the neighbouring two-row buttons: icon 102 vs 108, label 127 vs 133. The dropdown button became a two-column grid: the icon spans both columns, and label + caret share row 2 (`column-gap: 2px`, same `row-gap` as the flex gap). Measured after: all six controls icon 108, label 133, caret 2px right of the label and centered on it (offset 0), no overflow. (2) The new 360px tips pane uses the add-in pane's header inset and a 4/12/16 ladder; a hairline divides tips, so the gap is not doubled.
+- Taught: a trailing affordance (caret, badge) must not add a row to one control in a row of fixed-height controls, or that control's content recenters and its icon and label drop off the shared lines. Put the affordance on an existing row.
+- Verdict: refinement (§4 shared row lines; extends the 2026-11-12 ribbon note that fixed height + top alignment protects the icon line).
+- Action: logged; no rule text change.
