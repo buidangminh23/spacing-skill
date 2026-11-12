@@ -1244,3 +1244,11 @@ recipient boundaries.
 - Taught: a dialog shell with right-aligned actions is the wrong primitive for a page whose single action is the point; when the column is centered, the one action spans the column, otherwise text and button form two spines. Also: a trailing margin on the last child silently adds to the container inset; let the stack own every gap.
 - Verdict: covered (§3.A single owner, §6.C/§6.E emphasis by isolation, §11 #8 alignment spine).
 - Action: logged; no rule text change.
+
+### 2026-11-12 — Minh Spark Office: settings dialog with grouped nav and Word-style option cards
+
+- Space Read: settings-form (modal, sidebar + content) · balanced · STEP 8 · DENSITY 5 · RIGOR 8 · option label↔hint 4, row↔row 16, card↔card 24; content and header share one left edge.
+- Did: rebuilt the Settings modal as a 248px nav plus a scrolling content pane. Each option card owns a 24px inset; rows inside use one flex column with gap 16 (no row margins), label→hint 4. The page header (category caption + title) and the cards start at the same x (32 from the pane edge). Nav entries are grouped under small-caps headings ("Chung", "Minh Docs", "Minh Sheets", "Minh Slides"); the group caption above the page title is shown only for app groups, because "Chung / Chung" read as a stutter. Breakpoints at 900px (nav narrows) and 760px (nav becomes a top strip). Measured in Chrome at 1568px: card gap 24, row gap 16, card padding 24, content left = header left = 32, label→hint 4, content `scrollWidth − clientWidth` 0.
+- Taught: in a grouped settings nav the group label belongs in the nav and, at most once, above the page title; repeating it as a caption when it equals the page name adds a line without information.
+- Verdict: covered (§6.B proximity ladder, §3.A single owner, §11 alignment spine).
+- Action: logged; no rule text change.
