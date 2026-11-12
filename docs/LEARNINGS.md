@@ -1291,3 +1291,11 @@ recipient boundaries.
 - **Change:** the multi-line email textarea became a single input with an absolutely positioned "+" button inset 4px; queued addresses render as chips below; one submit sends the whole batch.
 - **Measured:** input, select and submit all span y 402–446 (44px, same top and bottom); the submit had `margin-top: 29px` to clear the label row above the other two controls, so its box lines up with the inputs, not with the labels.
 - **Verdict:** covered (§4 shared row alignment, §9 44px targets). Lesson already in the skill: align a label-less button to the controls, not to the label row, by offsetting it by the label's height plus the label→control gap.
+
+### 2026-11-12 — Minh Spark Office: legacy Office ribbon skins and scaled theme previews
+
+- Space Read: ribbon toolbar skins · packed · STEP 4 · DENSITY 8 · RIGOR 8 · geometry of the existing ribbon kept, only colors, borders and tab shapes change; settings cards · balanced · STEP 4 · card gap 12, group title→cards 8, group→group 24.
+- Did: (1) The active tab had to cover the tab bar's bottom line (Office 2010/2013 "raised tab"). The bar has `overflow-y: hidden`, so a child shadow painted over the bar's `border-bottom` was clipped. Drew the line with `box-shadow: inset 0 -1px 0` on the bar instead: it paints in the padding box under the children, and the active tab's own background hides it. (2) Office 2007 boxed groups: the group label strip spans the full box with negative margins equal to the section padding (`margin: 2px -7px 0 -6px` for padding `2px 7px 2px 6px`; sheet sections use `-6px`), so the strip meets both side borders. (3) Theme cards render a real mini window from the same CSS variables as the editor chrome, sized with one unit `--u` (1px full, 0.35px in cards); at 0.42 the window's minimum width (330u = 139px) overflowed the 116px card and cut the last tabs, 0.35 (116px) fits.
+- Taught: to draw a separator that a child must be able to cover, inside a scroller, use an inset shadow on the container, not a border; and scale a preview with one length unit so every dimension stays proportional.
+- Verdict: covered (§6.F separator ladder, §11 #13 inset scales with surface).
+- Action: logged; no rule text change.
