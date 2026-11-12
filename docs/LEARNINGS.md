@@ -1236,3 +1236,11 @@ recipient boundaries.
 - Taught: row banding alone separates rows, not columns; a generated sheet needs vertical hairlines plus an inset (Excel `indent`) on both alignments, and the width formula must include that inset.
 - Verdict: covered (§6.F hairline before card, §14 tables).
 - Action: logged; no rule text change.
+
+### 2026-11-12 — Minh Spark Office: desktop sign-in page rebuilt from a generic dialog into a centered auth card
+
+- Space Read: standalone sign-in page · balanced · STEP 8 · DENSITY 3 · RIGOR 6 · single centered column; logo→title 16, title→intro 8, group↔group 32; one full-width action.
+- Did: the page reused the app's generic `.dialog` (left-aligned text, `.dialog-actions { justify-content: flex-end }`), so the only action, "Đăng nhập bằng Google", sat flush right while every line of text sat flush left: two alignment spines for one column. Switched to the unused `.auth-card`, rewritten as a single-owner flex stack: card gap 32 owns header / body; `.auth-head` gap 16 owns logo → title block; `.auth-title` gap 8 owns h1 → intro; `.auth-body` gap 16 owns error → button → note; all children `margin: 0`. Removed an off-scale `28px` intro margin and a bottom `24px` disclosure margin that stacked on the 40px card inset (bottom read 64 vs top 40). Page gutter 20 → 16 on mobile. Measured with headless Chrome: 1280px card 460 wide, inset 40/40 top/bottom, logo→h1 16, h1→intro 8, intro→alert 32, alert→button 16, button→note 16, button 378×48; 320px inset 24, button 230×48, no horizontal scroll.
+- Taught: a dialog shell with right-aligned actions is the wrong primitive for a page whose single action is the point; when the column is centered, the one action spans the column, otherwise text and button form two spines. Also: a trailing margin on the last child silently adds to the container inset; let the stack own every gap.
+- Verdict: covered (§3.A single owner, §6.C/§6.E emphasis by isolation, §11 #8 alignment spine).
+- Action: logged; no rule text change.
