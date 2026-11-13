@@ -1393,3 +1393,12 @@ recipient boundaries.
 - Taught: an interactive product illustration can remain visible in normal flow without entrance motion; keep a clear boundary between inspected source spacing and measured browser geometry.
 - Verdict: covered (§3 gap ownership, §6 proximity, §8 responsive layout, §9 accessibility floors).
 - Action: logged; no rule or version change.
+
+### 2026-11-14 — Relay tour: accessible progress targets and a full-width logo loop
+
+- Space Read: launch-page gallery and logo marquee · airy · STEP 8 · DENSITY 2 · RIGOR 6 · related gaps 16–32px, section spacing 64–96px, controls at least 48px.
+- Did: replaced empty gallery and customer placeholders with four six-second clips and five supplied logo paths. Each progress dot has a 48×48px hit box around an 8px dot (32px active bar); controls sit in normal flow below the media with a 16px gap. Static logo lists wrap with 32px gaps; moving lists use 64px gaps and a matching end inset. Source-derived loop width is 5 × (160 + 64) = 1120px, exceeding the maximum 1080px content width, so the duplicate covers the trailing edge for the whole translation. Mobile text gutters are 16px.
+- Evidence: final script passed 25/25 mocked-DOM and source checks, including pause/resume, visibility, reduced motion and loop-width arithmetic; CSS static lint returned 0 errors and 0 warnings. These are source values and simulated behavior, not rendered measurements. Media assets are absent; Chrome is not running and browser access is unavailable; the rendered checker cannot run because project Playwright is absent. Rendered reflow, logo artwork, playback and real-device focus remain unverified.
+- Taught: a duplicated marquee group must span at least its viewport; otherwise the trailing edge exposes a blank interval even when the -50% translation closes mathematically. Keep timing/visibility proof separate from rendered geometry.
+- Verdict: covered (§3 gap ownership, §8 responsive layout, §9 target-size floors).
+- Action: logged; no rule or version change.
