@@ -1384,3 +1384,12 @@ recipient boundaries.
 - Taught: column definitions and each child's Grid.Column must be treated as one contract. A theme update can alter child columns and introduce measurement feedback through MaxWidth; re-read the owning theme before keeping old overrides. Equal flexible outside tracks center the combined intrinsic-width content. Transparent pixels and reserved desktop work area are separate concerns: removing the brush alone cannot make maximized windows occupy the taskbar band.
 - Verdict: covered (§4.C shared layout, §4.E center the actual box, §5.E content-driven inline sizing, §8.E overlays).
 - Action: corrected the same learning with final live evidence. The earlier quota-number adjustment was the wrong interpretation and was fully reverted before release; no skill rule or version change.
+
+### 2026-11-14 — Tally launch page: static-first layout and explicit verification boundaries
+
+- Space Read: launch page · airy · STEP 8 · DENSITY 2 · RIGOR 6 · related gaps 8–24px, group gaps 48px, section padding 96px.
+- Did: built a standalone page with a two-column hero and a three-column feature grid. Source values: page gutters 64px on wide desktop, 32px by default and 24px on mobile; hero column gap 64/48/32px, then one column below 768px; features use 32/24px gaps, then one column below 541px; primary targets have a 52px minimum height and navigation targets 44px. No layout existed before this edit.
+- Evidence: static CSS/HTML lint returned 0 errors and 0 warnings; 16/16 mocked-DOM interaction checks and 15/15 source-color contrast pairs passed. These are source values and simulated behavior, not rendered spacing measurements. Chrome was not running and its browser access host was unavailable; the bundled rendered checker stopped with exit 2 because Playwright was absent. Reflow, real keyboard focus and composited contrast remain unverified.
+- Taught: an interactive product illustration can remain visible in normal flow without entrance motion; keep a clear boundary between inspected source spacing and measured browser geometry.
+- Verdict: covered (§3 gap ownership, §6 proximity, §8 responsive layout, §9 accessibility floors).
+- Action: logged; no rule or version change.
