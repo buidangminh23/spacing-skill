@@ -1374,3 +1374,12 @@ recipient boundaries.
 - Taught: a control with a fixed height that is reused in both row and column flex containers must not carry `flex: 1` into the column case; scope the grow to the row. When a scrolling region stacks panels that set `min-height: 0` (needed for their own inner scroll on desktop), stack them with column flex and `flex: none`, not a one-column grid, or the rows compress to the container instead of overflowing it.
 - Verdict: refinement (§3 primitives; §8 reflow under breakpoint).
 - Action: logged; no rule text change.
+
+### 2026-11-13 — Center the complete Windows taskbar, including a wide notification area
+
+- Space Read: Windows taskbar · packed · STEP 4 · DENSITY 9 · RIGOR 10 · center both clusters as one group, with an 8px internal gap.
+- Did: corrected the Windhawk TaskbarXII outer grid from two star-width columns to two Auto columns and centered that grid. Removed a negative app-frame margin derived from notification-area width; set app-frame trailing margin and tray leading margin to 4px each. Kept quota text, dynamic tray sizing, theme and dock animation unchanged.
+- Evidence: before, a 1920px-wide desktop showed the app frame starting at x=356 and the tray clipped against x=1920. After the live registry reload, the combined taskbar spans x=160 through x=1760, giving equal 160px side margins. UI Automation measured the app frame at x=160, width=602, height=48; the screenshot shows an 8px gap before the tray at x=770. The Quota Control native overlay and its tray button both measured x=810, y=1031, width=736, height=42. Registry reads confirmed persisted settings and the dock-animation mod remains enabled.
+- Taught: when centering adjacent variable-width clusters, center their combined intrinsic-width container. Two equal star tracks center the divider, not the complete content; negative offsets based on only one cluster mask the defect until that cluster grows. Confirm both outside margins and native overlay/button alignment.
+- Verdict: covered (§4.C shared layout, §4.E center the actual box, §5.E content-driven inline sizing).
+- Action: recorded the verified OS layout correction. An earlier quota-number adjustment was the wrong interpretation of the request and was fully reverted before release; no skill rule or version change.
