@@ -1349,3 +1349,11 @@ recipient boundaries.
 - Taught: in a two-column split where one side has a natural maximum (a form or a printed-page mock-up), give that side a percentage track clamped between its content floor and its maximum, and let the other side take `1fr`. A fixed `minmax(0, max)` on the content side makes it win all spare width first. Wrap a hard floor in `minmax(0, …)` so the grid shrinks instead of overflowing between breakpoints, and set the floor from the widest unbreakable child (here the 620px table plus its padding), not a round number.
 - Verdict: refinement (§4 track sizing; §9.D reflow between breakpoints).
 - Action: logged; no rule text change.
+
+### 2026-11-13 — 600-frame canvas hero: bounded rendering and a static short-viewport layout
+
+- Space Read: marketing hero · airy · STEP 8 · DENSITY 2 · RIGOR 5 · outer inset 24–64px, related gaps 16px, group gaps 32px.
+- Did: built a new standalone hero in an empty fixture. The sticky stage uses 100svh with a 600svh section; viewports up to 640px tall use a static stage in normal flow, avoiding a 640px mobile stage pinned into a shorter viewport. Poster and canvas share cover fitting with a 70% horizontal focal point.
+- Evidence: source-derived spacing values only, not rendered browser measurements. A mocked DOM verified canvas backing dimensions 640×960 for a 320×480 visual and 1920px wide after returning to a 1440px visual; 12/12 automated checks passed, including short-viewport and reduced-motion static fallbacks. The 600/600 sample images were validated at 1920×1080. Chrome was not running and its browser access host was unavailable, so visual overlap, 320px reflow and real-device smoothness remain unverified.
+- Taught: reserve a static short-viewport treatment alongside a pinned media scene, and distinguish backing-store dimensions and mocked lifecycle checks from a rendered layout measurement.
+- Verdict: covered (§8 responsive reflow, §8.H reduced motion, §8.I resize round trip). No skill rule or version change.
