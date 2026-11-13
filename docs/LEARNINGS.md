@@ -20,6 +20,14 @@ The owner has standing opt-in to capture every new, verified spacing or alignmen
 method from their projects in this repository. See §15 for the maintainer and
 recipient boundaries.
 
+### 2026-11-14 — Search preview card — reserve five rows in a fixed video canvas
+
+- Space Read: search panel in a 640 × 360 landing card · balanced · STEP 8 · DENSITY 6 · RIGOR 9 · shared text spine, at most five visible rows.
+- Did: built the panel from an empty HTML fixture; measured a 640 × 346 px panel at y=8, five 48 px rows, and every title/excerpt starting at x=49. Reserved the 240 px results area so filtering from five to four to two notes kept panel and footer geometry unchanged. The two remaining rows retained the same x=49 spine; page overflow was false. Verified the selected second row in a decoded 1280 × 720 H.264 frame, rather than only the HTML source.
+- Taught: a bounded product demo benefits from a stable results region while search content narrows; reserve the maximum row count before animating content, and check the encoded output at its intended CSS display size.
+- Verdict: covered (§4 shared alignment, §8 motion and fixed media framing).
+- Action: journal only; existing guidance covers the method.
+
 ### 2026-11-05 — Gemera dashboard / review queue — size columns by content, not by equal share
 
 - Space Read: review queue on a 3180 px screen · packed · STEP 4 · DENSITY 8 · RIGOR 8 · 94 of 97 posts sit in one of six buckets, so equal columns leave most of the width blank
