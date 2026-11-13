@@ -1374,3 +1374,12 @@ recipient boundaries.
 - Taught: a control with a fixed height that is reused in both row and column flex containers must not carry `flex: 1` into the column case; scope the grow to the row. When a scrolling region stacks panels that set `min-height: 0` (needed for their own inner scroll on desktop), stack them with column flex and `flex: none`, not a one-column grid, or the rows compress to the container instead of overflowing it.
 - Verdict: refinement (§3 primitives; §8 reflow under breakpoint).
 - Action: logged; no rule text change.
+
+### 2026-11-13 — Quota Control taskbar: stable percentage columns
+
+- Space Read: taskbar monitoring strip · packed · STEP 4 · DENSITY 9 · RIGOR 10 · shared label/value baselines and stable numeric columns.
+- Did: enabled measured alphabetic baselines and separate label/value column measurements for the Windows canvas renderer. Reserved the measured width of `100%`; changed mark gap 5→4px, account gap 14→12px, outer inset 6→8px and minimum label/value gap 3→4px. Kept native tray placement and platform font sizes.
+- Evidence: headless Chrome rendered the same eight-account fixture before and after at 723px and 760px wide. At 1x both rows now use alphabetic baselines 21.5px and 34.5px in a 48px band. Sixteen real-canvas checks across 1/1.25/1.5/2x and 0/9/99/100 percent kept the single-account width constant at each scale (94/118/141/188px); the minimum label/value gap was 4.30px at 1x, with no clipped glyphs. Before/after PNGs were visually inspected. Existing strip tests: 27 passed.
+- Taught: when live values share a right edge, reserve a measured numeric column across rows instead of only measuring each complete label/value pair. Reuse font-metric baselines for mixed label/value sizes; validate changing digits at fractional display scales.
+- Verdict: covered (§4 shared columns, §5 type rhythm, §7 optical alignment, §9.D widest dynamic values).
+- Action: recorded measured evidence; no skill rule or version change.
