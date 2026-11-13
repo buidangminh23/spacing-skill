@@ -1340,3 +1340,11 @@ recipient boundaries.
 - Taught: in a fixed-layout table, a cell whose text length comes from data (OCR/AI reads) must wrap, not truncate; an auto-growing textarea with `field-sizing: content` keeps the one-line row height when the vertical padding is derived as (control min-height − line-height) / 2.
 - Verdict: covered (§9.D long values that must remain fully readable; §9.C no fixed-height text boxes).
 - Action: logged; no rule text change.
+
+### 2026-11-13 — Receipt Tools slip editor: scan preview stuck at 420px beside an 860px invoice
+
+- Space Read: workspace split view · balanced · STEP 8 · DENSITY 5 · RIGOR 7 · preview takes the width the invoice does not need; invoice 656–860px (656 keeps its 620px item table from scrolling); 24px gutter; sticky preview height = 100dvh − 2×16px edge inset − 32px "Mở to" row.
+- Did: columns were `minmax(0, 420px) minmax(0, 1fr)` with the invoice capped at 860px inside the 1fr track, so on a 3440px screen the preview stayed 420×640 and 115px of the right track sat empty. Changed to `minmax(420px, 1fr) minmax(0, min(860px, max(656px, 44%)))` and `--preview-height: max(640px, calc(100dvh - 32px - 32px))`; the main container cap for this tab went from 1600 to 2112px. A first try with a hard `max(640px, 44%)` floor overflowed the editor by 98px at a 986px editor and made the invoice table scroll at 1126px; wrapping the track in `minmax(0, …)` and raising the floor to 656 fixed both. Measured by narrowing `main` in place (the window was maximized, so resizing it had no effect): editor 1998 → preview 1114×1199, invoice 860; 1586 → 864/698; 1286 → 606/656; 1126 → 446/656; overflow 0 and gap 24 at every width; table scroll only below a 1100px editor, as before.
+- Taught: in a two-column split where one side has a natural maximum (a form or a printed-page mock-up), give that side a percentage track clamped between its content floor and its maximum, and let the other side take `1fr`. A fixed `minmax(0, max)` on the content side makes it win all spare width first. Wrap a hard floor in `minmax(0, …)` so the grid shrinks instead of overflowing between breakpoints, and set the floor from the widest unbreakable child (here the 620px table plus its padding), not a round number.
+- Verdict: refinement (§4 track sizing; §9.D reflow between breakpoints).
+- Action: logged; no rule text change.
