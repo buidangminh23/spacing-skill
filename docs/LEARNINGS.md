@@ -20,6 +20,14 @@ The owner has standing opt-in to capture every new, verified spacing or alignmen
 method from their projects in this repository. See §15 for the maintainer and
 recipient boundaries.
 
+### 2026-11-14 — Pinned feature scene under a 72 px sticky header — fit the stage to the pinned pane
+
+- Space Read: pinned scroll scene (image + caption) under a sticky header · airy · STEP 8 · DENSITY 2 · RIGOR 5 · stage = 100svh − header − 2 × inset, caption block reserved before the image gets any height.
+- Did: the sticky pane used `top:0; height:100vh` and a fixed 820 px stage, so the header covered the pane's top 72 px and `overflow:hidden` clipped the rest. Measured at 1280 × 680 before: image top 0–64 under the header, caption 688–721 below the 680 px fold at every scroll position, so it could never be reached. Changed the pane to `top:var(--header-h); height:calc(100svh - var(--header-h))` with a `clamp(16px,4svh,32px)` inset, sized the image `min(640px, pane − 2 × inset − caption block)` (caption gap and size also clamped on `svh`), and computed scroll progress from the pane's computed `top` and `offsetHeight` instead of the viewport top. Below 480 px tall the scene unpins and shows its end state. After, with a real 720 × 640 image: image and caption fully inside the visible band (72 → bottom) at p = 0, 0.5 and 1 for 1280 × 520, 1280 × 680, 1440 × 760, 1470 × 820 and 1920 × 1080; at 1920 × 1080 the image is still 640 px with the full 0.8 → 1 scale and caption fade.
+- Taught: a pinned scene is a fixed-height region, so the content has to be fitted to the pane, not the pane to the content. Reserve every fixed-height part (caption, controls) first and give the media the remainder, capped at its design size so large screens are unchanged. The pin offset and the progress formula must both use the header height, or the effect starts and ends while the stage sits under the header. Give very short viewports an unpinned fallback rather than shrinking the media without limit.
+- Verdict: gap (§8.G covers anchored scroll under a sticky header, not pinned scroll scenes).
+- Action: logged here as measurement evidence; not yet folded into the skill.
+
 ### 2026-11-14 — Search preview card — reserve five rows in a fixed video canvas
 
 - Space Read: search panel in a 640 × 360 landing card · balanced · STEP 8 · DENSITY 6 · RIGOR 9 · shared text spine, at most five visible rows.
