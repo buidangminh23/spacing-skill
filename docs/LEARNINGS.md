@@ -1366,3 +1366,11 @@ recipient boundaries.
 - Taught: in a stacked text-plus-image lockup, center the lines on one axis instead of left-aligning them. The text width changes with font fallback and responsive type while the image is fixed, so a left-aligned lockup that looks balanced at one size drifts at others. Measure ink, not boxes: for the text use `measureText().actualBoundingBox*`, for the image the alpha bounding box and mass center (an italic mark's mass sits about 2% of its width right of its box center).
 - Verdict: covered (§7 optical alignment of brand marks; §8 re-check every breakpoint's type size).
 - Action: logged; no rule text change.
+
+### 2026-11-13 — Office 23 merge/split dialog: squashed name field and overlapping stacked columns
+
+- Space Read: two-column tool dialog · balanced · STEP 4 · DENSITY 5 · RIGOR 8 · row gap 8px, section gap 12–16px, column inset 20/24px.
+- Did: built a 1160×760 dialog with a left settings column and a right preview column. Two collapses showed up in Chromium measurement. (1) The 44px "file name" box sat in a `flex-direction: column` label with `flex: 1` inherited from its row use, so in the column the 0% basis overrode `height` and it rendered 22px tall; giving the box `flex: none` inside the label restored 44px (measured 40–44px boxes in every panel). (2) Under 900px the two columns became one grid column inside a fixed-height scrolling body; both tracks were `auto` but the items had `min-height: 0`, so the grid shrank the rows to the container and the first column's list drew over the preview (bottom of column 1 below top of column 2). Switching the stacked layout to `display:flex; flex-direction:column` with `flex: none` columns gave column-1 bottom = column-2 top (676.4 = 676.4px at 390px wide), scrollWidth 354 = clientWidth 354.
+- Taught: a control with a fixed height that is reused in both row and column flex containers must not carry `flex: 1` into the column case; scope the grow to the row. When a scrolling region stacks panels that set `min-height: 0` (needed for their own inner scroll on desktop), stack them with column flex and `flex: none`, not a one-column grid, or the rows compress to the container instead of overflowing it.
+- Verdict: refinement (§3 primitives; §8 reflow under breakpoint).
+- Action: logged; no rule text change.
