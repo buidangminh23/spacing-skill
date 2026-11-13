@@ -1410,6 +1410,15 @@ recipient boundaries.
 - Verdict: covered (§3 gap ownership, §6 proximity, §8 responsive layout, §9 accessibility floors).
 - Action: logged; no rule or version change.
 
+### 2026-11-14 — Small focus widget: measure intrinsic content inside system margins
+
+- Space Read: compact macOS utility · balanced · STEP 8 · DENSITY 5 · RIGOR 8 · 16pt widget margins, 8pt related gaps, 16–24pt group gaps and 28pt minimum widget controls.
+- Did: built ready, running, paused and completed views in light and dark appearances. Replaced the initial bordered widget button styling with explicit plain button labels and fills while retaining native Button intents. Removed a fixed content frame from the measurement fixture so the checker could observe intrinsic height.
+- Evidence: initial widget content required 161pt of a 170pt slot; the final layout required 153pt including the 16pt system margins. All eight fixtures fit at 170×170pt and rendered at 340×340px. A second render matched all eight checked-in baselines byte for byte, with zero errors. The offscreen checker retained three warnings about native controls and real WidgetKit presentation; actual desktop placement, tinting and interaction were not verified.
+- Taught: measure the intrinsic view plus its system margins rather than constraining the content to the slot before testing fit. Preserve a separate verification boundary for offscreen layout and interactive desktop widgets.
+- Verdict: covered (§3 gap ownership, §6 proximity, §8 responsive geometry, §9 accessibility floors).
+- Action: logged; no rule or version change.
+
 ### 2026-11-14 — Relay tour: accessible progress targets and a full-width logo loop
 
 - Space Read: launch-page gallery and logo marquee · airy · STEP 8 · DENSITY 2 · RIGOR 6 · related gaps 16–32px, section spacing 64–96px, controls at least 48px.
