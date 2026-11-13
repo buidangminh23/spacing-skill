@@ -1315,3 +1315,11 @@ recipient boundaries.
 - Taught: to bring a sub-region of an element (a device's screen) to the center of its container while zooming, put `transform-origin` on the sub-region's center and translate by `(0.5 − center) × 100%`; translate percentages refer to the element's own box, so the CSS needs no measured pixels.
 - Verdict: covered (§8.H transform-only motion, §8.E overlay over composited content, §9.D 320px reflow).
 - Action: logged; no rule text change.
+
+### 2026-11-13 — Kettle landing page: testimonials pinned for 200vh, fit gate measuring two different boxes
+
+- Space Read: marketing section (pinned scene) · airy · STEP 8 (inherited 24/96) · DENSITY 2 · RIGOR 5 · end state = the static grid unchanged (section inset 96, gutter 24); the box drops its block padding only while pinned so the sticky child starts at the box top.
+- Did: wrapped the heading and the three-quote grid in a sticky stage; the gate pins only when stage height + sticky offset ≤ viewport height. The probe failed at 390×367: the stage measured 348px in normal flow (the h2's 19.9px top margin collapsed out of it) but 368px once pinned, because the pinned sticky child is `display: grid` and a grid item contains its children's margins. Gave the stage `display: flow-root`; it now measures 368px in both states. Measured before/after against the original page at 1440×900 and 390×844: h2 and every quote at identical offsets and sizes to 0.1px, gap from the last quote to the next section 96px as before (383/238px while pinned, because the stage is centered in 100svh). Probe 32/32 at 1440×900, 390×844, 768×1024.
+- Taught: when a container's height is measured to make a layout decision and the container switches formatting context between states (block flow ↔ grid/flex item), make it a formatting root in both states (`display: flow-root`), so collapsing margins of its first and last children count the same each time. Otherwise the decision flips at the boundary.
+- Verdict: refinement (§3.A margin ownership).
+- Action: logged; no rule text change.
