@@ -1332,3 +1332,11 @@ recipient boundaries.
 - Taught: a stage taller than its scroll-container parent does not overflow evenly when centered; it overflows at the end edge, so the last item (a caption, a CTA) is the first thing lost. A fixed stage height with empty space below the content raises the fit gate by that empty space. Size the stage to the content that must be visible and gate on that.
 - Verdict: refinement (§8 responsive reflow; extends the 2026-11-13 Orbit Book sticky-offset and Kettle fit-gate entries).
 - Action: logged; no rule text change.
+
+### 2026-11-13 — Receipt Tools invoice table: long goods names clipped in a one-line input cell
+
+- Space Read: data-table (form-in-table) · packed · STEP 4 (inherited 4/8/16) · DENSITY 8 · RIGOR 9 · name cell grows by whole 20px line-boxes; one-line rows keep the 36px row floor; other cells stay vertically centered.
+- Did: the "Tên hàng" cell held an `<input>` inside a `table-layout: fixed` column (328px), so AI-read names such as "Bộ vi xử lý Intel Core i5 14400F ( 10 nhân, 16 luồng, xung nhịp tối đa 4.7 Ghz, LGA1700 )" were cut at the cell edge. Replaced it with `<textarea rows="1">` + `field-sizing: content`, `line-height: 20px`, `padding: 6px 8px` (6 = (32 − 20)/2, so a one-line box keeps the input's 32px), `overflow-wrap: anywhere`, `resize: none`; fallback sets `height = scrollHeight` when `CSS.supports("field-sizing", "content")` is false. Enter is prevented and pasted newlines collapse to spaces, so the value stays one logical line. Measured in Chrome at 3440px: before, scrollWidth > clientWidth on 4 of 6 rows; after, scrollWidth = clientWidth = 328 on all rows, box heights 32/52/72px for 1/2/3 lines, row heights 36/53/73px, combobox suggestions and Enter-to-pick unchanged.
+- Taught: in a fixed-layout table, a cell whose text length comes from data (OCR/AI reads) must wrap, not truncate; an auto-growing textarea with `field-sizing: content` keeps the one-line row height when the vertical padding is derived as (control min-height − line-height) / 2.
+- Verdict: covered (§9.D long values that must remain fully readable; §9.C no fixed-height text boxes).
+- Action: logged; no rule text change.
