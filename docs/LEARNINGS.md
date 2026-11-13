@@ -1402,3 +1402,12 @@ recipient boundaries.
 - Taught: a duplicated marquee group must span at least its viewport; otherwise the trailing edge exposes a blank interval even when the -50% translation closes mathematically. Keep timing/visibility proof separate from rendered geometry.
 - Verdict: covered (§3 gap ownership, §8 responsive layout, §9 target-size floors).
 - Action: logged; no rule or version change.
+
+### 2026-11-14 — Search demo: anchor the click to the panel coordinate space
+
+- Space Read: search panel in a landing card · balanced · STEP 8 · DENSITY 6 · RIGOR 8 · 640×360 CSS px slot, shared search/title left edge, 16px icon-to-copy gap.
+- Did: rebuilt the five-row panel, with the footer in normal flex flow so increased text spacing cannot overlap the final row. The animated pointer originally relied on grid static positioning: at 2.6s it appeared at y=336.59px while the intended second row began at y=142.59px. Explicit block-start and inline-start zero moved it to y=170.59px, inside the 44px row. On 320px layouts, hiding the off-canvas pointer with visibility:hidden still left a 559px scroll width; display:none removed that decorative overflow.
+- Evidence: final headless Chromium checks passed 29/29. The 640px panel sits in a 640×360 slot; query and title share x=65px; last-row bottom and footer top both equal 318.30px. Resize round trips 320→640→390→960→320 produced no horizontal page overflow. Increased text spacing kept all five rows clear of the footer. The final 180-frame MP4 was decoded and its selected state visually inspected.
+- Taught: verify decorative overlay coordinates in the same containing block as their targets; a visually hidden transformed element can still enlarge the scrollable area. Keep the live replica's reflow checks separate from the fixed-aspect media slot.
+- Verdict: covered (§4 positioning and layout, §8 responsive geometry, §9 reflow and text-spacing floors).
+- Action: logged; no rule or version change.
