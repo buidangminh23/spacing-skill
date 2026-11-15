@@ -1436,3 +1436,12 @@ recipient boundaries.
 - Taught: verify decorative overlay coordinates in the same containing block as their targets; a visually hidden transformed element can still enlarge the scrollable area. Keep the live replica's reflow checks separate from the fixed-aspect media slot.
 - Verdict: covered (§4 positioning and layout, §8 responsive geometry, §9 reflow and text-spacing floors).
 - Action: logged; no rule or version change.
+
+### 2026-11-15 — MS Key README: center the logo's ink, not its canvas
+
+- Space Read: README hero (GitHub/npm Markdown) · airy · STEP 8 · DENSITY 2 · RIGOR 5 · logo, title and two badge rows share one center axis.
+- Did: replaced a left-aligned `# MS Key` and a single badge row with centered `<p>`/`<h1>` blocks and two `<br />`-separated badge rows, each badge 20px high. The supplied transparent mark (1254×1254) had its opaque ink (alpha > 200) at x 46–1183, y 218–970, so the canvas gaps were left 46 / right 71 / top 218 / bottom 284px; centering the `<img>` would still show the mark low and left. Cropped the ink box with a 6px margin, masked stray specks outside it, scaled to 640px and padded 24px on every side.
+- Evidence: README copy is 688×474px with opaque ink inset 28px on all four sides (measured). GitHub's rendered README HTML keeps `align="center"` on the logo paragraph, the h1 and the badge paragraph. Visual check in a browser was not possible: Chrome extension disconnected and Playwright had no installed browser.
+- Taught: before centering an image, measure its non-transparent bounding box; an off-center canvas defeats every container-level centering rule. Fix the asset (or crop a display copy), not the wrapper.
+- Verdict: covered (§7 optical alignment).
+- Action: logged; no rule or version change.
