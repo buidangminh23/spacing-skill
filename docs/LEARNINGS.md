@@ -1454,3 +1454,12 @@ recipient boundaries.
 - Taught: on fixed-canvas widgets, size the bar track against the widest possible value string (100%, the longest label), not the value on screen today.
 - Verdict: covered (§9.D worst-combination measurement, §11 #27).
 - Action: logged; no rule or version change.
+
+### 2026-11-16 — Stream Deck panel: two accounts in one 200×100 cell, account gap ≥ 2× bar gap
+
+- Space Read: dial-screen panel 200×100 px holding two stacked accounts · packed · STEP 4 · DENSITY 9 · RIGOR 9 · gap between accounts at least twice the gap between one account's two bars.
+- Did: the top row of panels went back to the device's page and volume dials, so each bottom panel now carries two accounts (Claude pair left, Codex pair right). Each 44px block: 12px logo + 11px bold name + 9px plan on one header line, then two 6px bars on a 14px pitch with 9px labels in an 8–36px column and 12px bold percentages right-aligned at x 192. Bars x 40–152. Blocks start at y 4 and 54 with a 1px divider at y 49.5; reset times were dropped because they no longer fit.
+- Evidence: Edge headless render at 3× of live data: label "Fable" ends near x 29 (11px before the bar), "100%" starts near x 161 (9px after the bar), bars of one account are 4px apart, account blocks 10px apart plus the hairline, last bar ends at y 92 (8px bottom margin). The physical LCD was not photographed.
+- Taught: when two records share a fixed cell, set the intra-record gap first (smallest rung) and give the inter-record gap at least 2× plus a hairline; drop secondary data (reset times) before shrinking type below 9px.
+- Verdict: covered (§6.B proximity ladder, §6.F hairline before box).
+- Action: logged; no rule or version change.
