@@ -1445,3 +1445,12 @@ recipient boundaries.
 - Taught: before centering an image, measure its non-transparent bounding box; an off-center canvas defeats every container-level centering rule. Fix the asset (or crop a display copy), not the wrapper.
 - Verdict: covered (§7 optical alignment).
 - Action: logged; no rule or version change.
+
+### 2026-11-16 — Stream Deck dial panel and key icons: measure the widest value, not the typical one
+
+- Space Read: dial-screen panel 200×100 px + 144×144 px key icons · packed · STEP 4 · DENSITY 8 · RIGOR 8 · 8px side margins, progress bar to percentage gap at least 8px.
+- Did: the first panel draft gave the quota bar 140px (x 8 to 148). With the widest value, "100%" at 17px bold (about 44px wide, right-aligned at x 192), the number started near x 146 and overlapped the bar by about 2px; typical values such as "28%" hid the collision. Shortened the bar to 128px (ends at x 136), leaving a 12px gap to "100%". On key icons the 19px bold label "Toàn màn hình" left only 6px of side margin; labels now step the font down until ink width is at most 144 - 16 px.
+- Evidence: rasterized SVG previews with real data from all 8 accounts, including 100% rows, showed no overlap. Pixel scan of the label band (y >= 96, luminance > 60): "Toàn màn hình" ink x 8–134 (margins 8/9px), "/compact" label 10/9px, "Đổi chế độ" 25/25px. Previews in the Stream Deck app confirmed all three pages; the physical device was not photographed.
+- Taught: on fixed-canvas widgets, size the bar track against the widest possible value string (100%, the longest label), not the value on screen today.
+- Verdict: covered (§9.D worst-combination measurement, §11 #27).
+- Action: logged; no rule or version change.
