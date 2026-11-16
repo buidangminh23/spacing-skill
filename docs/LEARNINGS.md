@@ -1463,3 +1463,12 @@ recipient boundaries.
 - Taught: when two records share a fixed cell, set the intra-record gap first (smallest rung) and give the inter-record gap at least 2× plus a hairline; drop secondary data (reset times) before shrinking type below 9px.
 - Verdict: covered (§6.B proximity ladder, §6.F hairline before box).
 - Action: logged; no rule or version change.
+
+### 2026-11-16 — Stream Deck session key: budget the descender, not the baseline, above a pill
+
+- Space Read: 144×144 px key with logo row, wrapped title and a status pill · packed · STEP 4 · DENSITY 8 · RIGOR 8 · last title line must clear the pill by at least 8px.
+- Did: the first draft wrapped titles to 3 lines at 18px bold on a 22px pitch (baselines 70/92/114) with the pill at y 116; Vietnamese descenders on the third line reached about y 118 and cut into the pill. Dropped the title to 15px on an 18px pitch (leading 1.2, enough for stacked diacritics) with baselines 64/82/100, moved the pill to y 112–132 so its bottom margin (12px) matches the 12px side margin, capped the project tag at 8 characters plus "…", and widened the question text wrap from 12 to 15 characters to use the key width.
+- Evidence: Edge headless render of keys built from the live collector feed (3 real sessions, one waiting question): 3-line titles end near y 104, 8px above the pill; project tags no longer clip at the key edge. The physical LCD was not photographed at this point.
+- Taught: when text stacks above a fixed element, place the element from the last line's descender (baseline + ~0.25 em), not from its baseline.
+- Verdict: covered (§6.B proximity ladder, §5 rhythm, §11 #15 diacritic leading).
+- Action: logged; no rule or version change.
