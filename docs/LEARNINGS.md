@@ -1478,3 +1478,12 @@ recipient boundaries.
 - Taught: when text stacks above a fixed element, place the element from the last line's descender (baseline + ~0.25 em), not from its baseline.
 - Verdict: covered (§6.B proximity ladder, §5 rhythm, §11 #15 diacritic leading).
 - Action: logged; no rule or version change.
+
+### 2026-11-17 — MS Key settings: reserve command width before filling the rest of a native row
+
+- Space Read: dense desktop settings · balanced · STEP 4 · DENSITY 7 · RIGOR 8 · shared card edges and 8px between paired controls.
+- Did: the Windows client changed from 580×636 to 640×620 at 96 dpi, with 20px outside margins and a 16px two-column gutter. The first render truncated two toolbar buttons. The custom-key action changed from 64px to 68px with the shorter label “Sửa phím”. The save-profile action grew from 68px to 84px by reducing the adjacent combo from 152px to 136px. Both rows kept their 8px control gaps.
+- Evidence: Win32 captures showed the full final Vietnamese labels in light mode and the system pane in dark mode. The macOS captures also showed the 24pt outside gutters, 16pt between groups and 8pt between headings and controls in a 704×676pt viewport, with a 640×480pt minimum and scrolling content.
+- Taught: for a fixed native toolbar, allocate each action using the actual localized label plus its internal padding, then give the flexible combo the remaining width. The outer grid can stay fixed while the internal split changes.
+- Verdict: covered (§4.C native control alignment, §9.D worst-combination measurement).
+- Action: logged; no rule or version change.
