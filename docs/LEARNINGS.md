@@ -1489,3 +1489,12 @@ recipient boundaries.
 - Taught: for a fixed native toolbar, allocate each action using the actual localized label plus its internal padding, then give the flexible combo the remaining width. The outer grid can stay fixed while the internal split changes.
 - Verdict: covered (§4.C native control alignment, §9.D worst-combination measurement).
 - Action: logged; no rule or version change.
+
+### 2026-11-17 — Search card: keep the border outside the row budget
+
+- Space Read: search panel in a 640×360 landing card · packed · STEP 4 · DENSITY 7 · RIGOR 8 · 44px row rhythm and one title/excerpt left edge.
+- Did: kept the 640×344px panel and 64 + 24 + 220 + 36px section budget. A layout border initially consumed 2px of inner height and clipped the footer; moved the 1px boundary to an inset pseudo-element, preserving the section geometry. Below 640px, retained 16px root type and 16px outside gutters instead of scaling the live replica down with the exported video.
+- Evidence: final headless geometry at the 640px slot: panel x=0, y=8, width=640, height=344; footer bottom=352 equals panel bottom=352; rows=44px; both title and excerpt begin at x=44. Resize round trip 320→640→390→960→320 had page scrollWidth equal viewport width in every sample. Decoded the final 180-frame, six-second MP4 at four seconds and inspected the second selected row.
+- Taught: fixed-aspect media can scale as an image, but its standalone live source should retain readable type and reflow. A visual border need not consume the fixed content-height budget.
+- Verdict: covered (§4 box geometry, §8 responsive layout, §9 reflow).
+- Action: logged; no rule or version change.
