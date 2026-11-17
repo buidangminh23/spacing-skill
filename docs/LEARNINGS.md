@@ -1375,6 +1375,8 @@ recipient boundaries.
 - Taught: reserve a static short-viewport treatment alongside a pinned media scene, and distinguish backing-store dimensions and mocked lifecycle checks from a rendered layout measurement.
 - Verdict: covered (§8 responsive reflow, §8.H reduced motion, §8.I resize round trip). No skill rule or version change.
 
+- Follow-up 2026-11-17, separate standalone hero: Space Read remained STEP 8 / DENSITY 2 / RIGOR 5. With no existing layout, declared 24–64px text insets, 16px related gaps, 24px footer insets and a normal-flow status row with a 44px minimum height. Moved the status out of a fixed overlay so retry controls contribute to the stage height. A viewport height of 640px or less uses ordinary document flow. Mocked-controller checks verified a 960×540 CSS visual produces a 1920×1080 backing store with DPR capped at 2, and resize while awaiting a frame reveals the poster instead of a cleared opaque canvas. Loader/controller tests passed 18/18. The 600 preview SVG descriptions specify 1920×1080; production image assets were not supplied. These are source and mocked-DOM checks, not rendered spacing measurements: Chrome was running but its browser access host was unavailable, so live reflow, overlap and scrolling performance remain unverified. Verdict: covered (§8.E overlay reservation, §8.H reduced motion, §8.I resize round trip); no rule or version change.
+
 ### 2026-11-13 — Office 23 sidebar brand: "Office" word sat left of the 23 mark on narrow sidebars
 
 - Space Read: brand lockup · balanced · STEP 4 · DENSITY 5 · RIGOR 8 · the word and the image mark share one center axis.
