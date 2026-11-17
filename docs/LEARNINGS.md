@@ -1498,3 +1498,12 @@ recipient boundaries.
 - Taught: fixed-aspect media can scale as an image, but its standalone live source should retain readable type and reflow. A visual border need not consume the fixed content-height budget.
 - Verdict: covered (§4 box geometry, §8 responsive layout, §9 reflow).
 - Action: logged; no rule or version change.
+
+### 2026-11-17 — MS Key macOS updater: preserve the primary action when the footer runs out of width
+
+- Space Read: native update window · balanced · STEP 4 · DENSITY 5 · RIGOR 8 · 24pt window inset, 16pt between content groups and 8pt within controls.
+- Did: replaced modal alerts with a 560×416pt window and a 448×336pt minimum. At minimum width the first layout put the actions on two lines, making the footer about 88pt tall. Moving secondary actions into a native options menu reduced it to about 52pt and returned 36pt to the scrollable release notes. The update-and-reopen action stays visible.
+- Evidence: the SwiftUI view built on macOS and was rendered at 2× scale in available, downloading, and recovery states, including the 448×336pt minimum. The preview's transfer percentage came from fixture data; production transfer reporting is verified separately.
+- Taught: when a native footer has both primary and secondary actions, fold secondary actions into a menu at the constrained width so scrollable content keeps a usable height and the primary action stays accessible.
+- Verdict: covered (§8 responsive layout, §9 focus and target-size floors).
+- Action: logged; no rule or version change.
