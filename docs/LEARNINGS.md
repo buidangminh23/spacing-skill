@@ -36,6 +36,8 @@ recipient boundaries.
 - Verdict: covered (§4 shared alignment, §8 motion and fixed media framing).
 - Action: journal only; existing guidance covers the method.
 
+- Follow-up 2026-11-17: a second verified search rebuild used a 640×336px panel centered at y=12 in the 640×360px canvas, five 48px rows and title/excerpt edges at x=48. Filtering 5→4→3 kept those measurements unchanged at 0, 1.6, 2.6, 4.0 and 5.9 seconds. The landing card passed 320→640→1280→320px reflow with zero horizontal overflow and a 44px Play/Pause target; all 180 master frames were 1280×720. This confirms the existing stable-results-region method; verdict covered, no rule or version change.
+
 ### 2026-11-05 — Gemera dashboard / review queue — size columns by content, not by equal share
 
 - Space Read: review queue on a 3180 px screen · packed · STEP 4 · DENSITY 8 · RIGOR 8 · 94 of 97 posts sit in one of six buckets, so equal columns leave most of the width blank
