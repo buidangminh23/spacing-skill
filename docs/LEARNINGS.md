@@ -1523,3 +1523,10 @@ recipient boundaries.
 - Applied the existing line-height and inset guidance to the sheet renderer. Native drawing and automatic row measurement shared a 4px line gap and a 4px cell inset.
 - Measured a three-line cell at the same width, font and zoom before and after. Row height grew from 50 to 64px, baseline pitch from 16 to 20px and clear space between glyphs from 2 to 6px.
 - Verdict — covered by §5.A and §5.E. Recorded the rendered measurements.
+
+### 2026-11-18 — Format conversion queue with optional download buttons
+
+- The queue uses a 4px grid, density 7 and alignment rigor 9. Each row has a labeled select and a download button that appears after conversion.
+- At 1440px the download button started 12.25px above the select, and a pending row's select began 120.22px farther right. Aligning the controls at their bottom edges and sharing column tracks across rows removed both offsets.
+- Measured actual ready and finished rows at 320, 390, 620, 768 and 1440px. The select and download button had identical top and bottom edges at all five widths. They measured 40px on desktop and 44px on mobile.
+- Covered by §4.C, §4.D and §5.E. The mixed-state measurements are recorded here as a field example.
