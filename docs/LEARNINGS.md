@@ -1507,3 +1507,12 @@ recipient boundaries.
 - Taught: when a native footer has both primary and secondary actions, fold secondary actions into a menu at the constrained width so scrollable content keeps a usable height and the primary action stays accessible.
 - Verdict: covered (§8 responsive layout, §9 focus and target-size floors).
 - Action: logged; no rule or version change.
+
+### 2026-11-18 — Receipt Tools stock summary: stack paired columns instead of letting a 13-column table overflow its card
+
+- Space Read: data-table + form · packed · STEP 4 · DENSITY 8 · RIGOR 9 · thirteen numeric columns were clipped at the card edge; the browser datalist for item codes covered the viewport.
+- Did: each period's quantity and value now share one right-aligned cell (quantity on the first line, value as a muted second line), taking the table from 13 to 8 columns. The header names the pair once ("SL · giá trị"). Item-code fields use the app's existing styled picker: code in a fixed 64px column, item name in a truncating flex track, and a 480px minimum width capped at 100vw − 32px.
+- Evidence: column count only (13 → 8); JS parse and 168 tests pass. Chrome measurement was blocked because the extension was disconnected, so overflow at the real card width remains unmeasured.
+- Taught: when a data table repeats a quantity/value pair per period, stack the pair in one cell before reaching for horizontal scroll; the pair stays scannable and the column count halves. Native datalist popups cannot be styled or sized, so a picker with long secondary text belongs in the app's own listbox.
+- Verdict: refinement candidate (§8 responsive tables); needs a measured case before distilling.
+- Action: logged; no rule or version change.
