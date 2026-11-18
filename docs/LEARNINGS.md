@@ -1516,3 +1516,10 @@ recipient boundaries.
 - Taught: when a data table repeats a quantity/value pair per period, stack the pair in one cell before reaching for horizontal scroll; the pair stays scannable and the column count halves. Native datalist popups cannot be styled or sized, so a picker with long secondary text belongs in the app's own listbox.
 - Verdict: refinement candidate (§8 responsive tables); needs a measured case before distilling.
 - Action: logged; no rule or version change.
+
+### 2026-11-18 — Wrapped spreadsheet cells: measure the gap between glyphs
+
+- Space Read — dense inventory grid, 4px step, density 7, alignment rigor 9. Three wrapped lines needed more leading and space at the cell edges.
+- Applied the existing line-height and inset guidance to the sheet renderer. Native drawing and automatic row measurement shared a 4px line gap and a 4px cell inset.
+- Measured a three-line cell at the same width, font and zoom before and after. Row height grew from 50 to 64px, baseline pitch from 16 to 20px and clear space between glyphs from 2 to 6px.
+- Verdict — covered by §5.A and §5.E. Recorded the rendered measurements.
