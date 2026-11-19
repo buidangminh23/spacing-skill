@@ -1550,3 +1550,5 @@ recipient boundaries.
 - Taught: for chevron/arrow shapes, the clear text area is set by the notch depth at the text's own height, not by the shape box; inset the leading edge by the notch depth plus a gap, and the trailing edge only by the gap when text is vertically centred.
 - Verdict: refinement candidate (§7 optical alignment, non-rectangular containers).
 - Action: logged; no rule or version change.
+- Follow-up (same day): the owner's viewer was not PowerPoint and ignored both the chevron adjustment and the text-frame insets, so the notch returned to its 0.45in default and the text sat on the left edge again. Replaced the chevrons with plain rectangles, separate absolutely positioned text boxes (0.14in inset on every side, frame margins 0) and a ▶ glyph centred in each 0.36in gap.
+- Taught (refined): in decks that may open outside PowerPoint, do not rely on shape adjustments or text-frame insets for clearance; put text in its own positioned box inside a plain rectangle, so every renderer draws the same geometry.
