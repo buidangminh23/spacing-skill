@@ -1540,3 +1540,13 @@ recipient boundaries.
 - Taught: before shrinking spacing, measure min-content per column. One unbreakable token can set a column's minimum width and push the whole table into horizontal scroll.
 - Verdict: refinement candidate (§8 responsive tables); complements the 2026-11-18 entry with a measured case.
 - Action: logged; no rule or version change.
+
+### 2026-11-19 — Slide chevron flow: text inset must clear the notch at mid-height
+
+- Space Read: slide flow strip · balanced · STEP 0.08in · three PowerPoint chevrons (2.05 × 0.90in) carrying a bold step name and a one-line note.
+- Problem: labels sat in a separate text box inset 0.25in, while the default chevron notch (adjustment 0.5) is 0.45in deep at mid-height, so the first letters ran 0.20in into the notch ("Filter" and "buttons" visibly clipped).
+- Did: put the text in the shape's own text frame, vertically centred; set the notch depth to 0.25in (adjustment = depth / height); left inset = notch depth + 0.12in (pentagon: 0.12in); right inset 0.06in, because a centred line sits where the arrow tip is widest. Shortened one note so all three chips hold exactly two lines.
+- Evidence: rendered with PowerPoint export at 1280×720 before and after; usable text width 1.39in → 1.62in, no glyph inside the notch, all three chips two lines.
+- Taught: for chevron/arrow shapes, the clear text area is set by the notch depth at the text's own height, not by the shape box; inset the leading edge by the notch depth plus a gap, and the trailing edge only by the gap when text is vertically centred.
+- Verdict: refinement candidate (§7 optical alignment, non-rectangular containers).
+- Action: logged; no rule or version change.
