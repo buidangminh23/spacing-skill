@@ -1530,3 +1530,13 @@ recipient boundaries.
 - At 1440px the download button started 12.25px above the select, and a pending row's select began 120.22px farther right. Aligning the controls at their bottom edges and sharing column tracks across rows removed both offsets.
 - Measured actual ready and finished rows at 320, 390, 620, 768 and 1440px. The select and download button had identical top and bottom edges at all five widths. They measured 40px on desktop and 44px on mobile.
 - Covered by §4.C, §4.D and §5.E. The mixed-state measurements are recorded here as a field example.
+
+### 2026-11-19 — Receipt Tools stock summary: find which cell sets the table's minimum width
+
+- Space Read: data-table · packed · STEP 4 · DENSITY 8 · RIGOR 9 · nine columns overflowed a 976px card at a 1340px viewport, cutting off the average-price column.
+- Measured each column's min-content per row in headless Chrome. The name column needed 347px because one product name held an unbreakable token (`MP2000/2016/2501/3054/40…`); the code column carried two inline links on one nowrap line.
+- Did: name cell `overflow-wrap: anywhere` with a 200px floor; row links moved to a trailing actions column that may wrap; table cell inline padding 12 → 8px (DENSITY 8 rung); the stock tab joins the wide-layout tabs.
+- Evidence: scrollWidth/clientWidth 1167/976 → 976/976 at 1340px, 1316/1316 at 1680px. At 1000px the table still scrolls inside its own wrapper (920/636), the sanctioned fallback.
+- Taught: before shrinking spacing, measure min-content per column. One unbreakable token can set a column's minimum width and push the whole table into horizontal scroll.
+- Verdict: refinement candidate (§8 responsive tables); complements the 2026-11-18 entry with a measured case.
+- Action: logged; no rule or version change.
