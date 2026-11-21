@@ -1583,3 +1583,13 @@ recipient boundaries.
 - Taught: with `viewport-fit=cover`, `100dvh` includes the area under the OS taskbar; a fixed overlay must subtract `env(safe-area-inset-*)` just like a sticky footer does. Do not reuse a form row (bottom-aligned for label+input) for a status+button cluster.
 - Verdict: refinement of §8 (viewport/safe-area) and §5 shared-centre alignment.
 - Action: logged; no rule or version change.
+
+### 2026-11-21 — Receipt Tools tablet: editable invoice page after save
+
+- Space Read: app-page + paper-form · balanced · STEP 8 · DENSITY 5 · RIGOR 7 · action panel groups 24 apart, buttons inside a group 8 apart (3×), form field rows 8, table and signature blocks 16–24 from the fields.
+- Built: two-column page (paper form `minmax(0,1fr)` + 340px sticky panel, `gap:24px`); below 820px the panel moves above the paper and secondary buttons wrap three across. Panel is one flex column with `gap:24px` as the only owner; head/actions/email/new-document are its groups.
+- Bug found while measuring: the editable 8-column table squeezed "TÊN HÀNG" to ~180px and clipped the item name, because each fixed-width column took its width but the auto table still grew the delete-button column to the button's 48px min-width plus padding. `table-layout:fixed` plus trimmed fixed widths (40/64/56/112/120/88/48) gave the name column the remainder and the full name showed at 1280 and 800px.
+- Evidence (headless Chrome 1280×800 and 800×1280): no horizontal page scroll; panel group gaps 24, button gaps 8; signature roles aligned (left column padded by the date line height so both role labels share a baseline).
+- Taught: in an editable table with fixed-width numeric columns and one free text column, use `table-layout:fixed` so the free column gets the remainder; auto layout lets control min-widths steal it.
+- Verdict: covered by §4 (tracks) and §6; logged as a field example.
+- Action: logged; no rule or version change.
