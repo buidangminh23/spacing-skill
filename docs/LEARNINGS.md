@@ -1573,3 +1573,13 @@ recipient boundaries.
 - Taught: canvas/img used as block widgets must be `display:block`, or every gap below them is inflated by the line box; measure the gap, don't trust the CSS value.
 - Verdict: covered by §3.A and §6.C; the inline-canvas descender strip is a field example for §4.
 - Action: logged; no rule or version change.
+
+### 2026-11-21 — Receipt Tools tablet: invoice preview dialog overflowed the screen; status and button misaligned
+
+- Space Read: modal-preview · balanced · STEP 8 · DENSITY 4 · RIGOR 7 · dialog must sit inside the viewport minus 16px margins and the OS taskbar; preview shrinks, actions never scroll away.
+- Measured before (Galaxy Tab S10 FE, 2304×1440 landscape): preview fixed at `max-height:60dvh`, so on a short viewport the dialog ran past the bottom and "Xong" was half hidden behind the Samsung taskbar; history row "Đã gửi" sat 10px below the "Mở" button centre because the shared `.row` used `align-items:flex-end`.
+- Did: `dialog[open]` became a flex column (`gap:12px`, inner margins zeroed so the gap is the only owner); preview `flex:1 1 auto; min-height:160px` so it absorbs the squeeze; dialog `max-height: calc(100dvh - 32px - env(safe-area-inset-top) - env(safe-area-inset-bottom))` with `inset` set to the safe-area insets; history row got its own `.slip-side { align-items:center }` instead of reusing the form `.row`.
+- Evidence after (headless Chrome 360×640, 412×915, 800×1280, 1280×800, 1024×600): dialog within 16px of every edge, "Xong" visible, no internal scroll, status and button centres equal (139/139, 76/76). On the tablet the dialog now ends above the taskbar.
+- Taught: with `viewport-fit=cover`, `100dvh` includes the area under the OS taskbar; a fixed overlay must subtract `env(safe-area-inset-*)` just like a sticky footer does. Do not reuse a form row (bottom-aligned for label+input) for a status+button cluster.
+- Verdict: refinement of §8 (viewport/safe-area) and §5 shared-centre alignment.
+- Action: logged; no rule or version change.
