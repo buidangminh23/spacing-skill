@@ -1562,3 +1562,14 @@ recipient boundaries.
 - Taught: a layout class written for one page pattern (sticky editor beside a list) leaks behaviour when reused for a set of peer cards. For independent cards of different heights, use one stack per column instead of row-aligned grid cells, and test by scrolling, not from a static screenshot.
 - Verdict: covered by §3 (Stack primitive) and §6; logged as a field example.
 - Action: logged; no rule or version change.
+
+### 2026-11-21 — Receipt Tools tablet slip form: cards and signature pads had no owned gaps
+
+- Space Read: tablet-form · balanced · STEP 8 · DENSITY 4 · RIGOR 7 · card header→pad 16, pad→name field 8, card→card 16, label→input 8 < input→next label 16.
+- Measured (headless Chrome, 1152×720): stacked cards 0px apart (no parent gap, cards had no margins), "Ký lại" header button touching the pad (0px), pad→signer input 5px, label→input 4px vs input→next label 10px.
+- Did: `main > section` became a flex column with `gap:16px` (single owner; `.grid` lost its own margin-bottom); `.card-head` owns `margin-bottom:16px` with its `h2` margin zeroed; labels `16px 0 8px`; first label in a card has no top margin so card padding owns the edge; pad→next control 8px.
+- Bug found while measuring: the 8px pad→input gap read 13px because `<canvas>` is inline and left a 5px descender strip. `display:block` on the pad brought it to exactly 8.
+- Evidence after: cardGaps 16/16, header→pad 16/16, pad→input 8, label→input 8, input→next label 16.
+- Taught: canvas/img used as block widgets must be `display:block`, or every gap below them is inflated by the line box; measure the gap, don't trust the CSS value.
+- Verdict: covered by §3.A and §6.C; the inline-canvas descender strip is a field example for §4.
+- Action: logged; no rule or version change.
