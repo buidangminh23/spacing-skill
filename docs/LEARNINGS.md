@@ -1552,3 +1552,13 @@ recipient boundaries.
 - Action: logged; no rule or version change.
 - Follow-up (same day): the owner's viewer was not PowerPoint and ignored both the chevron adjustment and the text-frame insets, so the notch returned to its 0.45in default and the text sat on the left edge again. Replaced the chevrons with plain rectangles, separate absolutely positioned text boxes (0.14in inset on every side, frame margins 0) and a ▶ glyph centred in each 0.36in gap.
 - Taught (refined): in decks that may open outside PowerPoint, do not rely on shape adjustments or text-frame insets for clearance; put text in its own positioned box inside a plain rectangle, so every renderer draws the same geometry.
+
+### 2026-11-21 — Receipt Tools settings: independent cards need column stacks, not a row grid
+
+- Space Read: settings-form · balanced · STEP 8 · DENSITY 5 · RIGOR 7 · six unrelated cards in two columns must not overlap and must keep one 24px card gap.
+- Problem: the settings tab reused the list+editor `.workspace` grid. Its `> .card:first-child { position: sticky }` made the first settings card ride over the cards below while scrolling, and the 2-column row grid sized each row by its tallest card, leaving a ~100px hole above the shorter column's next card.
+- Did: a dedicated `.settings-grid` (2 × `minmax(0,1fr)`, `align-items:start`) holding two `.stack` columns (flex column, gap 24px); one column ≤1100px. No sticky.
+- Evidence (headless Chrome, 1560 and 1000px): after a 600px wheel scroll every card moved exactly 600px; both columns start at y=257; card-to-card gaps 24/24/24/24px; scrollWidth equals the viewport at both widths.
+- Taught: a layout class written for one page pattern (sticky editor beside a list) leaks behaviour when reused for a set of peer cards. For independent cards of different heights, use one stack per column instead of row-aligned grid cells, and test by scrolling, not from a static screenshot.
+- Verdict: covered by §3 (Stack primitive) and §6; logged as a field example.
+- Action: logged; no rule or version change.
