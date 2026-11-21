@@ -197,6 +197,14 @@ recipient boundaries.
 
 <!-- newest first -->
 
+### 2026-11-22 — Menu bar launch page — verify the phone headline against the inner width
+
+- Space Read: marketing hero · airy · STEP 8 · DENSITY 2 · RIGOR 5 · 16 px phone gutters and tile gaps with 64–96 px section padding.
+- Did: started from an empty page and used one page gutter and one grid gap as the owners of horizontal space. At 320 CSS px, the declared 16 px gutters leave a 288 px headline column. Core Text measured the widest line of a feasible two-line wrap at 220.8 px using the 39 px semibold system face and the declared tracking. The same measurement passed at 390, 640, 1024, and 1440 px using their corresponding type and column widths. Column widths were calculated from the CSS. The result is a font-metric check, with browser reflow and zoom still unverified.
+- Taught: check a meaningful line break against the column after gutters and grid gaps, including the breakpoint where the hero first splits into two columns. Let the content determine height.
+- Verdict: covered (§8.B, §9.D).
+- Action: journal measurements only.
+
 ### 2026-11-07 — Spreadsheet editor workbench — own the toolbar chrome once and size dense ribbons to the viewport
 - Space Read: web spreadsheet editor at 1440×900 · packed · STEP 4 · DENSITY 8 · RIGOR 8 · 6px inside ribbon groups, 8px between groups, one chrome owner per horizontal band.
 - Did: at 1440×900, the host app's .editor-top overflowed horizontally (scrollWidth 1454 vs clientWidth 1440) and wrapped .save-pill into two lines (39×36px), .ribbon-body overflowed on wide tabs (scrollWidth 1702 vs 1440), and the embedded spreadsheet engine rendered a second internal 62px toolbar header beneath the host ribbon, pushing the grid top down to y=267px (633px canvas height). Disabled the engine's duplicate header (header: false, toolbar: false), added a single 31px formula bar row, gave .save-pill and .topbar-right white-space: nowrap; flex-shrink: 0 with compact padding (48px topbar), and tightened .ribbon.sheet group padding (4px 8px) and button padding (4px 6px, 86px ribbon body). Re-measured in Chromium at 1440×900 across all 12 ribbon tabs: .editor-top 1440/1440px, .save-pill single-line 66×27px, .ribbon-body 1440/1440px (nyTabOverflow: false), and .sheet-container top 200px (672px canvas height).
