@@ -1611,3 +1611,13 @@ recipient boundaries.
 - Taught: anything drawn on a pixel grid (QR, barcodes, pixel art) must be scaled by an integer factor of device pixels; a non-integer CSS downscale is an alignment bug, not a styling choice. When a list has an optional trailing action on some rows, give the action its own track so the values stay aligned.
 - Verdict: refinement of §7 (optical/pixel alignment) and §4 (shared tracks); field example.
 - Action: logged; no rule or version change.
+
+### 2026-11-22 — Receipt Tools: route map with an action bar under the map (tablet dialog + web card)
+
+- Space Read: map + action bar · balanced · STEP 8 · DENSITY 5 · RIGOR 7 · ETA/distance/arrival cluster 4 vertical × 12 horizontal, info↔button 16, bar inset 16, primary button 48 tall.
+- Built: one flex column (map `flex:1 1 auto; min-height:240px`, bar `flex:none`). The bar is a wrapping flex row: info block `flex:1 1 240px; min-width:0`, button `flex:0 1 auto; white-space:nowrap`, so on narrow widths the button drops under the info instead of squeezing the label. Tablet dialog header truncates the long customer address with ellipsis while the close button stays `flex:none`.
+- First version put the panel on top of the map as an overlay; replaced by a bar below the map so it never covers the map's own controls and attribution (§8.E overlay band).
+- Evidence (headless Chrome 1280×800 dialog, 1400 web card 570 wide): bar 16 inset on all sides, button 48 tall, info and button vertically centred, no clipping of "Mở Google Maps".
+- Taught: for an embedded third-party map, put your own controls in a sibling band rather than an overlay; the map renders its own controls at fixed insets you do not own.
+- Verdict: covered by §4.C (who yields in a flex row) and §8.E; field example.
+- Action: logged; no rule or version change.
