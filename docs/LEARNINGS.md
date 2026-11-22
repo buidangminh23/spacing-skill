@@ -1601,3 +1601,13 @@ recipient boundaries.
 - Taught: in an editable table with fixed-width numeric columns and one free text column, use `table-layout:fixed` so the free column gets the remainder; auto layout lets control min-widths steal it.
 - Verdict: covered by §4 (tracks) and §6; logged as a field example.
 - Action: logged; no rule or version change.
+
+### 2026-11-22 — Receipt Tools tablet invoice: payment method tiles and VietQR ticket
+
+- Space Read: app-form section · balanced · STEP 8 · DENSITY 5 · RIGOR 8 · totals→payment section 24, section heading→tiles 8, tile→tile 12, tiles→QR ticket 32; QR tile padding 16 doubles as the scanner quiet zone.
+- Built: three radio tiles (icon 40 + title + one-line hint, min-height 72) in a `repeat(3, minmax(0,1fr))` grid; ticket = 280px dark QR column + main column whose groups (head, amount, 3-step bar, facts, note) share one `gap:16px`. Facts rows are `grid-template-columns: 112px minmax(0,1fr) 64px` with `dd { display: contents }`, so the value always starts on the same x and the optional "Chép" button sits in its own column instead of pushing only some values left.
+- Bug found while reviewing: the QR looked broken (uneven module widths). The canvas was drawn at 8px per module (424px) and CSS-scaled to 216px, a 0.51 factor that rounds modules to 3 or 4 px. Fix: choose the scale as `floor(displaySize × devicePixelRatio / modules)`, size the canvas to `modules × scale` device pixels and set its CSS size to that ÷ DPR; move the quiet zone into the tile padding so the code itself can use the full width (49 modules → 196px at 4 px/module).
+- Evidence (headless Chrome 1280×800 and 360×800): `scrollWidth` 360 at 360px; QR crop decodes to the exact payload with OpenCV; value column start x equal on all four fact rows.
+- Taught: anything drawn on a pixel grid (QR, barcodes, pixel art) must be scaled by an integer factor of device pixels; a non-integer CSS downscale is an alignment bug, not a styling choice. When a list has an optional trailing action on some rows, give the action its own track so the values stay aligned.
+- Verdict: refinement of §7 (optical/pixel alignment) and §4 (shared tracks); field example.
+- Action: logged; no rule or version change.
