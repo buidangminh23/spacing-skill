@@ -197,6 +197,14 @@ recipient boundaries.
 
 <!-- newest first -->
 
+### 2026-11-25 — Release notes dialog — preserve reading width and close target size
+
+- Space Read: informational dialog · balanced · STEP 4 · DENSITY 4 · RIGOR 7 · 44 × 44 px targets and a scrollable reading area at 320 CSS px.
+- Did: replaced 20% horizontal offsets and clipped overflow with 16 px viewport gutters at the default root size, a 34 rem width cap, and vertical scrolling. At 320 CSS px the CSS sizing calculation gives 192 → 288 px for the outer box and 144 → 254 px for the content, before any scrollbar. DOM tests confirmed the 44 px minimum in both axes on all three release controls, up from 8 px page dots and 20 px arrows. Live browser reflow was unavailable.
+- Taught: give narrow dialogs a fixed gutter at the default text size, then cap the reading width on large screens. Let content scroll and allocate room for the focus outline.
+- Verdict: covered (§8.B, §9.A, §9.D, §9.E).
+- Action: journal measurements only.
+
 ### 2026-11-22 — Menu bar launch page — verify the phone headline against the inner width
 
 - Space Read: marketing hero · airy · STEP 8 · DENSITY 2 · RIGOR 5 · 16 px phone gutters and tile gaps with 64–96 px section padding.
