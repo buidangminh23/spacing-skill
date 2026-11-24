@@ -1628,6 +1628,7 @@ recipient boundaries.
 - Built: 520 pt sheet width, 24 pt insets, 16 pt between groups, 8 pt between heading and body, and 44×44 pt arrow and dot targets. Text shares one measured stack and hidden pages stay out of hit testing and accessibility.
 - Evidence: SwiftUI hosting-view fitting sizes were 520×588 pt on all three pages, including a video page with longer copy. This measured native view layout in a test harness.
 - Follow-up: a second sheet using an 8 pt base step and 24 pt between media and copy measured 520×631 pt across all three pages. Control glyphs stayed at 16 pt within 44×44 pt targets when increasing Dynamic Type.
+- iOS follow-up • In an iPhone 18 Pro Simulator, a compact sheet's presentation scaled declared 44×44 pt targets to about 42.25×42.25 pt. At a declared 48×48 pt, all five navigation targets measured at least 44×44 pt. The arrow frames stayed fixed when the selected page changed. The existing responsive-layout and target-size guidance covers this result.
 - Verdict: covered by §6 and §8.H. Logged as an example without a skill version change.
 
 ### 2026-11-25 — Web pager targets and release-dialog reflow
