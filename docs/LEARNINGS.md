@@ -1637,3 +1637,10 @@ recipient boundaries.
 - Evidence • Source checks confirmed the old and new sizes. Calculated secondary text contrast improved from 2.32:1 to 7.58:1 in light mode and 10.88:1 in dark mode. A simulated DOM confirmed one active page at each of the three stops. Rendered geometry was not measured.
 - Follow-up • A two-page web dialog rendered in WebKit at 320×568, 390×844, and 1280×900. Page changes moved the dialog by 0 CSS px and changed its size by 0 CSS px at each viewport. The 320 px viewport kept 16 px gutters and had 0 px horizontal overflow. Each navigation target was 44×44 px around an 8 px dot or an arrow. Keeping the dot label accessible without rendering it reduced the 320 px dialog height from 410 to 373.5 px.
 - Verdict • covered by §8 and §9. The existing guidance on responsive layout and independent hit areas applies.
+
+### 2026-11-25 — Single-feature release sheet with full-width artwork
+
+- Space Read • airy macOS sheet · STEP 8 pt · DENSITY 1 · RIGOR 4 · keep the 16:9 artwork on the card edges and use one 24 pt inset for the copy.
+- The first native render was 448×440 pt. Its flexible artwork fitted to roughly 413×232 pt and left side gutters. Giving the artwork a 448×252 pt frame derived from the same width as the sheet filled those gutters. The final light and dark renders both measured 448×460 pt at 2×, with 8 pt within the text group, 24 pt from the group to the action, and a 40×40 pt rendered close control.
+- In the light render, the body text measured 3.10:1 contrast with the initial semantic secondary style. The primary label color measured 12.49:1 in light mode and 11.55:1 in dark mode. The type hierarchy still separated the heading from the body.
+- Verdict • covered by §6 and §9. The existing guidance on a shared alignment edge, proximity and visible controls applies.
