@@ -1627,4 +1627,5 @@ recipient boundaries.
 - Space Read: macOS sheet · balanced · STEP 4 pt · DENSITY 4 · RIGOR 8 · keep the 16:9 media and navigation geometry constant across pages.
 - Built: 520 pt sheet width, 24 pt insets, 16 pt between groups, 8 pt between heading and body, and 44×44 pt arrow and dot targets. Text shares one measured stack and hidden pages stay out of hit testing and accessibility.
 - Evidence: SwiftUI hosting-view fitting sizes were 520×588 pt on all three pages, including a video page with longer copy. This measured native view layout in a test harness.
+- Follow-up: a second sheet using an 8 pt base step and 24 pt between media and copy measured 520×631 pt across all three pages. Control glyphs stayed at 16 pt within 44×44 pt targets when increasing Dynamic Type.
 - Verdict: covered by §6 and §8.H. Logged as an example without a skill version change.
