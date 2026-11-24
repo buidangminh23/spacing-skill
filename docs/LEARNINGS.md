@@ -1629,3 +1629,10 @@ recipient boundaries.
 - Evidence: SwiftUI hosting-view fitting sizes were 520×588 pt on all three pages, including a video page with longer copy. This measured native view layout in a test harness.
 - Follow-up: a second sheet using an 8 pt base step and 24 pt between media and copy measured 520×631 pt across all three pages. Control glyphs stayed at 16 pt within 44×44 pt targets when increasing Dynamic Type.
 - Verdict: covered by §6 and §8.H. Logged as an example without a skill version change.
+
+### 2026-11-25 — Web pager targets and release-dialog reflow
+
+- Space Read • balanced dialog · STEP 4 · DENSITY 4 · RIGOR 8 · 44 CSS px targets and 16 CSS px minimum outer gutters at the default root size.
+- The original CSS sized the dot itself at 8×8 CSS px and the arrows at 20×20 CSS px. The replacement declares a 44×44 CSS px minimum for all dialog buttons with a separate 12×12 CSS px dot glyph. The pages share one grid cell. Inactive pages still reserve layout space and are excluded from navigation and assistive technology.
+- Evidence • Source checks confirmed the old and new sizes. Calculated secondary text contrast improved from 2.32:1 to 7.58:1 in light mode and 10.88:1 in dark mode. A simulated DOM confirmed one active page at each of the three stops. Rendered geometry was not measured.
+- Verdict • covered by §8 and §9. The existing guidance on responsive layout and independent hit areas applies.
