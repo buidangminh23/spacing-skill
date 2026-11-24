@@ -1621,3 +1621,10 @@ recipient boundaries.
 - Taught: for an embedded third-party map, put your own controls in a sibling band rather than an overlay; the map renders its own controls at fixed insets you do not own.
 - Verdict: covered by §4.C (who yields in a flex row) and §8.E; field example.
 - Action: logged; no rule or version change.
+
+### 2026-11-24 — macOS SwiftUI: stable three-page release sheet
+
+- Space Read: macOS sheet · balanced · STEP 4 pt · DENSITY 4 · RIGOR 8 · keep the 16:9 media and navigation geometry constant across pages.
+- Built: 520 pt sheet width, 24 pt insets, 16 pt between groups, 8 pt between heading and body, and 44×44 pt arrow and dot targets. Text shares one measured stack and hidden pages stay out of hit testing and accessibility.
+- Evidence: SwiftUI hosting-view fitting sizes were 520×588 pt on all three pages, including a video page with longer copy. This measured native view layout in a test harness.
+- Verdict: covered by §6 and §8.H. Logged as an example without a skill version change.
