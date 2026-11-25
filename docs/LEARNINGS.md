@@ -1728,3 +1728,12 @@ recipient boundaries.
 - After • ink at 46/108 dp: xxxhdpi bbox 124–308 × 127–304 = 42.6 % of canvas, 63.9 % of the visible area; on the device the white margin matches iCabinet / H-cabinet.
 - Taught • "inside the safe zone" is necessary but not sufficient; size the ink to ~64 % of the visible tile and confirm with an on-device screenshot beside other apps.
 - Verdict • refinement → §7.G figures corrected (55–60 % → 42–45 %).
+
+
+## 2026-11-25 · Model card tab: sparse key-value column beside a long text column (COS30049 spam screening app)
+
+- Space Read • model-card panel · balanced · STEP 8 (existing 4/8/12/16/24 literals) · DENSITY 5 · RIGOR 8 · intra 4 → inter 12 → group 24, and the two columns must carry similar weight.
+- Before • `grid-2` split: left column was six short `dt/dd` rows (~170 px tall), right column held labels, limitations and attribution (~330 px), leaving a large empty block under the left column at 1440 px. Dash bullets sat at `top: 0.62em` on a 1.7 line-height, so each marker sat above the first line's optical middle (0.85 em).
+- After • stack of four groups with one 24 px gap owner: model tiles (`auto-fit minmax(240px,1fr)`, 12 px gap, 16 px inset, 4 px intra), scope facts (`minmax(160px,1fr)`, 8 px gap), a 1fr/2fr labels/limitations grid (24 px, collapses below 900 px), and a hairline-topped source block (16 px). Limitation markers became a 16 px icon column with `margin-top: 3px` on 1.5 line-height text. At 375 px: document scrollWidth 360, no overflowing descendants.
+- Taught • when one column of a two-column card is a short key-value list and the other is long prose, stop splitting by content type; split by group and let full-width tile grids carry the short facts, so neither column leaves a dead block.
+- Verdict • covered: §6 proximity ladder, §6.F lightest separator, §8.B column count from content; no skill change.
