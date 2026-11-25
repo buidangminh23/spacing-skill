@@ -14,6 +14,7 @@
 - 14.G Print & pagination
 - 14.H Concept → tool mapping
 - 14.I Document pre-flight
+- 14.J Slide decks (PowerPoint / Keynote / Slides)
 
 ## 14. DOCUMENT & LONG-FORM — Word / Google Docs / PDF / Markdown
 
@@ -98,4 +99,14 @@ Turn on **Widow/Orphan control** (no single line stranded at a page top/bottom),
 - [ ] Lists / quotes / tables grouped tighter internally than the surrounding prose.
 - [ ] Widow/orphan control on; major sections start with a real page break.
 
----
+### 14.J Slide decks (PowerPoint / Keynote / Google Slides)
+
+Slides are fixed canvases, not reflowing pages, so rhythm comes from a **fixed title band** and a grid, not from paragraph spacing.
+
+- **Grid:** treat a 16:9 slide as 1280×720 px at 96 dpi and use an 8 px step (1/12 in; 6 pt). Snap every content edge; decorative shapes are exempt.
+- **One title→body gap on every slide type.** Fix the title band height and start every body at the same `top + title band + gap` (e.g. 72 + 40 px). Top-align bodies; do **not** vertically centre each body into the leftover height — that makes the title→body distance depend on content height, so it changes from slide to slide and breaks Morph/Magic Move continuity.
+- **Proximity ladder on a slide:** intra-card 8 → related items 16 → card inset and card-to-card 24 → title→body 40 → page margin ≥ 56–64.
+- **Rows of cards:** one width (floored to the grid) and one gap per row; under a left-aligned title the row starts on the title's left edge; cards hug their content up to a cap and labels sit on the bottom inset so the row shares a bottom edge.
+- **Overlays in the title band** (home/menu buttons, page counters, logos) must stay inside the band and be checked on slides that have no title — quiz, cover and closing slides.
+- **Measure from the file:** read shape boxes (EMU → px) and assert 0 off-grid edges, a single title→body value and a single card-gap value; then render every slide and look for decor entering the title band, which numbers alone miss.
+

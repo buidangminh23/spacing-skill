@@ -1654,3 +1654,15 @@ recipient boundaries.
 - The first native render was 448×440 pt. Its flexible artwork fitted to roughly 413×232 pt and left side gutters. Giving the artwork a 448×252 pt frame derived from the same width as the sheet filled those gutters. The final light and dark renders both measured 448×460 pt at 2×, with 8 pt within the text group, 24 pt from the group to the action, and a 40×40 pt rendered close control.
 - In the light render, the body text measured 3.10:1 contrast with the initial semantic secondary style. The primary label color measured 12.49:1 in light mode and 11.55:1 in dark mode. The type hierarchy still separated the heading from the body.
 - Verdict • covered by §6 and §9. The existing guidance on a shared alignment edge, proximity and visible controls applies.
+
+### 2026-11-25 — Generated PowerPoint decks: one title→body gap and an 8 px slide grid
+
+- Space Read • slide-deck 16:9 (1280×720 px at 96 dpi) · balanced · STEP 8 px (1/12 in) · DENSITY 4 · RIGOR 8 · one title→body gap on every slide type.
+- Context • `genz-slide-design` builds 12 costume styles with python-pptx. Each slide type had its own hand-tuned inch offsets (0.3, 0.35, 1.15, 1.2, 1.25, 1.6 in).
+- Before (layout_audit.py, three decks) • 82–92 % of content edges were off the 8 px grid (325/356, 273/352, 343/392). Title→body gap measured 19, 24, 34, 55, 58, 82 and 96 px depending on slide type, because members, agenda and stats rows were vertically centred into the leftover height. Card-to-card gaps were 29 and 34 px for the same role. Charts started 29 px right of the title edge.
+- Built • tokens in 1/12 in units: TIGHT 8 · INNER 16 · INSET = CARD_GAP 24 · TITLE_GAP 40 · TITLE_H 72 · margins snapped to the grid. Every body starts at `body_top = top + 72 + 40` and is top-aligned. Card rows come from one `row_slots()` helper (width floored to the grid, one gap, left edge = title edge under a left-aligned title). Cards hug content up to a 288 px cap, and labels sit on the bottom inset so a row shares its bottom edge. Covers and closing slides stack title → subtitle (16) → button (24) from one snapped baseline.
+- After (all 12 decks) • 0 off-grid content edges; one title→body value (40 px) and one card gap (24 px) everywhere; 0 text overflow in a PowerPoint render of 180 slides.
+- Visual pass caught what the numbers could not: a 72 px title band let the right-hand "home" button overlap the quiz question bar (no title band on that slide), a cover button overlapped its subtitle by 8 px after a title-height change, and decor blobs entered the title band. Fixed by removing the button on quiz slides, recomputing the cover stack, and moving decor out of the band.
+- Taught • on slides, vertical centring of each body block makes the title→body distance a function of content height, so it changes on every slide and breaks Morph continuity; a fixed title band with top-aligned bodies is the slide equivalent of a stable heading rhythm. Measure decks from the file (shape boxes in px), not from screenshots.
+- Verdict • gap: the skill had no slide-deck guidance. Distilled into §14.J of `references/documents.md`; minor version bump.
+

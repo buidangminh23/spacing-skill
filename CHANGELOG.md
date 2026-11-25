@@ -4,6 +4,11 @@ All notable changes to this project are documented here. The format is based on
 [Keep a Changelog](https://keepachangelog.com/en/1.1.0/), and this project
 adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0.html).
 
+## [2.20.0] - 2026-11-25
+
+### Added
+- Slide-deck guidance (§14.J): an 8 px grid on a 1280×720 canvas, one fixed title band with the same title→body gap on every slide type, top-aligned bodies instead of per-slide vertical centring, card-row rules, title-band overlays, and measuring decks from the file.
+
 ## [2.19.0] - 2026-11-01
 
 ### Changed
