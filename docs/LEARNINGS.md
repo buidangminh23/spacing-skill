@@ -1674,3 +1674,12 @@ recipient boundaries.
 - After • one shared size for all names (14 pt, the largest that fits every name on one line with a conservative 0.6 character width), box anchored top: both names at top 432 px, 16 px under the photo bottom (416 px), 0 off-grid edges.
 - Taught • sibling cards need one shared text size computed from the longest item, not a per-card fit; anchor labels at the edge that faces their owner (top, under the photo), never toward it; estimate width with the fallback font, not the intended one, when the renderer may substitute.
 - Verdict • refinement: added to §14.J slide decks.
+
+
+## 2026-11-25 · Invoice total box: a longer label wraps beside a fixed input (Receipt Tools tablet)
+
+- Space Read • form-summary · balanced · STEP 4 (inherited: 6/12 padding, 8 gap) · DENSITY 5 · RIGOR 7 · every label stays on one line beside its own input.
+- Before • adding "Chuyển khoản đã đưa" to the total box: label needs 164 px on one line, but the 298 px row (278 px on an 800 px portrait tablet) minus 24 padding, 8 gap and a fixed 120 px input leaves 146 / 126 px, so it wrapped and the row grew to 58 px while sibling rows are 45 px.
+- After • shorter labels that keep the meaning ("Đã chuyển khoản" 130 px, "Đã trả tiền mặt" 113 px), `white-space: nowrap` on the label, input `flex: 0 1 120px; min-width: 96px` (96 fits a 9-digit amount). Every row 45 px at 1280 and 800; at 800 the input yields to 116 px; nothing clipped.
+- Taught • when the label carries meaning and must not truncate, the field yields instead, but only down to a floor measured from the widest value it must show; check the narrowest real container, not the design width.
+- Verdict • covered: §4.C (decide which item yields in a flex row) and anti-pattern #26; no skill change.
