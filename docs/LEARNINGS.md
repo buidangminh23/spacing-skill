@@ -1683,3 +1683,12 @@ recipient boundaries.
 - After • shorter labels that keep the meaning ("Đã chuyển khoản" 130 px, "Đã trả tiền mặt" 113 px), `white-space: nowrap` on the label, input `flex: 0 1 120px; min-width: 96px` (96 fits a 9-digit amount). Every row 45 px at 1280 and 800; at 800 the input yields to 116 px; nothing clipped.
 - Taught • when the label carries meaning and must not truncate, the field yields instead, but only down to a floor measured from the widest value it must show; check the narrowest real container, not the design width.
 - Verdict • covered: §4.C (decide which item yields in a flex row) and anti-pattern #26; no skill change.
+
+
+## 2026-11-25 · Debt sub-panel under payment tiles (Receipt Tools tablet)
+
+- Space Read • form-subpanel · balanced · STEP 4 (inherited: tiles gap 12, ticket margin 32) · DENSITY 5 · RIGOR 7 · the follow-up choice reads as part of the chosen tile, the QR ticket stays a separate group.
+- Before • new "Công nợ" options (pay part now / pay later) plus an amount field and note had no place; dropping them as loose controls between the tiles and the QR ticket would sit at the same distance as both neighbours.
+- After • one tinted panel in the Công nợ tone, 16 px below the tiles (closer than the 32 px gap to the QR ticket), 16 px inset, 12 px between its rows, two choice buttons on the same 12 px gap as the tiles. Measured at 1280 and 800: buttons 379/345 × 67 px, no clipping, document overflow 0.
+- Taught • a follow-up control for one option belongs inside that option's tint at the inter-item gap, while the next independent block keeps the larger inter-group gap; the tint does the grouping, no extra border needed.
+- Verdict • covered: §6.B proximity ladder and §6.F (tint before border).
