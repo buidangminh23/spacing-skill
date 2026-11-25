@@ -4,6 +4,11 @@ All notable changes to this project are documented here. The format is based on
 [Keep a Changelog](https://keepachangelog.com/en/1.1.0/), and this project
 adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0.html).
 
+## [2.20.1] - 2026-11-25
+
+### Changed
+- §14.J: labels under sibling media (member cards) use one shared size from the longest label, anchor toward the edge facing their owner, and size against the fallback font.
+
 ## [2.20.0] - 2026-11-25
 
 ### Added

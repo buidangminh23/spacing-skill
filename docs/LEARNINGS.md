@@ -1666,3 +1666,11 @@ recipient boundaries.
 - Taught • on slides, vertical centring of each body block makes the title→body distance a function of content height, so it changes on every slide and breaks Morph continuity; a fixed title band with top-aligned bodies is the slide equivalent of a stable heading rhythm. Measure decks from the file (shape boxes in px), not from screenshots.
 - Verdict • gap: the skill had no slide-deck guidance. Distilled into §14.J of `references/documents.md`; minor version bump.
 
+
+## 2026-11-25 · Slide member cards: names drift when one wraps (genz-slide-design)
+
+- Space Read • slide-members · balanced · STEP 8 · DENSITY 4 · RIGOR 8 · every card's name shares one top edge 16 px under the photo.
+- Before • name box 40 px, anchored bottom, 17 pt per card fitted with the condensed title width (0.42). The app (23 Slides) renders with a wider fallback font, so "Nguyen Nhu Tuan Long" wrapped to two lines and grew upward over the photo, while "Bui Dang Minh" stayed on one line: two cards, two name baselines.
+- After • one shared size for all names (14 pt, the largest that fits every name on one line with a conservative 0.6 character width), box anchored top: both names at top 432 px, 16 px under the photo bottom (416 px), 0 off-grid edges.
+- Taught • sibling cards need one shared text size computed from the longest item, not a per-card fit; anchor labels at the edge that faces their owner (top, under the photo), never toward it; estimate width with the fallback font, not the intended one, when the renderer may substitute.
+- Verdict • refinement: added to §14.J slide decks.
