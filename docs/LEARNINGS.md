@@ -1701,3 +1701,12 @@ recipient boundaries.
 - After • `.debt-row { margin: 0 }`, inputs 44 px tall: rows 44 px at a 52 px pitch (gap 8 is the only owner), measured at 1280 and 800, overflow 0.
 - Taught • when a flex/grid row element is a `<label>` (or another element with a global margin reset), zero its margin as soon as the parent owns spacing with `gap`; measure the row pitch, not only the declared gap.
 - Verdict • covered: §3.A single-owner law.
+
+
+## 2026-11-25 · Analyzer page rebuilt as a sidebar dashboard (COS30049 SMS spam screening)
+
+- Space Read • dashboard · balanced · STEP 8 · DENSITY 5 · RIGOR 8 · one 24 px gutter owns every gap between cards, so the input/result pair, the four analysis cards and the tab card read as one grid.
+- Before • stacked instrument panels at a fluid 16–26 px rhythm (`clamp()` margins on each section), 18 px panel inset (off-scale), and two one-sided 3 px accent stripes (`.caution`, `.score-line`).
+- After • a single `gap: 24px` on `.page`, `.grid-2` and `.grid-4` (16 px under 820 px), card inset 24 / 16 px, mini cards 16 px inset with 12 px inner gaps; stripes replaced by a tinted card and a full 1 px border. Measured with Playwright at 1440: input/result cards 272–853 and 878–1407, analysis cards 272–558 / 582–868 / …, tab card 24 px below them; at 390, 900 and 1440 document overflow 0 on four pages, light and dark.
+- Taught • when converting a stacked page to a card grid, delete every per-section margin and let the grid gap be the only owner; one gutter value for both axes keeps rows and columns visibly aligned.
+- Verdict • covered: §3.A single-owner law and §2 scale; no skill change.
