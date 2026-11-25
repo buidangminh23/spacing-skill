@@ -1710,3 +1710,12 @@ recipient boundaries.
 - After • a single `gap: 24px` on `.page`, `.grid-2` and `.grid-4` (16 px under 820 px), card inset 24 / 16 px, mini cards 16 px inset with 12 px inner gaps; stripes replaced by a tinted card and a full 1 px border. Measured with Playwright at 1440: input/result cards 272–853 and 878–1407, analysis cards 272–558 / 582–868 / …, tab card 24 px below them; at 390, 900 and 1440 document overflow 0 on four pages, light and dark.
 - Taught • when converting a stacked page to a card grid, delete every per-section margin and let the grid gap be the only owner; one gutter value for both axes keeps rows and columns visibly aligned.
 - Verdict • covered: §3.A single-owner law and §2 scale; no skill change.
+
+
+## 2026-11-25 · Android adaptive launcher icon cropped by the mask (Office 23 tablet app)
+
+- Space Read • launcher-icon · airy · STEP 4 (on the 108 dp canvas) · DENSITY 2 · RIGOR 6 · the logo's ink must sit inside the 66 dp safe circle and be centred on its ink, not on its file box.
+- Before • `tauri icon` scaled the 512 px logo onto the 108 dp foreground layer: ink 380/432 px = 88 % of the canvas. Samsung's squircle mask shows only ~72 dp (67 %), so the cube touched and lost its edges on the home screen.
+- After • cropped the source to its alpha bounding box (alpha > 16), scaled the longest side to 60/108 dp = 55.6 %, centred on the ink box for every density (108/162/216/324/432 px). Measured on xxxhdpi: ink box 96–336 × 100–331, centre 216.0 × 215.5 (canvas centre 216), fully inside the 66 dp circle; the white `ic_launcher_background` fills the rest.
+- Taught • for an adaptive icon, generators size the art to the full 108 dp layer; resize the ink (not the PNG box) to ~55–60 % of the canvas so any OEM mask keeps a margin, and verify by measuring the alpha bounding box after export rather than looking at the PNG.
+- Verdict • gap → §7 optical alignment: add "launcher/app icons: size by ink bbox against the platform safe zone".
