@@ -1719,3 +1719,12 @@ recipient boundaries.
 - After • cropped the source to its alpha bounding box (alpha > 16), scaled the longest side to 60/108 dp = 55.6 %, centred on the ink box for every density (108/162/216/324/432 px). Measured on xxxhdpi: ink box 96–336 × 100–331, centre 216.0 × 215.5 (canvas centre 216), fully inside the 66 dp circle; the white `ic_launcher_background` fills the rest.
 - Taught • for an adaptive icon, generators size the art to the full 108 dp layer; resize the ink (not the PNG box) to ~55–60 % of the canvas so any OEM mask keeps a margin, and verify by measuring the alpha bounding box after export rather than looking at the PNG.
 - Verdict • gap → §7 optical alignment: add "launcher/app icons: size by ink bbox against the platform safe zone".
+
+
+## 2026-11-25 · Launcher icon follow-up: 60 dp still too large on device
+
+- Space Read • launcher-icon · airy · STEP 4 · DENSITY 2 · RIGOR 6 · compare against neighbouring app icons on the real home screen, not against the mask alone.
+- Before • ink at 60/108 dp (55.6 %) cleared the safe circle but filled ~83 % of the visible 72 dp tile on a Samsung tablet, visibly bigger than Zalo, iCabinet and H-cabinet.
+- After • ink at 46/108 dp: xxxhdpi bbox 124–308 × 127–304 = 42.6 % of canvas, 63.9 % of the visible area; on the device the white margin matches iCabinet / H-cabinet.
+- Taught • "inside the safe zone" is necessary but not sufficient; size the ink to ~64 % of the visible tile and confirm with an on-device screenshot beside other apps.
+- Verdict • refinement → §7.G figures corrected (55–60 % → 42–45 %).
