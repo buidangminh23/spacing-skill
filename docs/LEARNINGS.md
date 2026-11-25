@@ -1692,3 +1692,12 @@ recipient boundaries.
 - After • one tinted panel in the Công nợ tone, 16 px below the tiles (closer than the 32 px gap to the QR ticket), 16 px inset, 12 px between its rows, two choice buttons on the same 12 px gap as the tiles. Measured at 1280 and 800: buttons 379/345 × 67 px, no clipping, document overflow 0.
 - Taught • a follow-up control for one option belongs inside that option's tint at the inter-item gap, while the next independent block keeps the larger inter-group gap; the tint does the grouping, no extra border needed.
 - Verdict • covered: §6.B proximity ladder and §6.F (tint before border).
+
+
+## 2026-11-25 · Field rows in a tinted panel spread 32 px apart (Receipt Tools tablet)
+
+- Space Read • form-subpanel · balanced · STEP 4 · DENSITY 5 · RIGOR 7 · three amount fields read as one group, then a hairline and the owed total.
+- Before • `.debt-fields { gap: 8px }` but each row is a `<label>`, and the app's global `label { margin: 16px 0 8px }` added on top: rows 40 px tall at a 72 px pitch, so the fields looked like separate sections.
+- After • `.debt-row { margin: 0 }`, inputs 44 px tall: rows 44 px at a 52 px pitch (gap 8 is the only owner), measured at 1280 and 800, overflow 0.
+- Taught • when a flex/grid row element is a `<label>` (or another element with a global margin reset), zero its margin as soon as the parent owns spacing with `gap`; measure the row pitch, not only the declared gap.
+- Verdict • covered: §3.A single-owner law.
