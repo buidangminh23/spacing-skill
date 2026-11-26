@@ -1745,3 +1745,12 @@ recipient boundaries.
 - After • stack of four groups with one 24 px gap owner: model tiles (`auto-fit minmax(240px,1fr)`, 12 px gap, 16 px inset, 4 px intra), scope facts (`minmax(160px,1fr)`, 8 px gap), a 1fr/2fr labels/limitations grid (24 px, collapses below 900 px), and a hairline-topped source block (16 px). Limitation markers became a 16 px icon column with `margin-top: 3px` on 1.5 line-height text. At 375 px: document scrollWidth 360, no overflowing descendants.
 - Taught • when one column of a two-column card is a short key-value list and the other is long prose, stop splitting by content type; split by group and let full-width tile grids carry the short facts, so neither column leaves a dead block.
 - Verdict • covered: §6 proximity ladder, §6.F lightest separator, §8.B column count from content; no skill change.
+
+
+## 2026-11-26 · Tablet signing dialog: tall invoice preview pushed the confirm button off-screen (Receipt Tools)
+
+- Space Read • tablet modal · balanced · STEP 8 · DENSITY 5 · RIGOR 7 · on a landscape tablet the invoice preview scrolls in its own column, and the signature pad plus the 44 px confirm row stay visible.
+- Before • a single-column dialog (`max-height: calc(100dvh - 32px)`, `overflow-y: auto`) stacked a 934 px invoice image (sheet `max-height: 46dvh`) above a 200 px pad and the buttons. At 1340 × 800 the confirm button sat at y = 810, below the visible dialog, and Playwright reported the preview intercepting its clicks.
+- After • the dialog is fixed to the viewport height and the form is a grid `minmax(0,1.25fr) minmax(320px,1fr)` with rows `auto minmax(0,1fr)`. The preview column scrolls on its own (`min-height: 0; overflow: auto`). The signing column is a flex stack with `gap: 16px`: the pad grows (`flex: 1 1 240px`) and the action row is pushed to the bottom with `margin-top: auto`. Measured at 1340 × 800: dialog 1240 × 768, confirm button 1113,724 (161 × 44) inside the dialog, preview 656 px wide. Below 900 px the form becomes one column.
+- Taught • in a modal that pairs a long read-only document with an input area, give each its own grid track and let only the document scroll. With `minmax(0,1fr)` rows and `min-height: 0` on the scroller, the actions stay on screen at any document length.
+- Verdict • covered: §8 reflow and §4.C `margin-top: auto` (used here where the column is stretched, as the guidance requires); no skill change.
