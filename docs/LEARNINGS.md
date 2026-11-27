@@ -1754,3 +1754,11 @@ recipient boundaries.
 - After • the dialog is fixed to the viewport height and the form is a grid `minmax(0,1.25fr) minmax(320px,1fr)` with rows `auto minmax(0,1fr)`. The preview column scrolls on its own (`min-height: 0; overflow: auto`). The signing column is a flex stack with `gap: 16px`: the pad grows (`flex: 1 1 240px`) and the action row is pushed to the bottom with `margin-top: auto`. Measured at 1340 × 800: dialog 1240 × 768, confirm button 1113,724 (161 × 44) inside the dialog, preview 656 px wide. Below 900 px the form becomes one column.
 - Taught • in a modal that pairs a long read-only document with an input area, give each its own grid track and let only the document scroll. With `minmax(0,1fr)` rows and `min-height: 0` on the scroller, the actions stay on screen at any document length.
 - Verdict • covered: §8 reflow and §4.C `margin-top: auto` (used here where the column is stretched, as the guidance requires); no skill change.
+
+## 2026-11-27 · Invoice line table: hidden per-row control kept every row 59 px tall (Receipt Tools)
+
+- Space Read • data-table · packed · STEP 4 · DENSITY 8 · RIGOR 9 · every row on one 36 px rhythm, the table fits its paper without a scrollbar on desktop.
+- Before • each row carried a price-type `<select>` under the price input. Empty rows hid it with `visibility: hidden`, which keeps its box, so all eight rows measured 59 px; the table had `min-width: 860px` inside an 826 px wrap, so it always scrolled sideways and clipped the last column.
+- After • the select uses `display: none` on empty rows and on rows whose value is the default and that are not `:focus-within` (`select:has(option[value="auto"]:checked)`); fixed columns trimmed to 80/96/112 px and `min-width: 800px`. Measured at 1280 px: rows 36/36/36, wrap 826 = scrollWidth 826; first-row inputs, STT and amount all start at the same top.
+- Taught • `visibility: hidden` reserves layout; when a per-row control is optional, remove it from flow and show it only when it carries a non-default value or the row has focus, so the table keeps one row height.
+- Verdict • covered: §6.F lightest separator and §11 #14 rhythm; no skill change.
