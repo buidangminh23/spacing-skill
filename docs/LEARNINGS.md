@@ -1762,3 +1762,11 @@ recipient boundaries.
 - After • the select uses `display: none` on empty rows and on rows whose value is the default and that are not `:focus-within` (`select:has(option[value="auto"]:checked)`); fixed columns trimmed to 80/96/112 px and `min-width: 800px`. Measured at 1280 px: rows 36/36/36, wrap 826 = scrollWidth 826; first-row inputs, STT and amount all start at the same top.
 - Taught • `visibility: hidden` reserves layout; when a per-row control is optional, remove it from flow and show it only when it carries a non-default value or the row has focus, so the table keeps one row height.
 - Verdict • covered: §6.F lightest separator and §11 #14 rhythm; no skill change.
+
+## 2026-11-28 · Tablet invoice line table: stacked price cell split the row's text line, delete button clipped (Receipt Tools)
+
+- Space Read • data-table on a tablet form · packed · STEP 4 · DENSITY 7 · RIGOR 9 · every cell of a row starts on one 40 px line; the delete target stays ≥ 44 px wide inside its column.
+- Before • cells used `vertical-align: middle`, but the price cell stacked a 40 px input over a 44 px price-type select, so its input sat at top 5 while every other input sat at top 29 (24 px apart in a 97 px row). The 48 px `.remove` button lived in a 36 px column with `overflow: hidden`, so 12 px of it was cut. Blank padding rows were 97 px tall only because of the select.
+- After • body cells `vertical-align: top`, inputs `min-height: 40px`, STT and amount `line-height: 40px`; delete column 52 px with a 44 × 40 button. The select is `display: none` while the row has no name (`:placeholder-shown` on a `placeholder=" "` input) or holds the default value outside `:focus-within`, matching the web table. Measured at 1280 and 800 px: rows 49/49/49 when idle, 97 only on the row being edited; all first-line controls at top 5; delete button 44 px inside a 52 px column; wrap scrollWidth = clientWidth.
+- Taught • when one cell in a row stacks two controls, middle alignment puts that cell's first line on a different height from its neighbours; top-align the row on a shared control height so the stacked control hangs below the common line.
+- Verdict • covered: §4 shared baseline and the 2026-11-27 optional-control entry; no skill change.
